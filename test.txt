@@ -1,0 +1,8 @@
+Czesc, tu Bartek. :)
+
+Testuje, czy dobrze skonfigurowalem Gita na Linuksie i sprawdzam, czy repo dziala prawidlowo.
+Jesli to sie udalo przeslac to tak - jutro powiem wiecej o dzialaniu i konfiguracji Gita.
+Odrobinke sobie przypomnialem.
+Potem usuniemy ten plik, bo nie bedzie tutaj potrzebny.
+
+Pozdro!
