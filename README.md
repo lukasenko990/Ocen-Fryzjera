@@ -60,6 +60,6 @@ Realizacja i wdrożenie wszystkich założeń postawionych podczas pracy nad pr
 ### Twórcy projektu
 
 - **Łukasz Lewicki** (*lukasenko990*) - lider zespołu
-- **Jakub Barwiński** (*N/A*) - Backend Developer
+- **Jakub Barwiński** (*cesk*) - Backend Developer
 - **Bartłomiej Węgrzyn** (*Magnetic-Fox*) - Frontend Developer
 - **Michał Ochmiński** (*N/A*) - tester
