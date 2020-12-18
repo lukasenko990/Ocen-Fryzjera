@@ -22,6 +22,7 @@ Motywacją do stworzenia projektu jest usprawnienie umawiania się na wizyty w s
 
 Założeniem naszego serwisu jest rozwiązanie tego problemu. Ponadto misją dla naszego rozwiązania jest pomoc mniejszym lub nowym salonom fryzjerskim w ogłoszeniu swojej oferty oraz dotarciu do większej ilość potencjalnych klientów.
 Dzięki naszemu serwisowi wszystkie zakłady fryzjerskie będą mogły lepiej organizować swój czas, ponieważ wszystkie wizyty umówione za pośrednictwem systemu dostępne będą w jednym miejscu, przez co wygodne będzie zarządzanie nimi.
+
 Dodatkowym atutem naszego rozwiązania, bardzo wygodnym dla zainteresowanych współpracą zakładów fryzjerskich, jest fakt konieczności opłacenia z góry umówionych wizyt przez nowych użytkowników serwisu - pozwoli to zaoszczędzić czas i pieniądze salonom, ponieważ mało prawdopodobne jest, że klient zapłaci za umówioną wizytę i następnie na nią nie przyjdzie.
 
 ## Czas tworzenia projektu
