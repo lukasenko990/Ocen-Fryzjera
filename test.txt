@@ -6,3 +6,5 @@ Odrobinke sobie przypomnialem.
 Potem usuniemy ten plik, bo nie bedzie tutaj potrzebny.
 
 Pozdro!
+
+// robię małą edycję testową z poziomu przeglądarki
