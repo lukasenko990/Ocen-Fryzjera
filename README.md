@@ -44,5 +44,5 @@ TODO
 
 - **Łukasz Lewicki** (*lukasenko990*) - lider zespołu
 - **Jakub Barwiński** (*N/A*) - Backend Developer
-- **Michał Ochmiński** (*N/A*) - tester
 - **Bartłomiej Węgrzyn** (*Magnetic-Fox*) - Frontend Developer
+- **Michał Ochmiński** (*N/A*) - tester
