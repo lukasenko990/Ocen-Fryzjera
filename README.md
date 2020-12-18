@@ -2,9 +2,9 @@
 
 ## Założenia projektu
 
-Projekt ***Oceń Fryzjera*** zakłada utworzenie strony internetowej, za pomocą której możliwe będzie umówienie się na wizytę w wybranym salonie. Ponadto strona umożliwiać będzie przeglądanie oraz dodawanie opinii na temat zakładów fryzjerskich.
+Projekt ***Oceń Fryzjera*** zakłada utworzenie serwisu internetowego, za pomocą którego możliwe będzie umówienie się na wizytę w wybranym salonie. Ponadto serwis umożliwiać będzie przeglądanie oraz dodawanie opinii na temat zakładów fryzjerskich.
 
-Zakłady fryzjerskie dostępne na naszej platformie sprawdzane będą pod kątem wiarygodności w celu zapewnienia bezpieczeństwa transakcji użytkownikom chcącym skorzystać z naszego serwisu.
+Zakłady fryzjerskie dostępne w naszym serwisie sprawdzane będą pod kątem wiarygodności w celu zapewnienia bezpieczeństwa transakcji użytkownikom chcącym skorzystać z naszego rozwiązania.
 
 Nasz serwis oferować będzie także:
 - szeroki wybór usług
@@ -16,9 +16,13 @@ Nasz serwis oferować będzie także:
 Za pierwsze umówione za pośrednictwem naszego serwisu wizyty użytkownik będzie musiał zapłacić z góry, co pozwoli uniknąć zamawiania usług i późniejszego ich niewykorzystania.
 Pozwoli to również zapewnić bezpieczeństwo i zdobyć zaufanie zakładów fryzjerskich rozpoczynających korzystanie z naszego serwisu.
 
-## Cel projektu
+## Cel wykonania projektu
 
-TODO
+Motywacją do stworzenia projektu jest usprawnienie umawiania się na wizyty w salonie fryzjerskim. Większość ludzi nie lubi tracić czasu na ich telefoniczne umawianie.
+
+Założeniem naszego serwisu jest rozwiązanie tego problemu. Ponadto misją dla naszego rozwiązania jest pomoc mniejszym lub nowym salonom fryzjerskim w ogłoszeniu swojej oferty oraz dotarciu do większej ilość potencjalnych klientów.
+Dzięki naszemu serwisowi wszystkie zakłady fryzjerskie będą mogły lepiej organizować swój czas, ponieważ wszystkie wizyty umówione za pośrednictwem systemu dostępne będą w jednym miejscu, przez co wygodne będzie zarządzanie nimi.
+Dodatkowym atutem naszego rozwiązania, bardzo wygodnym dla zainteresowanych współpracą zakładów fryzjerskich, jest fakt konieczności opłacenia z góry umówionych wizyt przez nowych użytkowników serwisu - pozwoli to zaoszczędzić czas i pieniądze salonom, ponieważ mało prawdopodobne jest, że klient zapłaci za umówioną wizytę i następnie na nią nie przyjdzie.
 
 ## Czas tworzenia projektu
 
