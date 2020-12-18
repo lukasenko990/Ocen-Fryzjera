@@ -1,3 +1,1 @@
 # Oceń Fryzjera
-
-Testuję polskie znaki z poziomu Maka...
