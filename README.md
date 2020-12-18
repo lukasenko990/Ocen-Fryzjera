@@ -1,26 +1,26 @@
 # Oceń Fryzjera
 
-### Założenia projektu
+## Założenia projektu
 
 TODO
 
-### Cel projektu
+## Cel projektu
 
 TODO
 
-### Czas tworzenia projektu
+## Czas tworzenia projektu
 
 TODO
 
-### Kroki milowe
+## Kroki milowe
 
 TODO
 
-### Dodatkowe informacje o projekcie
+## Dodatkowe informacje o projekcie
 
-#### Twórcy projektu
+### Twórcy projektu
 
-- Łukasz Lewicki (lukasenko990) - lider zespołu
-- Jakub Barwiński (N/A) - Backend Developer
-- Michał Ochmiński (N/A) - tester
-- Bartłomiej Węgrzyn (Magnetic-Fox) - Frontend Developer
+- **Łukasz Lewicki** (*lukasenko990*) - lider zespołu
+- **Jakub Barwiński** (*N/A*) - Backend Developer
+- **Michał Ochmiński** (*N/A*) - tester
+- **Bartłomiej Węgrzyn** (*Magnetic-Fox*) - Frontend Developer
