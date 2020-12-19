@@ -1,0 +1,151 @@
+ Krótka i banalna pomoc do Gita
+--------------------------------
+
+Nie opisałem wszystkiego - uznałem, że napiszę tylko o najpotrzebniejszych funkcjach.
+
+
+
+ Instalacja i konfiguracja Gita
+--------------------------------
+
+Myślę, że dział ten będzie dotyczył Windowsa, bo zarówno na Linuksie, jak i Maku konsolowy Git jest preinstalowany i nie wymaga instalacji.
+Aby zainstalować Gita na Windowsie, trzeba go najpierw znaleźć. Ja kiedyś robiłem to tak, że wpisywałem Git for Windows w Google i znajdowałem odpowiednią stronę.
+To powinno być tutaj: https://git-scm.com/download/win
+Osobiście pobrałbym zwykłą wersję (nie portable) - ona najprawdopodobniej będzie najwygodniejsza do późniejszego użycia.
+Generalnie, co do samej instalacji, nie mam szczególnych uwag - pozostawiłbym praktycznie wszystko domyślne, chyba że jest konieczność, żeby zrobić to inaczej.
+Zmieniłbym tylko domyślną konsolę dla Gita (podczas któregoś kroku instalacji jest taka opcja do wyboru) na Windowsowy Wiersz polecenia. Nie wiem, czy jest to konieczne, ale myślę, że będzie wygodne.
+
+Teraz najbardziej mozolna część, czyli konfiguracja tegoż ustrojstwa..
+
+Musimy zacząć od właściwego skonfigurowania autoryzacji klienta z naszym kontem GitHub.
+Jako, że przy świeżej instalacji nie mamy żadnych kluczy utworzonych, musimy się teraz tym zająć.
+
+ZDECYDOWANIE POLECAM ZROBIĆ TO ZGODNIE Z PONIŻSZYM TUTORIALEM, ABY UNIKNĄĆ NIEPOTRZEBNYCH NIEPRZYJEMNOŚCI ZWIĄZANYCH Z KONFIGURACJĄ.
+W tym celu naprawdę najlepiej jest użyć tzw. Git Basha - tam wszystko już będzie dostępne do konfiguracji.
+
+https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+(mam nadzieję, że link wkleił się prawidłowo :P)
+
+Ten tutorial powinien już poprowadzić przez konieczne punkty, które należy wykonać.
+Wypiszę je wszystkie tutaj dla wygody:
+
+  1. Utworzenie klucza dla SSH (to już powinno być zrobione po poprzednim linku)
+  2. Dodanie klucza do tzw. "agenta SSH" w Git Bashu (to w zasadzie też)
+  3. Dodanie odpowiedniego klucza do konta na GitHubie (https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account)
+
+Teraz już wszystko powinno być w porządku, warto to jednak sprawdzić:
+
+https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/testing-your-ssh-connection
+
+Jeśli udało się prawidłowo połączyć, to znaczy, że można bez problemu rozpocząć pracę z Gitem. :)
+
+
+
+ Rozpoczęcie pracy z repozytorium
+----------------------------------
+
+Na początek najlepiej stworzyć sobie folder gdzieś na dysku, gdzie będzie się miało projekty zarządzane Gitem. Dzięki temu będzie odrobinę wygodniej.
+Potem należy przejść do tego folderu w konsoli (Wiersz polecenia, Shell, itp.) i tam używać narzędzia Git.
+
+   git clone <adres repozytorium> - klonuje repozytorium z serwera na dysk
+
+Po sklonowaniu repozytorium należy w konsoli przejść do nowo utworzonego folderu i dopiero tam wywoływać resztę poleceń - pracujemy nad konkretnym projektem.
+
+
+
+ Praca z repozytorium
+----------------------
+
+Podczas pracy będzie występować konieczność sprawdzania, czy repozytorium nie zdążyło się zmienić od ostatniego ściągnięcia.
+
+   git fetch - sprawdza, czy w repozytorium zdążyła wystąpić jakaś zmiana; jeśli pojawia się tekst, to znaczy że tak ;)
+
+Jeśli uznamy, że chcemy ściągnąć najnowsze wersje plików, robimy to komendą:
+
+   git pull - "wyciąga" nowe pliki z repozytorium
+
+Teraz repozytorium na dysku jest aktualne w stosunku do danych przechowywanych na serwerze.
+
+Jeśli zechcemy wrzucić swoje zmiany na serwer, musimy je "wypchnąć".
+Aby to polecenie zadziałało, konieczne jest uprzednie "wpięcie" plików do repozytorium oraz ich "zacommitowanie" - o tym niżej.
+
+   git push - "wypycha" wprowadzone do repozytorium na dysku zmiany na serwer
+
+
+
+ Praca z tworzonymi/modyfikowanymi plikami
+-------------------------------------------
+
+Możemy dowolnie pracować w folderze projektu - dodawać, modyfikować i usuwać pliki oraz foldery.
+Na koniec należy pamiętać o odpowiednim "wpięciu" plików do repozytorium.
+
+   git add <nazwa pliku lub folderu> - służy do poinformowania Gita o dodaniu lub modyfikacji pliku lub folderu
+
+UWAGA! OKAZUJE SIĘ, ŻE NALEŻY PAMIĘTAĆ O WIELKOŚCIACH LITER W NAZWACH PLIKÓW I FOLDERÓW!
+
+Po poinformowaniu Gita o nowych lub zmodyfikowanych plikach mamy przygotowaną wersję do opublikowania.
+Teraz musimy zatwierdzić dodane wcześniej pliki.
+
+   git commit -m <treść komentarza do commitu> - służy do zatwierdzenia wprowadzanych zmian; dodanie komentarza jest obowiązkowe - komentarz taki powinien być
+                                                 zapisany według przyjętej nomenklatury, np. "Add GitHelp.txt", "Update GitHelp.txt", "Add new functionality",
+                                                 "Move GitHelp.txt to Help", itp.
+
+Jeśli nie wiemy jakie zmiany zaszły w naszym lokalnym repozytorium (pracowaliśmy nad dużą ilością plików, lub framework zrobił dużo zmian, o których do końca nie wiemy),
+możemy sprawdzić co się dzieje z repozytorium:
+
+   git status - sprawdza stan plików w lokalnym repozytorium i wypisuje co należy/można zrobić
+
+
+
+ Kilka prostych przykładów
+---------------------------
+
+1. Nie mam repozytorium! Muszę jakoś zacząć pracę...
+   Uruchamiam konsolę i przechodzę do folderu, w którym będę chciał trzymać projekty. Następnie:
+
+   git clone git@github.com:lukasenko990/Ocen-Fryzjera.git
+
+   O! Repozytorium już jest na moim dysku! :)
+
+2. Minął dzień, nie chciało mi się już dzisiaj nic robić.. :P
+   No ale dzisiaj już wypada. Może na początek sprawdzę, czy w repozytorium nic się nie zmieniło.
+   Uruchamiam konsolę i przechodzę do folderu projektu, który ostatnio klonowałem. Następnie:
+
+   git fetch
+
+   |> Jeśli nie było żadnej odpowiedzi...
+
+   Aha, no to dobra, mogę zacząć pracę.
+
+   |> Jeśli była odpowiedź...
+
+   No patrz, ktoś już coś zrobił! Może ściągnę sobie te zmiany. Piszę w konsoli:
+
+   git pull
+
+   No, mogę dalej spać spokojnie, mam aktualne repozytorium na dysku. :P
+
+3. Zdrzemnąłem się, chyba czas coś wreszcie dodać. ;) To była minutka, repozytorium chyba aktualne, zabierzmy się do pracy.
+   Stworzyłem nowy plik w folderze głównym. Plik ten nazywa się sprawdzam.txt. Uznałem, że plik ten należy dołączyć do repozytorium.
+   Uruchamiam konsolę.
+
+   git status
+
+   |> Dostałem informację o wprowadzonych przeze mnie zmianach. Muszę wpiąć plik sprawdzam.txt do repozytorium!
+
+   git add sprawdzam.txt
+   git commit -m "Add sprawdzam.txt"
+   git push
+
+   Dobra, mój plik jest już w repozytorium. Chyba... Nie było żadnych konfliktów...
+
+
+
+ Krótki komentarz
+------------------
+
+Nie opisałem w tej króciutkiej pomocy wszystkiego, w tym właśnie konfliktów, ale mam nadzieję, że nie będzie nam to potrzebne podczas pracy nad tym prościutkim projektem.
+
+Trzymajcie się, wesołych świąt!
+
+Magnetic-Fox, 19/12/2020, 19:00.
