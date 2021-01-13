@@ -1,0 +1,17 @@
+Problemy, na któe możemy natrafić to:
+-Znalezienie odpowiedniej strony, na której stworzymy bazę danych
+-Problem z połączeniem się (pobieraniem i wysyłaniem danych) do bazy danych
+-Zbyt duża ilość niepotrzebnych klas
+-Za bardzo rozbudowane diagramy
+-Nieczytelne diagramy
+-Brak mobilizacji do regularnego spotykania się
+-Brak czasu na realizację wyznaczonych zadań
+
+Zaproponowane rozwiązania:
+-Wcześniejsze testowanie różnych stron, które umożliwiają stawianie baz dancych
+-Przetestowanie wybranej bazy danych z odpowiednim środowiskiem
+-Uwzględnianie tylko niezbędnych klas
+-Uwzględnianie tylko najważniejszych rzeczy w diagramie
+-Tworzenie diagramów z dbałością o szczegóły, wspólne uzgadnianie wyglądu diagramu
+-Znalezienie odpowiedniego terminu, który każdemu pasuje
+-Zaplanowanie przez każdego z członków swoich obowiązków w taki sposób, aby znaleźć czas na tworzenie projektu
