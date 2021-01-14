@@ -60,7 +60,7 @@ Development and maintenance of all project's assumptions will require ca. 9-10 m
 
 ### Project developers
 
-- **Łukasz Lewicki** (*lukasenko990*) - Project Leader
-- **Jakub Barwiński** (*Cvske*) - Backend Developer
-- **Bartłomiej Węgrzyn** (*Magnetic-Fox*) - Frontend Developer
-- **Michał Ochmiński** (*MKOchminski*) - Software Tester
+- **Łukasz Lewicki** (*lukasenko990*) - Project Leader, [his work](https://ukasz99.atlassian.net/jira/software/projects/OF/boards/1/roadmap?assignee=5f93cfab19376b00759f8313)
+- **Jakub Barwiński** (*Cvske*) - Backend Developer, [his work](https://ukasz99.atlassian.net/jira/software/projects/OF/boards/1/roadmap?assignee=5f955b0f8405b100772c1264)
+- **Bartłomiej Węgrzyn** (*Magnetic-Fox*) - Frontend Developer, [his work](https://ukasz99.atlassian.net/jira/software/projects/OF/boards/1/roadmap?assignee=5f86f8b9ecee350069fb6997)
+- **Michał Ochmiński** (*MKOchminski*) - Software Tester, [his work](https://ukasz99.atlassian.net/jira/software/projects/OF/boards/1/roadmap?assignee=5f86f88606d16d006fa1a0c2)
