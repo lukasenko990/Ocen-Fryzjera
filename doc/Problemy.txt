@@ -1,4 +1,4 @@
-Problemy, na któe możemy natrafić to:
+Problemy, na które możemy natrafić to:
 -Znalezienie odpowiedniej strony, na której stworzymy bazę danych
 -Problem z połączeniem się (pobieraniem i wysyłaniem danych) do bazy danych
 -Zbyt duża ilość niepotrzebnych klas
@@ -8,7 +8,7 @@ Problemy, na któe możemy natrafić to:
 -Brak czasu na realizację wyznaczonych zadań
 
 Zaproponowane rozwiązania:
--Wcześniejsze testowanie różnych stron, które umożliwiają stawianie baz dancych
+-Wcześniejsze testowanie różnych stron, które umożliwiają stawianie baz danych
 -Przetestowanie wybranej bazy danych z odpowiednim środowiskiem
 -Uwzględnianie tylko niezbędnych klas
 -Uwzględnianie tylko najważniejszych rzeczy w diagramie
