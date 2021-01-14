@@ -95,6 +95,11 @@ możemy sprawdzić co się dzieje z repozytorium:
 
    git status - sprawdza stan plików w lokalnym repozytorium i wypisuje co należy/można zrobić
 
+Jeśli chcemy przejrzeć historię commitów, żeby zorientować się, co działo się przez cały czas w repozytorium (tzn. co commitowali wszyscy współpracownicy), możemy
+użyć:
+
+   git log - wyświetla log repozytorium (historię commitów)
+
 
 
  Kilka prostych przykładów
@@ -139,6 +144,17 @@ możemy sprawdzić co się dzieje z repozytorium:
 
    Dobra, mój plik jest już w repozytorium. Chyba... Nie było żadnych konfliktów...
 
+4. Ciekawy jestem, jak wygląda historia repozytorium, nad którym pracuję.
+   Sprawdźmy to!
+
+   git log
+
+   |> Dostałem listę zatwierdzonych zmian wprowadzanych przez pozostałych współpracowników. Ale tu tego dużo
+
+   W tej chwili mogę przejrzeć ten log używając strzałek w dół i w górę. Fajne, ale jakieś wolne.
+   Aha, no tak! Mogę jeszcze użyć spacji, żeby przechodzić o ekran tekstu w dół. :) Teraz już mogę szybciej dojść do końca.
+   Mogę też w dowolnym momencie użyć klawisza Q, żeby zakończyć wyświetlanie logu i powrócić do wpisywania poleceń.
+
 
 
  Krótki komentarz
@@ -149,3 +165,5 @@ Nie opisałem w tej króciutkiej pomocy wszystkiego, w tym właśnie konfliktów
 Trzymajcie się, wesołych świąt!
 
 Magnetic-Fox, 19/12/2020, 19:00.
+
+Poprawka: Magnetic-Fox, 14/01/2021, 18:20.
