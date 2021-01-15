@@ -32,29 +32,42 @@ Development and maintenance of all project's assumptions will require ca. 9-10 m
 
 ## Milestones
 
-1. **Project's functionalities development**
-   - *Defining problems we would like to solve*
-     - Discussions about project
-     - Targeting the solutions used in project
-   - *Functionality analysis*
-     - Describing main functionalities
-     - Considering the way of software implementation
-   - *Creating use case diagrams*
-     - Use case analysis
-     - Diagrams development
-     - Joint discussion on the solutions developed so far
-2. **Creation of architecture**
-   - *Analysis of required classes*
-     - Joint discussion on the required classes
-     - Identify the classes needed
-     - Developed classes analysis
-   - *Creating classes diagrams*
-     - Developing classes according to project assumptions
-     - Additional classes development
-     - Creation and analysis of connections between classes
-   - *Statechart diagrams creation*
-   - *Sequence diagrams creation*
-3. **Software implementation**
+1. **Project warm-up**
+   - assigning roles in team
+   - exact describing of a problem, we want to solve
+   - searching information about available tools
+   - defining troubles that may occur
+   - planning next stages in a project
+   - searching for solutions for problems defined before
+   - choosing the best tools
+   - collection and arrangement of gained information
+2. **Preparing the development environment, classes diagrams and creating and cofiguration of network resources**
+   - installation and configuration of SQLite
+   - installation and configuration of DJANGO
+   - configuring DJANGO REST Framework
+   - installation and configuration of STAR UML
+   - preparing Dev environment
+   - preparing Test environment
+   - preparing PROD environment
+   - creating GitHub repository
+   - adding existing documentation to the Git repository
+   - emerging necessary classes
+   - project analysis for database development
+   - Git console clients configurations
+   - creating classes diagrams templates using StarUML
+   - testing SQLite with DJANGO
+   - initial site look designs
+   - in-depth classes analysis for next diagrams development
+   - modification and update of dependencies between classes
+3. **Creating statechart and sequence diagrams and database template**
+   - creating statechart diagrams for service order and user
+   - creating statechart diagram for salon class
+   - creating statechart diagrams for client, chat and barber
+   - creating statechart diagrams for service, visit and address
+   - creating test scenarios
+   - database tables visualisation
+   - creating sequence diagrams
+   - website look project
 
 ## Additional information
 
