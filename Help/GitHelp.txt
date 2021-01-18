@@ -149,7 +149,7 @@ użyć:
 
    git log
 
-   |> Dostałem listę zatwierdzonych zmian wprowadzanych przez pozostałych współpracowników. Ale tu tego dużo
+   |> Dostałem listę zatwierdzonych zmian wprowadzanych przez pozostałych współpracowników. Ale tu tego dużo!
 
    W tej chwili mogę przejrzeć ten log używając strzałek w dół i w górę. Fajne, ale jakieś wolne.
    Aha, no tak! Mogę jeszcze użyć spacji, żeby przechodzić o ekran tekstu w dół. :) Teraz już mogę szybciej dojść do końca.
@@ -167,3 +167,4 @@ Trzymajcie się, wesołych świąt!
 Magnetic-Fox, 19/12/2020, 19:00.
 
 Poprawka: Magnetic-Fox, 14/01/2021, 18:20.
+Poprawka interpunkcji: Magnetic-Fox, 18/01/2021, 13:01
