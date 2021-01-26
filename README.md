@@ -46,9 +46,7 @@ Development and maintenance of all project's assumptions will require ca. 9-10 m
    - installation and configuration of DJANGO
    - configuring DJANGO REST Framework
    - installation and configuration of STAR UML
-   - preparing Dev environment
-   - preparing Test environment
-   - preparing PROD environment
+   - collecting information for testing
    - creating GitHub repository
    - adding existing documentation to the Git repository
    - emerging necessary classes
