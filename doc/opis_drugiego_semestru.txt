@@ -1,0 +1,41 @@
+1.Utworzenie i przetestowanie bazy danych
+-Przejrzenie tabel baz dancych
+-Utworzenie tabel 
+-Utworzenie relacji miedzy tabelami
+-Wypelnienie bazy dancych przykladowymi danymi
+-Przetestowanie przykladowych zapytan
+-Usuniecie ewentualnych powtorzen i bledow
+-Wygenerowanie diagramu sql
+2.Wstępna implementacja klas i ich przetestowanie
+-Implementacja klasy Fryzjer
+-Implementacja klasy Salon
+-Implementacja klasy Adres
+-Implementacja klasy Zamowienie
+-Implementacja klasy Usluga
+-Implementacja klasy Wizyta
+-Implementacja klasy Chat
+-Implementacja klasy Gosc
+-Implementacja klasy Klient
+-Testowanie klasy Fryzjer
+-Testowanie klasy Salon
+-Testowanie klasy Adres
+-Testowanie klasy Zamowienie
+-Testowanie klasy Usluga
+-Testowanie klasy Wizyta
+-Testowanie klasy Chat
+-Testowanie klasy Gosc
+-Testowanie klasy Klient
+-Stworzenie listy błędów
+-Realizacja wstępnej wersji interfejsów graficznych
+-Przetestowanie interfejsów
+3.Dopracowanie pozostałych elementów i zakończenie projektu(ostateczne testy i eliminacja błędów)
+-Dopracowanie interfejsów graficznych
+-Poprawienie istniejących błędów(jeśli powstaną)
+-Dopracowanie klasy obsługującej zapytania do bazy danych
+-Postawienie serwera pocztowego
+-Testowanie zapytan sql z powstalymi klasami
+-Testowanie funkcjonalnosci
+-Poprawienie zauważonych błędów po każdym testowaniu
+-Testowanie serwera pocztowego
+-Wypelnienie bazy danych logicznymi informacjami(testowymi)
+-Dogłębne przetestowanie całego serwisu i ostateczne poprawki
