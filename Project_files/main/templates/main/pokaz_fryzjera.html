@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+imie: {{fryzjer.imie}}<br>
+nazwisko: {{fryzjer.nazwisko}}<br>
+nr tel: {{fryzjer.nr_telefonu}}<br>
+<a href="{% url 'edytuj_fryzjera' %}">Edytuj</a> <br>
+<br>
+
+
+{% endblock %}
