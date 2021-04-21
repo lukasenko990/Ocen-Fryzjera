@@ -3,7 +3,7 @@
 <div style="display:flex;justify-content:center;align-items:center;">
 	<div>
     <h2>Sign up</h2>
-  <form method="post">
+  <form method="POST">
     {% csrf_token %}
     <div class="input-group mb-3">
 						<div class="input-group-append">
@@ -29,6 +29,36 @@
 							</div>
 							<h4>Email: </h4>{{form.email}}
 						</div>
+	  					<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<h4>Nr telefonu: </h4>{{form2.nr_telefonu}}
+						</div>
+	  					<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<h4>Ulica: </h4>{{form2.ulica}}
+						</div>
+	  					<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<h4>Nr domu: </h4>{{form2.nr_domu}}
+						</div>
+	  					<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<h4>Miasto: </h4>{{form2.miasto}}
+						</div>
+	  					<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<h4>Kod pocztowy: </h4>{{form2.kod_pocztowy}}
+						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -41,7 +71,7 @@
 							</div>
 							<h4>Confirm password: </h4>{{form.password2}}
 						</div>
-    <button type="submit">Sign up</button>
+    <button type="submit" >Sign up </button>
   </form>
 	</div>
 	</div>

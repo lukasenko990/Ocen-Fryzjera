@@ -3,27 +3,51 @@
 <div style="display:flex;justify-content:center;align-items:center;">
 	<div>
     <h2>Edit profile</h2>
-  <form method="post">
+  <form method="POST">
     {% csrf_token %}
     <div class="input-group mb-3">
 						<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<h4>First name: </h4>{{form.first_name}}
+		<h4>Imie: </h4>{{EditForm.imie}}
+						</div>
+	 					 <div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+							</div>
+							<h4>Nazwisko: </h4>{{EditForm.nazwisko}}
 						</div>
 	  					<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
 							</div>
-							<h4>Last name: </h4>{{form.last_name}}
+							<h4>Email: </h4>{{EditForm.email}}
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
 							</div>
-							<h4>Email: </h4>{{form.email}}
+							<h4>Ulica: </h4>{{EditForm.ulica}}
 						</div>
-    <button type="submit">Save changes</button>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<h4>Nr domu: </h4>{{EditForm.nr_domu}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<h4>Miasto: </h4>{{EditForm.miasto}}
+						</div>
+	  					<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<h4>Kod pocztowy: </h4>{{EditForm.kod_pocztowy}}
+						</div>
+    <button type="submit">Save</button>
   </form>
 	</div>
 	</div>

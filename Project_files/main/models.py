@@ -6,7 +6,6 @@ class Salon(models.Model):
     nazwa = models.CharField(max_length=50, default='NoName')
     NIP = models.CharField(max_length=25)
     regon = models.CharField(max_length=25)
-
     ulica = models.CharField(max_length=50, blank=True, null=True)
     nr_lokalu = models.IntegerField(default=0, blank=True, null=True)
     miasto = models.CharField(max_length=50)
