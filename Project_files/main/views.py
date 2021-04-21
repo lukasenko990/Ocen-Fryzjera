@@ -86,11 +86,14 @@ def login_user(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-
         if user is not None:
             login(request, user)
             return HttpResponseRedirect('/')
-    return render(request, 'main/home.html')
+        else:
+            messages.info(request, 'Invalid Login!!!')
+            return render(request, 'main/login.html')
+    else:
+        return render(request, 'main/login.html')
 
 
 ########3 home
