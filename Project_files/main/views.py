@@ -141,26 +141,16 @@ def pokaz_fryzjera(request, id):
     return render(request, 'main/pokaz_fryzjera.html', context)
 
 def edytuj_fryzjera(request):
+    context = {}
+    profile = Fryzjer.objects.all().filter(user = request.user).first()
+    EditForm = FryzjerUpdateForm(instance=profile)
     if request.method == 'POST':
-        EditForm = FryzjerUpdateForm(request.POST)
+        EditForm = FryzjerUpdateForm(request.POST, instance=profile)
         if EditForm.is_valid():
-            form = Fryzjer.objects.all().filter(user=request.user).first()
-            form.imie = EditForm.cleaned_data.get('imie')
-            form.nazwisko = EditForm.cleaned_data.get('nazwisko')
-            form.email = EditForm.cleaned_data.get('email')
-            form.ulica = EditForm.cleaned_data.get('ulica')
-            form.nr_domu = EditForm.cleaned_data.get('nr_domu')
-            form.miasto = EditForm.cleaned_data.get('miasto')
-            form.kod_pocztowy = EditForm.cleaned_data.get('kod_pocztowy')
-            form.save()
-            messages.success(request, f'Profil pomyślnie edytowany')
-            return redirect('home')
-        else:
-            messages.info(request, 'Bledne dane')
-    else:
-
-        EditForm = FryzjerUpdateForm()
-        context = {
-            'EditForm': EditForm,
-        }
+            EditForm.save()
+        return redirect('/')
+    context = {
+        'profile': profile,
+        'EditForm': EditForm,
+    }
     return render(request, 'main/edytuj_fryzjera.html', context)
