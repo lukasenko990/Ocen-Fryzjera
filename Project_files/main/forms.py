@@ -26,3 +26,8 @@ class FryzjerUpdateForm(forms.ModelForm):
     class Meta:
         model = Fryzjer
         fields = ('imie', 'nazwisko', 'ulica', 'nr_domu', 'miasto', 'kod_pocztowy' )
+
+class KlientUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Klient
+        fields = ('imie', 'nazwisko', 'nr_telefonu', 'ulica', 'nr_domu', 'miasto', 'kod_pocztowy')

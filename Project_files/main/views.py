@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegisterForm,  RegisterFormKlient, RegisterFormFryzjer, FryzjerUpdateForm
+from .forms import RegisterForm,  RegisterFormKlient, RegisterFormFryzjer, FryzjerUpdateForm, KlientUpdateForm
 from .models import Salon, Fryzjer, Klient
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -154,6 +154,21 @@ def edytuj_fryzjera(request):
         'EditForm': EditForm,
     }
     return render(request, 'main/edytuj_fryzjera.html', context)
+    
+def edytuj_klienta(request):
+    context = {}
+    profile = Klient.objects.all().filter(user = request.user).first()
+    ClientForm = KlientUpdateForm(instance=profile)
+    if request.method == 'POST':
+        ClientForm = KlientUpdateForm(request.POST, instance=profile)
+        if ClientForm.is_valid():
+            ClientForm.save()
+        return redirect('/')
+    context = {
+        'profile': profile,
+        'ClientForm': ClientForm,
+    }
+    return render(request, 'main/edytuj_klienta.html', context)
 
 def search(request):
     if request.method == "POST":

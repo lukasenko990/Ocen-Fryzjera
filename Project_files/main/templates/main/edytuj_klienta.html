@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div style="display:flex;justify-content:center;align-items:center;">
+	<div>
+                <h2>Edycja profilu klienta</h2>
+                <form method="POST">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <h4>Imię: </h4>{{ClientForm.imie}}
+                        </div>
+                        <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                                </div>
+                                <h4>Nazwisko: </h4>{{ClientForm.nazwisko}}
+                        </div>
+                        <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                                </div>
+                                <h4>Numer telefonu: </h4>{{ClientForm.nr_telefonu}}
+                        </div>
+                        <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                                </div>
+                                <h4>Ulica: </h4>{{ClientForm.ulica}}
+                        </div>
+                        <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <h4>Nr domu: </h4>{{ClientForm.nr_domu}}
+                        </div>
+                        <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <h4>Miasto: </h4>{{ClientForm.miasto}}
+                        </div>
+                        <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <h4>Kod pocztowy: </h4>{{ClientForm.kod_pocztowy}}
+                        </div>
+                        <button type="submit">Zapisz zmiany</button>
+                </form>
+        </div>
+</div>
+{% endblock %}
