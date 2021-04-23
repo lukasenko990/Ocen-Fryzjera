@@ -4,7 +4,7 @@
 
 zarejestruj klienta: <a href="{% url 'register' %}">rejestracja</a>
 <br>
-zarejestruj fryzjera: <a href="#">rejestracja</a>
+zarejestruj fryzjera: <a href="{% url 'barber_register' %}">rejestracja</a>
 <br>
 {% if user.is_authenticated %}
 jestes zalogowany jako user: {{request.user.username}}<br>

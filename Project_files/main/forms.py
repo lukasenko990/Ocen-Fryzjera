@@ -16,6 +16,11 @@ class RegisterFormKlient(forms.ModelForm):
         model = Klient
         fields = ('nr_telefonu', 'ulica', 'miasto', 'nr_domu', 'kod_pocztowy')
 
+class RegisterFormFryzjer(forms.ModelForm):
+    class Meta:
+        model = Fryzjer
+        fields = ( 'ulica', 'miasto', 'nr_domu', 'kod_pocztowy')
+
 class FryzjerUpdateForm(forms.ModelForm):
     #email = forms.EmailField()
     class Meta:

@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+{% block content %}
+        <center>
+            {% if searched %}
+            <h1>Wyniki wyszukiwania dla: {{ searched }}</h1>
+            {% for fryzjer in fryzjerzy %}
+                <a href="{% url 'pokaz_fryzjera' fryzjer.id %}">{{fryzjer.imie}} {{fryzjer.nazwisko}}</a><br>
+            {% endfor %}
+            {% for salon in salony %}
+                <a href="{% url 'pokaz_salon' salon.id %}">{{salon.nazwa}}</a> <br>
+            {% endfor %}
+            {% else %}
+            <h1>Nie wpisałeś niczego</h1>
+            {% endif %}
+        </center>
+
+
+    {% endblock %}

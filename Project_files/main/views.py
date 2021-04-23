@@ -3,9 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegisterForm, FryzjerUpdateForm, RegisterFormKlient
+from .forms import RegisterForm,  RegisterFormKlient, RegisterFormFryzjer, FryzjerUpdateForm
 from .models import Salon, Fryzjer, Klient
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 
 # register, login, logout
@@ -42,12 +43,12 @@ def register(request):
 
     return render(request, 'main/register.html', {"form": form, "form2":form2})
 
-def register_barber(request):
+def barber_register(request):
     form = RegisterForm()
-    form2 = RegisterFormKlient()
+    form2 = RegisterFormFryzjer()
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-        form2 = RegisterFormKlient(request.POST)
+        form2 = RegisterFormFryzjer(request.POST)
         if form.is_valid() and form2.is_valid():
             user = User()
             user.username = form.cleaned_data.get('username')
@@ -55,25 +56,24 @@ def register_barber(request):
             user.last_name = form.cleaned_data.get('last_name')
             user.password = form.cleaned_data.get('password1')
             user.save()
-            klient = Klient()
-            klient.user = user
-            klient.imie = form.cleaned_data.get('first_name')
-            klient.nazwisko = form.cleaned_data.get('last_name')
-            klient.nr_telefonu = form2.cleaned_data.get('nr_telefonu')
-            klient.ulica = form2.cleaned_data.get('ulica')
-            klient.nr_domu = form2.cleaned_data.get('nr_domu')
-            klient.miasto = form2.cleaned_data.get('miasto')
-            klient.kod_pocztowy = form2.cleaned_data.get('kod_pocztowy')
-            klient.save()
+            fryzjer = Fryzjer()
+            fryzjer.user = user
+            fryzjer.imie = form.cleaned_data.get('first_name')
+            fryzjer.nazwisko = form.cleaned_data.get('last_name')
+            fryzjer.ulica = form2.cleaned_data.get('ulica')
+            fryzjer.nr_domu = form2.cleaned_data.get('nr_domu')
+            fryzjer.miasto = form2.cleaned_data.get('miasto')
+            fryzjer.kod_pocztowy = form2.cleaned_data.get('kod_pocztowy')
+            fryzjer.save()
             username = request.POST.get('username')
             password = request.POST.get('password')
             login(request, user)
             return HttpResponseRedirect('/')
         else:
             messages.info(request, 'Invalid registration!!!')
-            return render(request, 'main/register.html', {"form": form, "form2":form2})
+            return render(request, 'main/barber_register.html', {"form": form, "form2":form2})
 
-    return render(request, 'main/register.html', {"form": form, "form2":form2})
+    return render(request, 'main/barber_register.html', {"form": form, "form2":form2})
 
 
 def logout(request):
@@ -154,3 +154,17 @@ def edytuj_fryzjera(request):
         'EditForm': EditForm,
     }
     return render(request, 'main/edytuj_fryzjera.html', context)
+
+def search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        if " " in searched:
+            searched_split=searched.split()
+            fryzjerzy = Fryzjer.objects.filter(Q(imie__contains=searched_split[0]) | Q(nazwisko__contains=searched_split[0]) |
+                                               Q(imie__contains=searched_split[1]) | Q(nazwisko__contains=searched_split[1]))
+        else:
+            fryzjerzy = Fryzjer.objects.filter(Q(imie__contains=searched) | Q(nazwisko__contains=searched))
+        salony = Salon.objects.filter(Q(nazwa__contains=searched))
+        return render(request, 'main/search.html', {'searched':searched, 'fryzjerzy':fryzjerzy, 'salony':salony})
+    else:
+        return render(request, 'main/search.html', {})
