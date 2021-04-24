@@ -2,33 +2,30 @@
 
 {% block content %}
 
-zarejestruj klienta: <a href="{% url 'register' %}">rejestracja</a>
-<br>
-zarejestruj fryzjera: <a href="{% url 'barber_register' %}">rejestracja</a>
+<div><span class="heading">Zarejestruj klienta:</span> <a href="{% url 'register' %}">Rejestracja</a></div>
+<div><span class="heading">Zarejestruj fryzjera:</span> <a href="{% url 'barber_register' %}">Rejestracja</a></div>
 <br>
 {% if user.is_authenticated %}
-jestes zalogowany jako user: {{request.user.username}}<br>
-imie nazwisko klienta: {{user_klient}} {{user_klient.nazwisko}}<br>
-wyloguj: <a href ="{% url 'logout' %}">logout</a>
+<div><span class="heading">Jesteś zalogowany jako:</span> {{request.user.username}}</div>
+<div><span class="heading">Imię i nazwisko klienta:</span> {{user_klient}} {{user_klient.nazwisko}}</div>
+<div><span class="heading">Wyloguj:</span> <a href ="{% url 'logout' %}">logout</a></div>
 {% else %}
-zaloguj: <a href="{% url 'login' %}">login</a>
+<div><span class="heading">Zaloguj:</span> <a href="{% url 'login' %}">login</a></div>
 {% endif %}
 <br>
-<br>
-salony:<br>
+<div><span class="heading">Dostępne salony:</span></div>
 {% for salon in salony %}
-<a href="{% url 'pokaz_salon' salon.id %}">{{salon.nazwa}}</a> <br>
+<div><a href="{% url 'pokaz_salon' salon.id %}">{{salon.nazwa}}</a></div>
 {% endfor %}
 <br>
-<br>
-fryzjerzy:
+<div><span class="heading">Fryzjerzy:</span></div>
 {% for fryzjer in fryzjerzy %}
-<a href="{% url 'pokaz_fryzjera' fryzjer.id %}">{{fryzjer.imie}} {{fryzjer.nazwisko}}</a><br>
+<div><a href="{% url 'pokaz_fryzjera' fryzjer.id %}">{{fryzjer.imie}} {{fryzjer.nazwisko}}</a></div>
 {% endfor %}
-<br><br>
-klienci:<br>
+<br>
+<div><span class="heading">Klienci:</span></div>
 {% for klient in klienci %}
-<a href="{% url 'pokaz_klienta' klient.id %}">{{klient.imie}} {{klient.nazwisko}}</a><br>
+<div><a href="{% url 'pokaz_klienta' klient.id %}">{{klient.imie}} {{klient.nazwisko}}</a></div>
 {% endfor %}
 
 

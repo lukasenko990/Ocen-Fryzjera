@@ -4,16 +4,13 @@
 
 {% block content %}
 
+<form class="form-horizontal" name="LoginForm" action="/login/" method="post">
+        {% csrf_token %}
+        <div><label>E-mail: </label><input type="text" name="username" required></div>
+        <div><label>Hasło: </label><input type="password" name="password" required></div>
+        <div><input type="submit" value="Login"></div>
+        <br>
+        <div><a href="{% url 'register' %}">Nie masz jeszcze konta? Zarejestruj się!</a></div>
+</form>
 
-    <form class="form-horizontal" name="LoginForm" action="/login/" method="post">
-    {% csrf_token %}
-    <label>Email</label><input type="text" name="username" required><br>
-        <label>Password</label><input type="password" name="password" required>
-        <input type="submit" value="Login"><br>
-        <a href="{% url 'register' %}">Don't have an account?Register</a>
-    </form>
-    {% endblock %}
-
-
-
-
+{% endblock %}

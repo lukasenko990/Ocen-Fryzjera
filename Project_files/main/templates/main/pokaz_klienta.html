@@ -3,9 +3,10 @@
 
 {% block content %}
 
-imie: {{klient.imie}}<br>
-nazwisko: {{klient.nazwisko}}<br>
-nr tel: {{klient.nr_telefonu}}<br>
-<a href="{% url 'edytuj_klienta' %}">edycja</a>
+<div><span class="heading">Imię:</span> {{klient.imie}}</div>
+<div><span class="heading">Nazwisko:</span> {{klient.nazwisko}}</div>
+<div><span class="heading">Nr tel:</span> {{klient.nr_telefonu}}</div>
+<br>
+<div><a href="{% url 'edytuj_klienta' %}">Edycja profilu</a></div>
 
 {% endblock %}

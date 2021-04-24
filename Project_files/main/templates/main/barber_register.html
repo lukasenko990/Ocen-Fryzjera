@@ -1,73 +1,71 @@
 {% extends 'main/base.html' %}
 {% block content %}
-<div style="display:flex;justify-content:center;align-items:center;">
-	<div>
-    <h2>Sign up</h2>
-  <form method="POST">
-    {% csrf_token %}
-    <div class="input-group mb-3">
-						<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-		<h4>Username: </h4>{{form.username}}
-						</div>
-	 					 <div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-							</div>
-							<h4>First name: </h4>{{form.first_name}}
-						</div>
-	  					<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-							</div>
-							<h4>Last name: </h4>{{form.last_name}}
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-							</div>
-							<h4>Email: </h4>{{form.email}}
-						</div>
-	  					<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<h4>Ulica: </h4>{{form2.ulica}}
-						</div>
-	  					<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<h4>Nr domu: </h4>{{form2.nr_domu}}
-						</div>
-	  					<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<h4>Miasto: </h4>{{form2.miasto}}
-						</div>
-	  					<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<h4>Kod pocztowy: </h4>{{form2.kod_pocztowy}}
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<h4>Password: </h4>{{form.password1}}
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<h4>Confirm password: </h4>{{form.password2}}
-						</div>
-    <button type="submit" >Sign up </button><br>
-	  <a href="{% url 'login' %}">Already have an account? Login</a>
-  </form>
-	</div>
-	</div>
+<div>
+        <h2>Rejestracja fryzjera</h2>
+        <form method="POST">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <h4>Nazwa użytkownika: </h4>{{form.username}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                        </div>
+                        <h4>Imię: </h4>{{form.first_name}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                        </div>
+                        <h4>Nazwisko: </h4>{{form.last_name}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                        </div>
+                        <h4>E-mail: </h4>{{form.email}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <h4>Ulica: </h4>{{form2.ulica}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <h4>Nr domu: </h4>{{form2.nr_domu}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <h4>Miasto: </h4>{{form2.miasto}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <h4>Kod pocztowy: </h4>{{form2.kod_pocztowy}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <h4>Hasło: </h4>{{form.password1}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <h4>Confirm password: </h4>{{form.password2}}
+                </div>
+                <button type="submit" >Zarejestruj się</button><br>
+                <a href="{% url 'login' %}">Masz już konto? Zaloguj się!</a>
+        </form>
+</div>
 {% endblock %}

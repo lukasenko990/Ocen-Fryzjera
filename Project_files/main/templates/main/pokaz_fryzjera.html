@@ -3,10 +3,11 @@
 
 {% block content %}
 
-imie: {{fryzjer.imie}}<br>
-nazwisko: {{fryzjer.nazwisko}}<br>
-nr tel: {{fryzjer.nr_telefonu}}<br>
-<a href="{% url 'edytuj_fryzjera' %}">edycja</a>
+<div><span class="heading">Imię:</span> {{fryzjer.imie}}</div>
+<div><span class="heading">Nazwisko:</span> {{fryzjer.nazwisko}}</div>
+<div><span class="heading">Nr tel:</span> {{fryzjer.nr_telefonu}}</div>
+<br>
+<a href="{% url 'edytuj_fryzjera' %}">Edycja profilu</a>
 
 
 {% endblock %}
