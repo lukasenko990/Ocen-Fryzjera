@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from main.models import Fryzjer
-from main.models import Klient
+from main.models import Klient, Salon
 
 
 class RegisterForm(UserCreationForm):
@@ -31,3 +31,8 @@ class KlientUpdateForm(forms.ModelForm):
     class Meta:
         model = Klient
         fields = ('imie', 'nazwisko', 'nr_telefonu', 'ulica', 'nr_domu', 'miasto', 'kod_pocztowy')
+
+class SalonUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Salon
+        fields = ('nazwa', 'NIP', 'regon', 'ulica', 'nr_lokalu', 'miasto', 'kod_pocztowy')

@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegisterForm,  RegisterFormKlient, RegisterFormFryzjer, FryzjerUpdateForm, KlientUpdateForm
+from .forms import RegisterForm,  RegisterFormKlient, RegisterFormFryzjer, FryzjerUpdateForm, KlientUpdateForm, SalonUpdateForm
 from .models import Salon, Fryzjer, Klient
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -140,9 +140,9 @@ def pokaz_fryzjera(request, id):
 
     return render(request, 'main/pokaz_fryzjera.html', context)
 
-def edytuj_fryzjera(request):
+def edytuj_fryzjera(request, id):
     context = {}
-    profile = Fryzjer.objects.all().filter(user = request.user).first()
+    profile = Fryzjer.objects.all().filter(id=id).first()
     EditForm = FryzjerUpdateForm(instance=profile)
     if request.method == 'POST':
         EditForm = FryzjerUpdateForm(request.POST, instance=profile)
@@ -155,9 +155,9 @@ def edytuj_fryzjera(request):
     }
     return render(request, 'main/edytuj_fryzjera.html', context)
     
-def edytuj_klienta(request):
+def edytuj_klienta(request, id):
     context = {}
-    profile = Klient.objects.all().filter(user = request.user).first()
+    profile = Klient.objects.all().filter(id=id).first()
     ClientForm = KlientUpdateForm(instance=profile)
     if request.method == 'POST':
         ClientForm = KlientUpdateForm(request.POST, instance=profile)
@@ -170,9 +170,24 @@ def edytuj_klienta(request):
     }
     return render(request, 'main/edytuj_klienta.html', context)
 
+def edytuj_salon(request, id):
+    context = {}
+    profile = Salon.objects.all().filter(id=id).first()
+    SalonForm = SalonUpdateForm(instance=profile)
+    if request.method == 'POST':
+        SalonForm = SalonUpdateForm(request.POST, instance=profile)
+        if SalonForm.is_valid():
+            SalonForm.save()
+        return redirect('/')
+    context = {
+        'profile': profile,
+        'SalonForm': SalonForm,
+    }
+    return render(request, 'main/edytuj_salon.html', context)
+
 def search(request):
-    if request.method == "POST":
-        searched = request.POST['searched']
+    if request.method == "GET":
+        searched = request.GET['searched']
         if " " in searched:
             searched_split=searched.split()
             fryzjerzy = Fryzjer.objects.filter(Q(imie__contains=searched_split[0]) | Q(nazwisko__contains=searched_split[0]) |

@@ -7,6 +7,6 @@
 <div><span class="heading">Nazwisko:</span> {{klient.nazwisko}}</div>
 <div><span class="heading">Nr tel:</span> {{klient.nr_telefonu}}</div>
 <br>
-<div><a href="{% url 'edytuj_klienta' %}">Edycja profilu</a></div>
+<div><a href="{% url 'edytuj_klienta' klient.id %}">Edycja profilu</a></div>
 
 {% endblock %}

@@ -9,7 +9,7 @@
 <body>
         <div class="header">
                 <a href="{% url 'home' %}"><img class="logo_small" src="{% static 'ocen_fryzjera/logo.png' %}"></a>
-                <form class = "d-flex" method="POST" action="{% url 'search' %}">
+                <form class = "d-flex" method="GET" action="{% url 'search' %}">
                         {% csrf_token %}
                         <input class="form-control me-2"
                                type="search"
