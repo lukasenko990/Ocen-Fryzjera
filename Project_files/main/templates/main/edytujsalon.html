@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div>
+        <h2>Edycja profilu salonu</h2>
+        <form method="POST">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <h4>Nazwa: </h4>{{salon.nazwa}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                        </div>
+                        <h4>NIP: </h4>{{salon.NIP}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                        </div>
+                        <h4>REGON: </h4>{{salon.REGON}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+                        </div>
+                        <h4>Ulica: </h4>{{salon.ulica}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <h4>Nr lokalu: </h4>{{salon.nr_lokalu}}
+                </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <h4>Miasto: </h4>{{salon.miasto}}
+                </div>
+                <button type="submit">Zapisz zmiany</button>
+        </form>
+</div>
+{% endblock %}
