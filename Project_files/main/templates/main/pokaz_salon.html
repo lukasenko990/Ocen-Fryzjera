@@ -4,10 +4,21 @@
 
 <div><span class="heading">Nazwa:</span> {{salon.nazwa}}</div>
 <div><span class="heading">NIP:</span> {{salon.NIP}}</div>
-<div><span class="heading">REGON:</span> {{salon.REGON}}</div>
+<div><span class="heading">REGON:</span> {{salon.regon}}</div>
 <div><span class="heading">Ulica:</span> {{salon.ulica}} {{salon.nr_lokalu}}</div>
 <div><span class="heading">Miasto:</span> {{salon.miasto}}</div>
 <br>
 <div><a href="{% url 'edytuj_salon' salon.id %}">Edycja profilu</a></div>
+    <br><br>
+wlasciciel salonu:<br> <a href="{% url 'pokaz_fryzjera' wlasciciel.id %}">{{ wlasciciel.imie }} {{ wlasciciel.nazwisko }}</a>
+    <br><br>
+    fryzjerzy:<br>
+{% for fryzjer in fryzjerzy %}
+
+    <a href="{% url 'pokaz_fryzjera' fryzjer.id %}">{{ fryzjer.imie }} {{ fryzjer.nazwisko }}</a>
+    <br>
+
+{% endfor %}
+
 
 {% endblock %}

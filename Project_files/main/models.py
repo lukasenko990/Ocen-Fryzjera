@@ -2,7 +2,26 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Fryzjer(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    imie = models.CharField(max_length=50, null=True)
+    nazwisko = models.CharField(max_length=50, null=True)
+    srednia_ocena = models.FloatField(blank=True, null=True)
+
+    ulica = models.CharField(max_length=50, blank=True, null=True)
+    nr_domu = models.IntegerField(default=0, blank=True, null=True)
+    miasto = models.CharField(max_length=50, null=True)
+    kod_pocztowy = models.CharField(max_length=20, null=True)
+    nr_tel = models.CharField(max_length=20, default='no number')
+
+    def __str__(self):
+        return f'{self.imie} {self.nazwisko}'
+
+
 class Salon(models.Model):
+    wlasciciel = models.ForeignKey(Fryzjer, on_delete=models.CASCADE, related_name='wlasciciel', null=True)
+    fryzjer = models.ManyToManyField(Fryzjer, related_name='fryzjer')
     nazwa = models.CharField(max_length=50, default='NoName')
     NIP = models.CharField(max_length=25)
     regon = models.CharField(max_length=25)
@@ -10,6 +29,7 @@ class Salon(models.Model):
     nr_lokalu = models.IntegerField(default=0, blank=True, null=True)
     miasto = models.CharField(max_length=50)
     kod_pocztowy = models.CharField(max_length=20)
+    nr_tel = models.CharField(max_length=20, default='no number')
 
     def __str__(self):
         return self.nazwa
@@ -33,21 +53,7 @@ class Klient(models.Model):
         return f'{self.imie} {self.nazwisko}'
 
 
-class Fryzjer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    salon = models.ManyToManyField(Salon, null=True, blank=True)
 
-    imie = models.CharField(max_length=50, null=True)
-    nazwisko = models.CharField(max_length=50, null=True)
-    srednia_ocena = models.FloatField(blank=True, null=True)
-
-    ulica = models.CharField(max_length=50, blank=True, null=True)
-    nr_domu = models.IntegerField(default=0, blank=True, null=True)
-    miasto = models.CharField(max_length=50, null=True)
-    kod_pocztowy = models.CharField(max_length=20, null=True)
-
-    def __str__(self):
-        return f'{self.imie} {self.nazwisko}'
 
 
 class Usluga(models.Model):

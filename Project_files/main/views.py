@@ -116,8 +116,12 @@ def home(request):
 
 def pokaz_salon(request, id):
     salon = get_object_or_404(Salon, id=id)
+    fryzjerzy = salon.fryzjer.all()
+    wlasciciel = salon.wlasciciel
     context = {
         'salon': salon,
+        'fryzjerzy': fryzjerzy,
+        'wlasciciel': wlasciciel,
     }
 
     return render(request, 'main/pokaz_salon.html', context)
@@ -154,7 +158,8 @@ def edytuj_fryzjera(request, id):
         'EditForm': EditForm,
     }
     return render(request, 'main/edytuj_fryzjera.html', context)
-    
+
+
 def edytuj_klienta(request, id):
     context = {}
     profile = Klient.objects.all().filter(id=id).first()
@@ -169,6 +174,7 @@ def edytuj_klienta(request, id):
         'ClientForm': ClientForm,
     }
     return render(request, 'main/edytuj_klienta.html', context)
+
 
 def edytuj_salon(request, id):
     context = {}
