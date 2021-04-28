@@ -1,9 +1,9 @@
 # Oceń Fryzjera
-_english project name: Rate Barber_
+_english project name: Rate Hairdresser_
 
 ## Project goals
 
-The goal of the ***Oceń Fryzjera***'s project is to create internet website for booking visits in hairdressing salons. Furthermore, our service will have simple opinions feature to allow rating selected salons and barbers.
+The goal of the ***Oceń Fryzjera***'s project is to create internet website for booking visits in hairdressing salons. Furthermore, our service will have simple opinions feature to allow rating selected salons and hairdressers.
 
 The hairdressing salons available via our website will be checked for reliability to ensure transactions security for users, who would like to use our solution. 
 
@@ -60,12 +60,30 @@ Development and maintenance of all project's assumptions will require ca. 9-10 m
 3. **Creating statechart and sequence diagrams and database template**
    - creating statechart diagrams for service order and user
    - creating statechart diagram for salon class
-   - creating statechart diagrams for client, chat and barber
+   - creating statechart diagrams for client, chat and hairdresser
    - creating statechart diagrams for service, visit and address
    - creating test scenarios
    - database tables visualisation
    - creating sequence diagrams
    - website look project
+4. **Correction of project assumptions**
+   - correction of database tables design
+   - test scenarios correction
+   - adding possibility of visit cancellation to the project
+   - creating early version of solution in Django
+5. **Early version of solution**
+   - creating workspace for Django and implementation of first classes
+   - creating initial CSS file
+   - adding example hairdressers and salons
+   - gathering information about hairdressing industry
+   - adding search ability
+   - adding basic buttons to the web page
+   - implementing client edit form
+   - implementing hairdresser edit form
+   - CSS file improvement
+   - implementing salon edit form
+   - adding deleting hairdresser from salon possibility
+   - implementing invites service
 
 ## Additional information
 
