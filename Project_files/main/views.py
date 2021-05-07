@@ -102,7 +102,7 @@ def home(request):
     salony = Salon.objects.all()
     fryzjerzy = Fryzjer.objects.all()
     klienci = Klient.objects.all()
-    user_klient = request.user.klient
+    user_klient = Klient.objects.all().filter(user=request.user).first()
 
     context = {
         'user_klient': user_klient,
