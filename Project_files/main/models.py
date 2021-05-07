@@ -30,6 +30,9 @@ class Salon(models.Model):
     miasto = models.CharField(max_length=50)
     kod_pocztowy = models.CharField(max_length=20)
     nr_tel = models.CharField(max_length=20, default='no number')
+    godzina_otwarcia = models.CharField(max_length=10, default='Brak')
+    godzina_zamkniecia = models.CharField(max_length=10, default='Brak')
+
 
     def __str__(self):
         return self.nazwa

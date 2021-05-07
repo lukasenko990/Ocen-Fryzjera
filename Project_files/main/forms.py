@@ -36,3 +36,6 @@ class SalonUpdateForm(forms.ModelForm):
     class Meta:
         model = Salon
         fields = ('nazwa', 'NIP', 'regon', 'ulica', 'nr_lokalu', 'miasto', 'kod_pocztowy')
+
+class DateForm(forms.Form):
+    date = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'])

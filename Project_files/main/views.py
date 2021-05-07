@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegisterForm,  RegisterFormKlient, RegisterFormFryzjer, FryzjerUpdateForm, KlientUpdateForm, SalonUpdateForm
-from .models import Salon, Fryzjer, Klient
+from .models import Salon, Fryzjer, Klient, Usluga, Zamowienie
 from django.contrib.auth.models import User
 from django.db.models import Q
 
@@ -118,14 +118,22 @@ def pokaz_salon(request, id):
     salon = get_object_or_404(Salon, id=id)
     fryzjerzy = salon.fryzjer.all()
     wlasciciel = salon.wlasciciel
+    uslugi = Usluga.objects.all().filter(salon=salon)
     context = {
         'salon': salon,
         'fryzjerzy': fryzjerzy,
         'wlasciciel': wlasciciel,
+        'uslugi': uslugi,
     }
 
     return render(request, 'main/pokaz_salon.html', context)
+def pokaz_usluge(request, id):
+    usluga = get_object_or_404(Usluga, id=id)
+    context = {
+        'usluga': usluga,
+    }
 
+    return render(request, 'main/pokaz_usluge.html', context)
 
 def pokaz_klienta(request, id):
     klient = get_object_or_404(Klient, id=id)
@@ -204,3 +212,26 @@ def search(request):
         return render(request, 'main/search.html', {'searched':searched, 'fryzjerzy':fryzjerzy, 'salony':salony})
     else:
         return render(request, 'main/search.html', {})
+
+def umow_wizyte(request, id):
+    usluga = get_object_or_404(Usluga, id=id)
+    salon = usluga.salon.first()
+    fryzjerzy = salon.fryzjer.all()
+    zamowienia = Zamowienie.objects.all().filter(salon=salon)
+    if request.method == "POST":
+        wizyta = Zamowienie()
+        wizyta.salon=salon
+        wizyta.nazwa_zamowienia=usluga.nazwa
+        wizyta.termin_uslugi=request.POST.get('date')
+        wizyta.status='sent'
+        wizyta.save()
+        messages.info(request, 'Pomyslnie zapisano sie na wizyte')
+        return redirect('/')
+    context = {
+        'usluga': usluga,
+        'salon': salon,
+        'fryzjerzy': fryzjerzy,
+        'zamowienia': zamowienia,
+    }
+    return render(request, 'main/umow_wizyte.html', context)
+

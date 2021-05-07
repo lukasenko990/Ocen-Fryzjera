@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+
+<div><span class="heading">Nazwa:</span> {{usluga.nazwa}}</div>
+<div><span class="heading">Opis:</span> {{usluga.opis}}</div>
+<div><span class="heading">Cena:</span> {{usluga.cena}} zl</div>
+<div><span class="heading">Minimalny czas wykonania uslugi:</span> {{usluga.min_czas}} minut</div>
+<div><span class="heading">Maksymalny czas wykonania uslugi:</span> {{usluga.max_czas}} minut</div>
+<br>
+<a href="{% url 'umow_wizyte' usluga.id %}">Zapisz sie na {{usluga.nazwa}}</a>
+
+
+{% endblock %}
