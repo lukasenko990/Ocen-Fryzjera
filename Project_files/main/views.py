@@ -7,6 +7,8 @@ from .forms import RegisterForm,  RegisterFormKlient, RegisterFormFryzjer, Fryzj
 from .models import Salon, Fryzjer, Klient, Usluga, Zamowienie
 from django.contrib.auth.models import User
 from django.db.models import Q
+import json
+
 
 
 # register, login, logout
@@ -217,7 +219,8 @@ def umow_wizyte(request, id):
     usluga = get_object_or_404(Usluga, id=id)
     salon = usluga.salon.first()
     fryzjerzy = salon.fryzjer.all()
-    zamowienia = Zamowienie.objects.all().filter(salon=salon)
+    zamowienia = ['15:00', '16:00', '17:00']
+    json_list = json.dumps(zamowienia)
     if request.method == "POST":
         wizyta = Zamowienie()
         wizyta.salon=salon
@@ -232,6 +235,7 @@ def umow_wizyte(request, id):
         'salon': salon,
         'fryzjerzy': fryzjerzy,
         'zamowienia': zamowienia,
+        'json_list':json_list,
     }
     return render(request, 'main/umow_wizyte.html', context)
 

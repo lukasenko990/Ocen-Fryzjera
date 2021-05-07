@@ -23,9 +23,32 @@
   <input id="datetimepicker" type="text" name="date">
 
   <script>
+
+  var m = {{zamowienia|safe}};
+
+  var datePickerTime = function(currentDateTime) {
+    // 'this' is jquery object datetimepicker
+    var day = currentDateTime.getDay();
+    if (day === 6) {
+        this.setOptions({
+            allowTimes: ["09:00", "10:00", "11:00", "12:00"]
+        });
+    } else {
+        this.setOptions({
+            allowTimes: ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"]
+        });
+    }
+};
     $(function () {
+
       $("#datetimepicker").datetimepicker({
       format: 'Y-m-d H:i',
+      allowTimes: m,
+      onChangeDateTime: datePickerTime,
+      beforeShowDay: function(date) {
+        var day = date.getDay();
+        return [(day != 0), ''];
+    }
       });
     });
   </script>
