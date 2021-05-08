@@ -11,15 +11,18 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
+
 class RegisterFormKlient(forms.ModelForm):
     class Meta:
         model = Klient
         fields = ('nr_telefonu', 'ulica', 'miasto', 'nr_domu', 'kod_pocztowy')
 
+
 class RegisterFormFryzjer(forms.ModelForm):
     class Meta:
         model = Fryzjer
         fields = ( 'ulica', 'miasto', 'nr_domu', 'kod_pocztowy')
+
 
 class FryzjerUpdateForm(forms.ModelForm):
     #email = forms.EmailField()
@@ -27,15 +30,36 @@ class FryzjerUpdateForm(forms.ModelForm):
         model = Fryzjer
         fields = ('imie', 'nazwisko', 'ulica', 'nr_domu', 'miasto', 'kod_pocztowy' )
 
+
 class KlientUpdateForm(forms.ModelForm):
     class Meta:
         model = Klient
         fields = ('imie', 'nazwisko', 'nr_telefonu', 'ulica', 'nr_domu', 'miasto', 'kod_pocztowy')
+
 
 class SalonUpdateForm(forms.ModelForm):
     class Meta:
         model = Salon
         fields = ('nazwa', 'NIP', 'regon', 'ulica', 'nr_lokalu', 'miasto', 'kod_pocztowy')
 
+
 class DateForm(forms.Form):
     date = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'])
+
+
+class DropDownSalon(forms.ModelForm):
+    lista_salonow = forms.ModelChoiceField(queryset=Salon.objects.all())
+
+    class Meta:
+        model = Salon
+        fields = ['nazwa']
+
+
+class DodajFryzjera(forms.ModelForm):
+    lista_fryzjerow = forms.ModelChoiceField(queryset=Fryzjer.objects.all())
+    class Meta:
+        model = Fryzjer
+        fields = ['imie', 'nazwisko']
+        widgets = {
+            'r': forms.HiddenInput(),
+        }

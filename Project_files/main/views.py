@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegisterForm,  RegisterFormKlient, RegisterFormFryzjer, FryzjerUpdateForm, KlientUpdateForm, SalonUpdateForm
+from .forms import RegisterForm,  RegisterFormKlient, RegisterFormFryzjer, FryzjerUpdateForm, KlientUpdateForm, SalonUpdateForm, DropDownSalon, DodajFryzjera
 from .models import Salon, Fryzjer, Klient, Usluga, Zamowienie
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -250,3 +250,14 @@ def umow_wizyte(request, id):
     }
     return render(request, 'main/umow_wizyte.html', context)
 
+
+def dodaj_fryzjera(request):
+    salon_form = DropDownSalon()
+    fryzjer_form = DodajFryzjera()
+
+    context = {
+        'salon_form': salon_form,
+        'fryzjer_form': fryzjer_form,
+    }
+
+    return render(request, 'main/dodaj_fryzjera.html', context)

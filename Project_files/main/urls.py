@@ -19,4 +19,6 @@ urlpatterns = [
     path('edytuj_klienta/<int:id>', views.edytuj_klienta, name='edytuj_klienta'),
     path('edytuj_salon/<int:id>/', views.edytuj_salon, name='edytuj_salon'),
 
+    path('dodaj_fryzjera/', views.dodaj_fryzjera, name='dodaj_fryzjera'),
+
 ]
