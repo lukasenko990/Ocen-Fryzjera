@@ -3,9 +3,20 @@
 
 {% block content %}
 
+<form action="{% url 'dodaj_fryzjera' %}" method="POST">
+<label for="salon">Wybierz salon:</label>
 
-{{salon_form}}
-    {{ fryzjer_form }}
+<select name="salon" id="salon">
+  {% for salon in salony %}
+  <option value="{{salon.id}}">{{ salon.nazwa }}</option>
+    {% endfor %}
+</select>
+
+<select name="fryzjer" id="fryzjer">
+  {% for fryzjer in fryzjerzy %}
+  <option value="{{fryzjer.id}}">{{ fryzjer.imie }} {{ fryzjer.nazwisko }}</option>
+    {% endfor %}
+</select>
 
 
 {% endblock %}

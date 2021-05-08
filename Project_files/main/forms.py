@@ -46,20 +46,3 @@ class SalonUpdateForm(forms.ModelForm):
 class DateForm(forms.Form):
     date = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'])
 
-
-class DropDownSalon(forms.ModelForm):
-    lista_salonow = forms.ModelChoiceField(queryset=Salon.objects.all())
-
-    class Meta:
-        model = Salon
-        fields = ['nazwa']
-
-
-class DodajFryzjera(forms.ModelForm):
-    lista_fryzjerow = forms.ModelChoiceField(queryset=Fryzjer.objects.all())
-    class Meta:
-        model = Fryzjer
-        fields = ['imie', 'nazwisko']
-        widgets = {
-            'r': forms.HiddenInput(),
-        }
