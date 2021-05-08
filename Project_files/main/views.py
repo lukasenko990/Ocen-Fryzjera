@@ -219,8 +219,17 @@ def umow_wizyte(request, id):
     usluga = get_object_or_404(Usluga, id=id)
     salon = usluga.salon.first()
     fryzjerzy = salon.fryzjer.all()
-    zamowienia = ['15:00', '16:00', '17:00']
+    wizyty = Zamowienie.objects.all().filter(salon=salon)
+    uslugi = Usluga.objects.all().filter(salon=salon)
+    zamowienia = []
+    czasy=[]
+    for wizyta in wizyty:
+        date_time = wizyta.termin_uslugi.strftime("%Y-%m-%d %H:%M:%S")
+        czas=Usluga.objects.all().filter(salon=salon, nazwa=wizyta.nazwa_zamowienia).first().max_czas
+        zamowienia.append(date_time)
+        czasy.append(czas)
     json_list = json.dumps(zamowienia)
+    json_list2 = json.dumps(czasy)
     if request.method == "POST":
         wizyta = Zamowienie()
         wizyta.salon=salon
@@ -235,7 +244,9 @@ def umow_wizyte(request, id):
         'salon': salon,
         'fryzjerzy': fryzjerzy,
         'zamowienia': zamowienia,
+        'czasy': czasy,
         'json_list':json_list,
+        'json_list2':json_list2,
     }
     return render(request, 'main/umow_wizyte.html', context)
 

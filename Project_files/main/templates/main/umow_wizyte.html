@@ -24,18 +24,66 @@
 
   <script>
 
-  var m = {{zamowienia|safe}};
-
+  var zajete = {{zamowienia|safe}};
+  var czas = {{czasy|safe}};
+  for(i=0; i<zajete.length; i++)
+  {
+    zajete[i]=zajete[i].toString();
+  }
   var datePickerTime = function(currentDateTime) {
     // 'this' is jquery object datetimepicker
-    var day = currentDateTime.getDay();
-    if (day === 6) {
+    var year = currentDateTime.getFullYear();
+    var month = currentDateTime.getMonth()+1;
+    month=month.toString();
+    year=year.toString();
+    if(month.length == 1)
+    {
+      month="0" + month;
+    }
+    var day = currentDateTime.getDate();
+    day=day.toString();
+    if(day.length==1)
+    {
+      day="0"+day;
+    }
+    var date = year+"-"+month+"-"+day;
+    var day_num=currentDateTime.getDay();
+    var saturday=["08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30"];
+    var normal = ["08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30"];
+    for(i=0; i<zajete.length; i++)
+    {
+      var pom = zajete[i].substring(0, 10);
+      if(pom == date)
+      {
+        if(day_num == 6)
+        {
+          var index = saturday.indexOf(zajete[i].substring(11,16));
+          var it = czas[i];
+          while (it>=0)
+          {
+            saturday.splice(index,1);
+            it = it-30;
+          }
+        }
+        else
+        {
+          var index = normal.indexOf(zajete[i].substring(11,16));
+          var it = czas[i];
+          while (it>=0)
+          {
+            normal.splice(index,1);
+            it = it-30;
+          }
+        }
+      }
+    }
+    if (day_num === 6) {
         this.setOptions({
-            allowTimes: ["09:00", "10:00", "11:00", "12:00"]
+            allowTimes: saturday
         });
     } else {
         this.setOptions({
-            allowTimes: ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"]
+            allowTimes: normal
         });
     }
 };
@@ -43,7 +91,7 @@
 
       $("#datetimepicker").datetimepicker({
       format: 'Y-m-d H:i',
-      allowTimes: m,
+      allowTimes: [""],
       onChangeDateTime: datePickerTime,
       beforeShowDay: function(date) {
         var day = date.getDay();
