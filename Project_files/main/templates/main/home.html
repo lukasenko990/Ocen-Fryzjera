@@ -4,6 +4,8 @@
 
 <div><span class="heading">Zarejestruj klienta:</span> <a href="{% url 'register' %}">Rejestracja</a></div>
 <div><span class="heading">Zarejestruj fryzjera:</span> <a href="{% url 'barber_register' %}">Rejestracja</a></div>
+
+    <div><span class="heading"><a href="{% url 'dodaj_fryzjera' %}">Dodaj fryzjera do salonu</a></span></div>
 <br>
 {% if user.is_authenticated %}
 <div><span class="heading">Jesteś zalogowany jako:</span> {{request.user.username}}</div>

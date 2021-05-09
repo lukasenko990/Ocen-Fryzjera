@@ -7,9 +7,11 @@
 <label for="salon">Wybierz salon:</label>
 
 <select name="salon" id="salon">
+
   {% for salon in salony %}
   <option value="{{salon.id}}">{{ salon.nazwa }}</option>
     {% endfor %}
+
 </select>
 
 <select name="fryzjer" id="fryzjer">
@@ -18,5 +20,5 @@
     {% endfor %}
 </select>
 
-
+<button class="btn">add</button>
 {% endblock %}

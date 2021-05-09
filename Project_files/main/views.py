@@ -252,11 +252,15 @@ def umow_wizyte(request, id):
 
 
 def dodaj_fryzjera(request):
-    salony = Salon.objects.all()
+    #salony = Salon.objects.all()
+    fryzjer = Fryzjer.objects.get(user=request.user)
+    salony = fryzjer.wlasciciel.filter()
+
+
+    print(salony)
     fryzjerzy = Fryzjer.objects.all()
 
     context = {
-
         'salony': salony,
         'fryzjerzy': fryzjerzy,
     }
