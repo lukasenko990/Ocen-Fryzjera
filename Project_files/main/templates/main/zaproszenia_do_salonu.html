@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+{% for received in received_invites %}
+{{received}} <button><a href="#">Accept</a></button><button><a href="#">Decline</a></button>
+{% endfor %}
+
+{% if not received_invites %}
+	<div class="card flex-row flex-grow-1 p-2 mx-2 my-2 align-items-center" >
+							<div class="card-center px-2" >
+								<h4 class="card-title ">There are no invites</h4>
+							</div>
+	</div>
+
+{% endif %}
+
+
+
+
+{% endblock content %}

@@ -20,5 +20,6 @@ urlpatterns = [
     path('edytuj_salon/<int:id>/', views.edytuj_salon, name='edytuj_salon'),
 
     path('dodaj_fryzjera/', views.dodaj_fryzjera, name='dodaj_fryzjera'),
+    path('zaproszenia/', views.zaproszenia_do_salonu, name='zaproszenia_do_salonu')
 
 ]

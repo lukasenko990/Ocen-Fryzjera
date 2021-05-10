@@ -270,9 +270,18 @@ def dodaj_fryzjera(request):
     fryzjer = Fryzjer.objects.get(user=request.user)
     salony = fryzjer.wlasciciel.filter()
 
-
-    print(salony)
     fryzjerzy = Fryzjer.objects.all()
+
+    fryzjerID = request.POST.get('fryzjerSelect', False)
+    salonID = request.POST.get('salonSelect', False)
+
+    if salonID != False and fryzjerID != False:
+        fryzjerToAdd = Fryzjer.objects.get(id=fryzjerID)
+        salonToAdd = Salon.objects.get(id=salonID)
+
+        #fryzjer.invite_sent.add(fryzjerToAdd)
+        #fryzjerToAdd.invite_received.add(fryzjer)
+        print(f"Fryzjer {fryzjer} wyslal zaproszenie do fryzjera {fryzjerToAdd} do salonu {salonToAdd}")
 
     context = {
         'salony': salony,
@@ -280,3 +289,17 @@ def dodaj_fryzjera(request):
     }
 
     return render(request, 'main/dodaj_fryzjera.html', context)
+
+def akceptuj_zaproszenie(request):
+    
+
+def zaproszenia_do_salonu(request):
+    fryzjer = Fryzjer.objects.get(user=request.user)
+    received_invites = fryzjer.invite_received.all()
+
+    context = {
+        'received_invites': received_invites,
+        'fryzjer': fryzjer,
+    }
+
+    return render(request, 'main/zaproszenia_do_salonu.html', context)

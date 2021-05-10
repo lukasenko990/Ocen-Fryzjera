@@ -3,22 +3,21 @@
 
 {% block content %}
 
-<form action="{% url 'dodaj_fryzjera' %}" method="POST">
-<label for="salon">Wybierz salon:</label>
+<form method="POST" action="{% url 'dodaj_fryzjera' %}" >
+{% csrf_token %}
 
-<select name="salon" id="salon">
-
+<select name="salonSelect">
   {% for salon in salony %}
-  <option value="{{salon.id}}">{{ salon.nazwa }}</option>
+  <option value="{{salon.id}}">{{salon.nazwa}}</option>
     {% endfor %}
-
 </select>
 
-<select name="fryzjer" id="fryzjer">
+<select name="fryzjerSelect">
   {% for fryzjer in fryzjerzy %}
   <option value="{{fryzjer.id}}">{{ fryzjer.imie }} {{ fryzjer.nazwisko }}</option>
     {% endfor %}
 </select>
 
 <button class="btn">add</button>
+</form>
 {% endblock %}

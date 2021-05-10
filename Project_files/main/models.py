@@ -17,6 +17,10 @@ class Fryzjer(models.Model):
 
     avatar = models.ImageField(upload_to='main/static/ocen_fryzjera/avatars/fryzjers/', null=True, blank=True)
 
+    invites = models.ManyToManyField('self', related_name='invites')
+    invite_sent = models.ManyToManyField('self', blank=True, related_name='invites_sent', symmetrical=False)
+    invite_received = models.ManyToManyField('self', blank=True, related_name='invites_received', symmetrical=False)
+
     def __str__(self):
         return f'{self.imie} {self.nazwisko}'
 
