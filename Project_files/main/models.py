@@ -15,6 +15,8 @@ class Fryzjer(models.Model):
     kod_pocztowy = models.CharField(max_length=20, null=True)
     nr_tel = models.CharField(max_length=20, default='no number')
 
+    avatar = models.ImageField(upload_to='main/static/ocen_fryzjera/avatars/fryzjers/', null=True, blank=True)
+
     def __str__(self):
         return f'{self.imie} {self.nazwisko}'
 
@@ -51,6 +53,8 @@ class Klient(models.Model):
     nr_domu = models.IntegerField(default=0, blank=True, null=True)
     miasto = models.CharField(max_length=50, null=True)
     kod_pocztowy = models.CharField(max_length=20, null=True)
+
+    avatar = models.ImageField(upload_to='main/static/ocen_fryzjera/avatars/klients/', null=True, blank=True)
 
     def __str__(self):
         return f'{self.imie} {self.nazwisko}'

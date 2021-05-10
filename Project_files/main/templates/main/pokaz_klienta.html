@@ -7,6 +7,10 @@
 <div><span class="heading">Nazwisko:</span> {{klient.nazwisko}}</div>
 <div><span class="heading">Nr tel:</span> {{klient.nr_telefonu}}</div>
 <br>
+{% if klient.avatar.url is not null %}
+<div><img src="/{{klient.avatar}}"></div>
+<br>
+{% endif %}
 <div><a href="{% url 'edytuj_klienta' klient.id %}">Edycja profilu</a></div>
 
 {% endblock %}

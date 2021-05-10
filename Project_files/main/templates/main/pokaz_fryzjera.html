@@ -7,6 +7,10 @@
 <div><span class="heading">Nazwisko:</span> {{fryzjer.nazwisko}}</div>
 <div><span class="heading">Nr tel:</span> {{fryzjer.nr_tel}}</div>
 <br>
+{% if fryzjer.avatar.url is not null %}
+<div><img src="/{{fryzjer.avatar}}"></div>
+<br>
+{% endif %}
 <a href="{% url 'edytuj_fryzjera' fryzjer.id %}">Edycja profilu</a>
 
 

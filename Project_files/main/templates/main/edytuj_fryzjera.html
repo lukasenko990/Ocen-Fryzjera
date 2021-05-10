@@ -2,7 +2,7 @@
 {% block content %}
 <div>
         <h2>Edycja profilu fryzjera</h2>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="input-group mb-3">
                         <div class="input-group-append">
@@ -40,6 +40,12 @@
                         </div>
                         <h4>Kod pocztowy: </h4>{{EditForm.kod_pocztowy}}
                 </div>
+                <div class="input-group mb-2">
+                        <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>                        
+                        <h4>Awatar: </h4>{{EditForm.avatar}}
+                 </div>
                 <button type="submit">Zapisz zmiany</button>
         </form>
 </div>

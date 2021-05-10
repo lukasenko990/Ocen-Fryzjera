@@ -28,13 +28,13 @@ class FryzjerUpdateForm(forms.ModelForm):
     #email = forms.EmailField()
     class Meta:
         model = Fryzjer
-        fields = ('imie', 'nazwisko', 'ulica', 'nr_domu', 'miasto', 'kod_pocztowy' )
+        fields = ('imie', 'nazwisko', 'ulica', 'nr_domu', 'miasto', 'kod_pocztowy', 'avatar')
 
 
 class KlientUpdateForm(forms.ModelForm):
     class Meta:
         model = Klient
-        fields = ('imie', 'nazwisko', 'nr_telefonu', 'ulica', 'nr_domu', 'miasto', 'kod_pocztowy')
+        fields = ('imie', 'nazwisko', 'nr_telefonu', 'ulica', 'nr_domu', 'miasto', 'kod_pocztowy', 'avatar')
 
 
 class SalonUpdateForm(forms.ModelForm):

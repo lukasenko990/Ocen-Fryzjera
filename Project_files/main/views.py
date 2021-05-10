@@ -8,7 +8,7 @@ from .models import Salon, Fryzjer, Klient, Usluga, Zamowienie
 from django.contrib.auth.models import User
 from django.db.models import Q
 import json
-
+import os
 
 
 # register, login, logout
@@ -157,10 +157,17 @@ def pokaz_fryzjera(request, id):
 def edytuj_fryzjera(request, id):
     context = {}
     profile = Fryzjer.objects.all().filter(id=id).first()
+    try:
+        oldPath=profile.avatar.path
+    except:
+        oldPath=None
     EditForm = FryzjerUpdateForm(instance=profile)
     if request.method == 'POST':
-        EditForm = FryzjerUpdateForm(request.POST, instance=profile)
+        EditForm = FryzjerUpdateForm(request.POST, request.FILES, instance=profile)
         if EditForm.is_valid():
+            request.FILES.get('avatar',None)
+            if not oldPath==None:
+                os.remove(oldPath)
             EditForm.save()
         return redirect('/')
     context = {
@@ -173,10 +180,17 @@ def edytuj_fryzjera(request, id):
 def edytuj_klienta(request, id):
     context = {}
     profile = Klient.objects.all().filter(id=id).first()
+    try:
+        oldPath=profile.avatar.path
+    except:
+        oldPath=None
     ClientForm = KlientUpdateForm(instance=profile)
     if request.method == 'POST':
-        ClientForm = KlientUpdateForm(request.POST, instance=profile)
+        ClientForm = KlientUpdateForm(request.POST, request.FILES, instance=profile)
         if ClientForm.is_valid():
+            request.FILES.get('avatar',None)
+            if not oldPath==None:
+                os.remove(oldPath)
             ClientForm.save()
         return redirect('/')
     context = {
