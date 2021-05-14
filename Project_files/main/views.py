@@ -291,7 +291,7 @@ def dodaj_fryzjera(request):
     return render(request, 'main/dodaj_fryzjera.html', context)
 
 def akceptuj_zaproszenie(request):
-    
+    pass
 
 def zaproszenia_do_salonu(request):
     fryzjer = Fryzjer.objects.get(user=request.user)
