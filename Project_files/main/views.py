@@ -7,6 +7,8 @@ from .forms import RegisterForm,  RegisterFormKlient, RegisterFormFryzjer, Fryzj
 from .models import Salon, Fryzjer, Klient, Usluga, Zamowienie
 from django.contrib.auth.models import User
 from django.db.models import Q
+from rest_framework import viewsets
+from .serializer import SalonSerializer, FryzjerSerializer, KlientSerializer, UslugaSerializer, ZamowienieSerializer
 import json
 import os
 
@@ -303,3 +305,23 @@ def zaproszenia_do_salonu(request):
     }
 
     return render(request, 'main/zaproszenia_do_salonu.html', context)
+
+class SalonViewSet(viewsets.ModelViewSet):
+    queryset = Salon.objects.all()
+    serializer_class=SalonSerializer
+    
+class KlientViewSet(viewsets.ModelViewSet):
+    queryset = Klient.objects.all()
+    serializer_class=KlientSerializer
+    
+class FryzjerViewSet(viewsets.ModelViewSet):
+    queryset = Fryzjer.objects.all()
+    serializer_class=FryzjerSerializer
+
+class UslugaViewSet(viewsets.ModelViewSet):
+    queryset = Usluga.objects.all()
+    serializer_class=UslugaSerializer 
+
+class ZamowienieViewSet(viewsets.ModelViewSet):
+    queryset = Zamowienie.objects.all()
+    serializer_class=ZamowienieSerializer    
