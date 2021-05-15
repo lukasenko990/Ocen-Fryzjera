@@ -2,7 +2,19 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class SalonRelationship(models.Model):
+    salonID = models.IntegerField(null=True, blank=True)
+    wlascicielID = models.IntegerField(null=True, blank=True)
+    nazwa_salonu = models.CharField(max_length=250, null=True, blank=True)
+    imie_wlasciciela = models.CharField(max_length=250, null=True, blank=True)
+    nazwisko_wlasciciela = models.CharField(max_length=250, null=True, blank=True)
+
+    def __str__(self):
+        return f"Wlasciciel {self.imie_wlasciciela} {self.nazwisko_wlasciciela} chce Cie dodac do {self.nazwa_salonu}"
+
+
 class Fryzjer(models.Model):
+    salon_
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     imie = models.CharField(max_length=50, null=True)
