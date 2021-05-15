@@ -18,6 +18,10 @@
 {% endif %}
 
 
-
+{% for z in zapro %}
+   {{ z.nazwa_salonu }}
+    {{ z.imie_wlasciciela }}
+    {{ z.nazwisko_wlasciciela }}
+{% endfor %}
 
 {% endblock content %}

@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegisterForm,  RegisterFormKlient, RegisterFormFryzjer, FryzjerUpdateForm, KlientUpdateForm, SalonUpdateForm
-from .models import Salon, Fryzjer, Klient, Usluga, Zamowienie
+from .models import Salon, Fryzjer, Klient, Usluga, Zamowienie, SalonRelationship
 from django.contrib.auth.models import User
 from django.db.models import Q
 from rest_framework import viewsets
@@ -271,7 +271,7 @@ def dodaj_fryzjera(request):
     #salony = Salon.objects.all()
     fryzjer = Fryzjer.objects.get(user=request.user)
     salony = fryzjer.wlasciciel.filter()
-
+    zapro = {}
     fryzjerzy = Fryzjer.objects.all()
 
     fryzjerID = request.POST.get('fryzjerSelect', False)
@@ -281,13 +281,25 @@ def dodaj_fryzjera(request):
         fryzjerToAdd = Fryzjer.objects.get(id=fryzjerID)
         salonToAdd = Salon.objects.get(id=salonID)
 
+        zaproszenie = SalonRelationship(
+        salonID=salonID,
+        wlascicielID=fryzjer.id,
+        imie_wlasciciela=fryzjer.imie,
+        nazwisko_wlasciciela=fryzjer.nazwisko,
+        nazwa_salonu=salonToAdd.nazwa,
+        )
+        zaproszenie.save()
+        fryzjerToAdd.salon_to_add.add(zaproszenie)
+
         #fryzjer.invite_sent.add(fryzjerToAdd)
         #fryzjerToAdd.invite_received.add(fryzjer)
-        print(f"Fryzjer {fryzjer} wyslal zaproszenie do fryzjera {fryzjerToAdd} do salonu {salonToAdd}")
+        #print(f"Fryzjer {fryzjer} wyslal zaproszenie do fryzjera {fryzjerToAdd} do salonu {salonToAdd}")
+
 
     context = {
         'salony': salony,
         'fryzjerzy': fryzjerzy,
+        'zapro': zapro,
     }
 
     return render(request, 'main/dodaj_fryzjera.html', context)
@@ -298,10 +310,11 @@ def akceptuj_zaproszenie(request):
 def zaproszenia_do_salonu(request):
     fryzjer = Fryzjer.objects.get(user=request.user)
     received_invites = fryzjer.invite_received.all()
-
+    zapro = fryzjer.salon_to_add.all()
     context = {
         'received_invites': received_invites,
         'fryzjer': fryzjer,
+        'zapro': zapro,
     }
 
     return render(request, 'main/zaproszenia_do_salonu.html', context)

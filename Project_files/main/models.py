@@ -14,7 +14,7 @@ class SalonRelationship(models.Model):
 
 
 class Fryzjer(models.Model):
-    salon_
+    salon_to_add = models.ManyToManyField(SalonRelationship)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     imie = models.CharField(max_length=50, null=True)
