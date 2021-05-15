@@ -31,5 +31,9 @@ urlpatterns = [
 
     path('dodaj_fryzjera/', views.dodaj_fryzjera, name='dodaj_fryzjera'),
     path('zaproszenia/', views.zaproszenia_do_salonu, name='zaproszenia_do_salonu'),
+    path('akceptuj_zaproszenie/<int:fryzjerID>/<int:salonID>/', views.akceptuj_zaproszenie, name='akceptuj_zaproszenie'),
+
+
+    ### api ####
     path('api/',include(router.urls))
 ]

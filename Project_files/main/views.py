@@ -103,6 +103,8 @@ def login_user(request):
 ########3 home
 @login_required
 def home(request):
+
+
     salony = Salon.objects.all()
     fryzjerzy = Fryzjer.objects.all()
     klienci = Klient.objects.all()
@@ -280,16 +282,26 @@ def dodaj_fryzjera(request):
     if salonID != False and fryzjerID != False:
         fryzjerToAdd = Fryzjer.objects.get(id=fryzjerID)
         salonToAdd = Salon.objects.get(id=salonID)
+        zapro = SalonRelationship.objects.all()
+        is_already_sent = False
+        for z in zapro:
+            print(f"OBJECT {z.salonID} -- {z.fryzjerID}")
+            print(f"TOADD {salonID} -- {fryzjerToAdd.id}")
+            if int(z.salonID) == int(salonID) and int(z.fryzjerID) == int(fryzjerToAdd.id):
+                is_already_sent = True
+                break
 
-        zaproszenie = SalonRelationship(
-        salonID=salonID,
-        wlascicielID=fryzjer.id,
-        imie_wlasciciela=fryzjer.imie,
-        nazwisko_wlasciciela=fryzjer.nazwisko,
-        nazwa_salonu=salonToAdd.nazwa,
-        )
-        zaproszenie.save()
-        fryzjerToAdd.salon_to_add.add(zaproszenie)
+        if is_already_sent is False:
+            zaproszenie = SalonRelationship(
+            salonID=salonID,
+            wlascicielID=fryzjer.id,
+            fryzjerID=fryzjerToAdd.id,
+            imie_wlasciciela=fryzjer.imie,
+            nazwisko_wlasciciela=fryzjer.nazwisko,
+            nazwa_salonu=salonToAdd.nazwa,
+            )
+            zaproszenie.save()
+            fryzjerToAdd.salon_to_add.add(zaproszenie)
 
         #fryzjer.invite_sent.add(fryzjerToAdd)
         #fryzjerToAdd.invite_received.add(fryzjer)
@@ -304,13 +316,19 @@ def dodaj_fryzjera(request):
 
     return render(request, 'main/dodaj_fryzjera.html', context)
 
+
 def akceptuj_zaproszenie(request):
-    pass
+    fryzjer = Fryzjer.objects.get(user=request.user)
+    if request.method == 'POST':
+        Salon.fryzjer.add(fryzjer)
+
+
 
 def zaproszenia_do_salonu(request):
     fryzjer = Fryzjer.objects.get(user=request.user)
     received_invites = fryzjer.invite_received.all()
     zapro = fryzjer.salon_to_add.all()
+
     context = {
         'received_invites': received_invites,
         'fryzjer': fryzjer,
@@ -319,6 +337,21 @@ def zaproszenia_do_salonu(request):
 
     return render(request, 'main/zaproszenia_do_salonu.html', context)
 
+
+def akceptuj_zaproszenie(request, fryzjerID, salonID):
+    if request.method == 'POST':
+        fryzjer_to_add = Fryzjer.objects.get(id=fryzjerID)
+        salon_to_add = Salon.objects.get(id=salonID)
+
+        salon_to_add.fryzjer.add(fryzjer_to_add)
+        zapro = SalonRelationship.objects.filter(fryzjerID=fryzjerID, salonID=salonID)
+        #print(zapro)
+        zapro.delete()
+
+    return redirect('/')
+
+
+############## API ###################
 class SalonViewSet(viewsets.ModelViewSet):
     queryset = Salon.objects.all()
     serializer_class=SalonSerializer

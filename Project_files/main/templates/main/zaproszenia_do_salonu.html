@@ -19,9 +19,19 @@
 
 
 {% for z in zapro %}
-   {{ z.nazwa_salonu }}
-    {{ z.imie_wlasciciela }}
-    {{ z.nazwisko_wlasciciela }}
+    <div class="card flex-row flex-grow-1 p-2 mx-2 my-2 align-items-center" >
+        <ul>
+        nazwa salonu:{{ z.nazwa_salonu }}<br>
+        ID salonu: {{ z.salonID }}<br>
+        imie wlasciciela: {{ z.imie_wlasciciela }}<br>
+        nazwisko wlasciciela: {{ z.nazwisko_wlasciciela }}<br>
+        </ul>
+        <form action="{% url 'akceptuj_zaproszenie' fryzjerID=z.fryzjerID salonID=z.salonID %}" method="POST">
+                {% csrf_token %}
+                <button class="btn">accept</button>
+                </form>
+    </div>
+    <br><br><br>
 {% endfor %}
 
 {% endblock content %}

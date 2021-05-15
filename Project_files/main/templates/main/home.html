@@ -10,6 +10,7 @@
 <br>
 {% if user.is_authenticated %}
 <div><span class="heading">Jesteś zalogowany jako:</span> {{request.user.username}}</div>
+<div><span class="heading">Jesteś zalogowany jako:</span> {{request.user.username}}</div>
 <div><span class="heading">Imię i nazwisko klienta:</span> {{user_klient.imie}} {{user_klient.nazwisko}}</div>
 
 <div><span class="heading">Wyloguj:</span> <a href ="{% url 'logout' %}">logout</a></div>

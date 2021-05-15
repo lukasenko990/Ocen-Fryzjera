@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class SalonRelationship(models.Model):
     salonID = models.IntegerField(null=True, blank=True)
     wlascicielID = models.IntegerField(null=True, blank=True)
+    fryzjerID = models.IntegerField(null=True, blank=True)
     nazwa_salonu = models.CharField(max_length=250, null=True, blank=True)
     imie_wlasciciela = models.CharField(max_length=250, null=True, blank=True)
     nazwisko_wlasciciela = models.CharField(max_length=250, null=True, blank=True)
