@@ -1,0 +1,98 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+<div><span class="heading">Imię:</span> {{fryzjer.imie}}</div>
+<div><span class="heading">Nazwisko:</span> {{fryzjer.nazwisko}}</div>
+<div><span class="heading">Nr tel:</span> {{fryzjer.nr_tel}}</div>
+<br>
+{% if fryzjer.avatar.url is not null %}
+<div><img src="/{{fryzjer.avatar}}"></div>
+<br>
+{% endif %}
+
+<style>
+.checked {
+  color: orange;
+}
+</style>
+<form method="POST">
+{% csrf_token %}
+<h2 name="rat">Liczba gwiazdek: <var id="rate" > </var></h2>
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<span onclick="myFunction()" class="fa fa-star" id="first"></span>
+<span onclick="myFunction2()" class="fa fa-star" id="second"></span>
+<span onclick="myFunction3()" class="fa fa-star" id="third"></span>
+<span onclick="myFunction4()" class="fa fa-star" id="fourth"></span>
+<span onclick="myFunction5()" class="fa fa-star" id="fifth"></span>
+<br>
+    <textarea id="tresc" name="tresc" rows="10" cols="60">
+  Podziel sie swoja opinia.
+  </textarea>
+<div><button type="submit" name="rate" value="0" id="rating">Zapisz opinie</button></div>
+</form>
+<script>
+function myFunction() {
+	document.getElementById("first").classList.add('checked');
+    document.getElementById("second").classList.remove('checked');
+    document.getElementById("third").classList.remove('checked');
+    document.getElementById("fourth").classList.remove('checked');
+    document.getElementById("fifth").classList.remove('checked');
+    var rating=document.getElementById("rate");
+    rating.innerHTML=1;
+    var rate=document.getElementById("rating")
+    rate.value=1;
+  }
+function myFunction2() {
+  	document.getElementById("first").classList.add('checked');
+    document.getElementById("second").classList.add('checked');
+    document.getElementById("third").classList.remove('checked');
+    document.getElementById("fourth").classList.remove('checked');
+    document.getElementById("fifth").classList.remove('checked');
+    var rating=document.getElementById("rate");
+    rating.innerHTML=2;
+    var rate=document.getElementById("rating")
+    rate.value=2;
+}
+function myFunction3() {
+  	document.getElementById("first").classList.add('checked');
+    document.getElementById("second").classList.add('checked');
+    document.getElementById("third").classList.add('checked');
+    document.getElementById("fourth").classList.remove('checked');
+    document.getElementById("fifth").classList.remove('checked');
+    var rating=document.getElementById("rate");
+    rating.innerHTML=3;
+    var rate=document.getElementById("rating")
+    rate.value=3;
+}
+function myFunction4() {
+  	document.getElementById("first").classList.add('checked');
+    document.getElementById("second").classList.add('checked');
+    document.getElementById("third").classList.add('checked');
+    document.getElementById("fourth").classList.add('checked');
+    document.getElementById("fifth").classList.remove('checked');
+    var rating=document.getElementById("rate");
+    rating.innerHTML=4;
+    var rate=document.getElementById("rating")
+    rate.value=4;
+}
+function myFunction5() {
+  	document.getElementById("first").classList.add('checked');
+    document.getElementById("second").classList.add('checked');
+    document.getElementById("third").classList.add('checked');
+    document.getElementById("fourth").classList.add('checked');
+    document.getElementById("fifth").classList.add('checked');
+    var rating=document.getElementById("rate");
+    rating.innerHTML=5;
+    var rate=document.getElementById("rating")
+    rate.value=5;
+}
+
+</script>
+
+
+
+
+{% endblock %}

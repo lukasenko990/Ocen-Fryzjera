@@ -11,7 +11,6 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
-
 class RegisterFormKlient(forms.ModelForm):
     class Meta:
         model = Klient
@@ -45,4 +44,8 @@ class SalonUpdateForm(forms.ModelForm):
 
 class DateForm(forms.Form):
     date = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'])
+
+class RateForm(forms.Form):
+    stars = forms.IntegerField()
+    comment = forms.CharField()
 

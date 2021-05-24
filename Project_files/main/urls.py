@@ -28,7 +28,8 @@ urlpatterns = [
     path('edytuj_fryzjera/<int:id>', views.edytuj_fryzjera, name='edytuj_fryzjera'),
     path('edytuj_klienta/<int:id>', views.edytuj_klienta, name='edytuj_klienta'),
     path('edytuj_salon/<int:id>/', views.edytuj_salon, name='edytuj_salon'),
-
+    path('dodaj_opinie_fryzjer/<int:id>/', views.dodaj_opinie_fryzjer, name='dodaj_opinie_fryzjer'),
+    path('dodaj_opinie_salon/<int:id>/', views.dodaj_opinie_salon, name='dodaj_opinie_salon'),
     path('dodaj_fryzjera/', views.dodaj_fryzjera, name='dodaj_fryzjera'),
     path('zaproszenia/', views.zaproszenia_do_salonu, name='zaproszenia_do_salonu'),
     path('akceptuj_zaproszenie/<int:fryzjerID>/<int:salonID>/', views.akceptuj_zaproszenie, name='akceptuj_zaproszenie'),

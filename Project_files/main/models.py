@@ -21,6 +21,7 @@ class Fryzjer(models.Model):
     imie = models.CharField(max_length=50, null=True)
     nazwisko = models.CharField(max_length=50, null=True)
     srednia_ocena = models.FloatField(blank=True, null=True)
+    liczba_ocen = models.IntegerField(blank=True, null=True)
 
     ulica = models.CharField(max_length=50, blank=True, null=True)
     nr_domu = models.IntegerField(default=0, blank=True, null=True)
@@ -51,6 +52,8 @@ class Salon(models.Model):
     nr_tel = models.CharField(max_length=20, default='no number')
     godzina_otwarcia = models.CharField(max_length=10, default='Brak')
     godzina_zamkniecia = models.CharField(max_length=10, default='Brak')
+    srednia_ocena = models.FloatField(blank=True, null=True)
+    liczba_ocen = models.IntegerField(blank=True, null=True)
 
 
     def __str__(self):
@@ -92,7 +95,16 @@ class Usluga(models.Model):
     def __str__(self):
         return self.nazwa
 
+class Ocena(models.Model):
+    salon = models.ForeignKey(Salon, on_delete=models.CASCADE, null=True, default=None)
+    data = models.DateTimeField(auto_now_add=True, null=True)
+    fryzjer = models.ForeignKey(Fryzjer, on_delete=models.CASCADE, null=True, default=None)
+    tresc = models.CharField(max_length=300, null=True)
+    liczba_gwiazdek = models.IntegerField(default=0, null=True)
+    klient = models.ForeignKey(Klient, on_delete=models.CASCADE, null=False)
 
+    def __str__(self):
+        return self.klient.imie
 class Zamowienie(models.Model):
 
     STATUS_CHOICES = (

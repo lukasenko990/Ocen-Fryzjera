@@ -8,6 +8,9 @@
 <div><span class="heading">Ulica:</span> {{salon.ulica}} {{salon.nr_lokalu}}</div>
 <div><span class="heading">Miasto:</span> {{salon.miasto}}</div>
 <br>
+<a href="{% url 'dodaj_opinie_salon' salon.id %}">Ocen salon</a>
+<br>
+<br>
  uslugi:<br>
 {% for usluga in uslugi %}
     <a href="{% url 'pokaz_usluge' usluga.id %}">{{ usluga.nazwa }}</a>

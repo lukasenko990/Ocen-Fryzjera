@@ -1,10 +1,10 @@
 from django.contrib.auth import logout as django_logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegisterForm,  RegisterFormKlient, RegisterFormFryzjer, FryzjerUpdateForm, KlientUpdateForm, SalonUpdateForm
-from .models import Salon, Fryzjer, Klient, Usluga, Zamowienie, SalonRelationship
+from .forms import RegisterForm,  RegisterFormKlient, RegisterFormFryzjer, FryzjerUpdateForm, KlientUpdateForm, SalonUpdateForm, RateForm
+from .models import Salon, Fryzjer, Klient, Usluga, Zamowienie, SalonRelationship, Ocena
 from django.contrib.auth.models import User
 from django.db.models import Q
 from rest_framework import viewsets
@@ -155,7 +155,6 @@ def pokaz_fryzjera(request, id):
     context = {
         'fryzjer': fryzjer,
     }
-
     return render(request, 'main/pokaz_fryzjera.html', context)
 
 def edytuj_fryzjera(request, id):
@@ -180,7 +179,78 @@ def edytuj_fryzjera(request, id):
     }
     return render(request, 'main/edytuj_fryzjera.html', context)
 
+def dodaj_opinie_fryzjer(request, id):
+    context = {}
+    fryzjer = Fryzjer.objects.all().filter(id=id).first()
+    context = {
+        'fryzjer': fryzjer,
+    }
+    if request.method == 'POST':
+        if fryzjer.srednia_ocena!=None:
+            fryzjer.srednia_ocena*=fryzjer.liczba_ocen
+            fryzjer.liczba_ocen+=1
+            rate=request.POST.get('rate')
+            if float(rate)!=0:
+                fryzjer.srednia_ocena+=float(request.POST.get('rate'))
+                fryzjer.srednia_ocena/=fryzjer.liczba_ocen
+                fryzjer.save()
+                ocena= Ocena(fryzjer=fryzjer, salon=None, liczba_gwiazdek=rate, klient=Klient.objects.all().filter(user=request.user).first(), tresc=request.POST.get('tresc'))
+                ocena.save()
+                return redirect('/')
+            else:
+                messages.info(request, 'Musisz wybrac liczbe gwiazdek!')
+                return render(request, 'main/dodaj_opinie_fryzjer.html', context)
 
+        else:
+            rate = request.POST.get('rate')
+            if float(rate)!=0:
+                fryzjer.srednia_ocena=float(request.POST.get('rate'))
+                fryzjer.liczba_ocen=1
+                fryzjer.save()
+                ocena = Ocena(fryzjer=fryzjer, salon=None, liczba_gwiazdek=rate,
+                              klient=Klient.objects.all().filter(user=request.user).first(), tresc=request.POST.get('tresc'))
+                ocena.save()
+                return redirect('/')
+            else:
+                messages.info(request, 'Musisz wybrac liczbe gwiazdek!')
+                return render(request, 'main/dodaj_opinie_fryzjer.html', context)
+    return render(request, 'main/dodaj_opinie_fryzjer.html', context)
+def dodaj_opinie_salon(request, id):
+    context = {}
+    salon = Salon.objects.all().filter(id=id).first()
+    context = {
+        'salon': salon,
+    }
+    if request.method == 'POST':
+        if salon.srednia_ocena!=None:
+            salon.srednia_ocena*=salon.liczba_ocen
+            salon.liczba_ocen+=1
+            rate=request.POST.get('rate')
+            if float(rate)!=0:
+                salon.srednia_ocena+=float(request.POST.get('rate'))
+                salon.srednia_ocena/=salon.liczba_ocen
+                salon.save()
+                ocena= Ocena(salon=salon, fryzjer=None, liczba_gwiazdek=rate, klient=Klient.objects.all().filter(user=request.user).first(), tresc=request.POST.get('tresc'))
+                ocena.save()
+                return redirect('/')
+            else:
+                messages.info(request, 'Musisz wybrac liczbe gwiazdek!')
+                return render(request, 'main/dodaj_opinie_salon.html', context)
+
+        else:
+            rate = request.POST.get('rate')
+            if float(rate)!=0:
+                salon.srednia_ocena=float(request.POST.get('rate'))
+                salon.liczba_ocen=1
+                salon.save()
+                ocena = Ocena(salon=salon, fryzjer=None, liczba_gwiazdek=rate,
+                              klient=Klient.objects.all().filter(user=request.user).first(), tresc=request.POST.get('tresc'))
+                ocena.save()
+                return redirect('/')
+            else:
+                messages.info(request, 'Musisz wybrac liczbe gwiazdek!')
+                return render(request, 'main/dodaj_opinie_salon.html', context)
+    return render(request, 'main/dodaj_opinie_salon.html', context)
 def edytuj_klienta(request, id):
     context = {}
     profile = Klient.objects.all().filter(id=id).first()
