@@ -125,11 +125,18 @@ def pokaz_salon(request, id):
     fryzjerzy = salon.fryzjer.all()
     wlasciciel = salon.wlasciciel
     uslugi = Usluga.objects.all().filter(salon=salon)
+    mapObject = generateMap(salon.kod_pocztowy, \
+                            salon.ulica, \
+                            str(salon.nr_lokalu), \
+                            "", \
+                            salon.miasto, \
+                            "")
     context = {
         'salon': salon,
         'fryzjerzy': fryzjerzy,
         'wlasciciel': wlasciciel,
         'uslugi': uslugi,
+        'mapObject': mapObject
     }
 
     return render(request, 'main/pokaz_salon.html', context)
@@ -325,8 +332,6 @@ def umow_wizyte(request, id):
         wizyta.termin_uslugi=request.POST.get('date')
         wizyta.status='sent'
         wizyta.save()
-        #messages.info(request, 'Pomyslnie zapisano sie na wizyte')
-        #messages.info(request, wizyta.salon.kod_pocztowy+" "+wizyta.salon.ulica+" "+str(wizyta.salon.nr_lokalu)+" "+wizyta.salon.miasto)
         messages.info(request, generateMap(wizyta.salon.kod_pocztowy, \
                                             wizyta.salon.ulica, \
                                             str(wizyta.salon.nr_lokalu), \
