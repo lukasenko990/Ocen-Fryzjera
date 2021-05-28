@@ -11,7 +11,7 @@ from rest_framework import viewsets
 from .serializer import SalonSerializer, FryzjerSerializer, KlientSerializer, UslugaSerializer, ZamowienieSerializer
 import json
 import os
-
+from additional.mapGenerator import generateMap
 
 # register, login, logout
 def register(request):
@@ -325,7 +325,14 @@ def umow_wizyte(request, id):
         wizyta.termin_uslugi=request.POST.get('date')
         wizyta.status='sent'
         wizyta.save()
-        messages.info(request, 'Pomyslnie zapisano sie na wizyte')
+        #messages.info(request, 'Pomyslnie zapisano sie na wizyte')
+        #messages.info(request, wizyta.salon.kod_pocztowy+" "+wizyta.salon.ulica+" "+str(wizyta.salon.nr_lokalu)+" "+wizyta.salon.miasto)
+        messages.info(request, generateMap(wizyta.salon.kod_pocztowy, \
+                                            wizyta.salon.ulica, \
+                                            str(wizyta.salon.nr_lokalu), \
+                                            "", \
+                                            wizyta.salon.miasto, \
+                                            ""), extra_tags='safe')
         return redirect('/')
     context = {
         'usluga': usluga,
