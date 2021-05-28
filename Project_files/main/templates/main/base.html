@@ -22,7 +22,7 @@
         <div class="main_part">
                 {% if messages %}
                         {% for message in messages %}
-                                <div class="alert alert-{{ message.tags }}">
+                                <div> <!-- było w DIVie: class="alert alert-{{ message.tags }}" -->
                                         {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
                                 </div>
                         {% endfor %}
