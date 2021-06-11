@@ -84,6 +84,11 @@ div.op_footer
 		padding-right:	6px;
 }
 
+span.bold
+{
+		font-weight:	bold;
+}
+
 span.name
 {
         font-weight:    bold;
