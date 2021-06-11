@@ -11,6 +11,7 @@
 {% if fryzjer.avatar.url is not null %}
 <div><img src="/{{fryzjer.avatar}}"></div>
 <br>
+<div><center><span class="heading">O mnie:</span><center> {{fryzjer.bio}}</div>
 {% endif %}
 <div><a href="{% url 'edytuj_fryzjera' fryzjer.id %}">Edycja profilu</a></div>
 <div><a href="{% url 'dodaj_opinie_fryzjer' fryzjer.id %}">Ocen fryzjera</a></div>

@@ -9,7 +9,7 @@ class SalonSerializer(serializers.HyperlinkedModelSerializer):
 class FryzjerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model=Fryzjer
-        fields=['imie','nazwisko','srednia_ocena','ulica','nr_domu','miasto','kod_pocztowy','nr_tel','avatar']
+        fields=['imie','nazwisko','bio','srednia_ocena','ulica','nr_domu','miasto','kod_pocztowy','nr_tel','avatar']
         
 class KlientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

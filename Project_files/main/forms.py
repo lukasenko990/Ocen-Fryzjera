@@ -27,7 +27,7 @@ class FryzjerUpdateForm(forms.ModelForm):
     #email = forms.EmailField()
     class Meta:
         model = Fryzjer
-        fields = ('imie', 'nazwisko', 'ulica', 'nr_domu', 'miasto', 'kod_pocztowy', 'avatar')
+        fields = ('imie', 'nazwisko', 'bio', 'ulica', 'nr_domu', 'miasto', 'kod_pocztowy', 'avatar')
 
 
 class KlientUpdateForm(forms.ModelForm):

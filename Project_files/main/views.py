@@ -64,6 +64,7 @@ def barber_register(request):
             fryzjer.user = user
             fryzjer.imie = form.cleaned_data.get('first_name')
             fryzjer.nazwisko = form.cleaned_data.get('last_name')
+            fryzjer.bio = form.cleaned_data.get('bio')
             fryzjer.ulica = form2.cleaned_data.get('ulica')
             fryzjer.nr_domu = form2.cleaned_data.get('nr_domu')
             fryzjer.miasto = form2.cleaned_data.get('miasto')

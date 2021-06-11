@@ -22,7 +22,7 @@ class Fryzjer(models.Model):
     nazwisko = models.CharField(max_length=50, null=True)
     srednia_ocena = models.FloatField(blank=True, null=True)
     liczba_ocen = models.IntegerField(blank=True, null=True)
-
+    bio = models.CharField(max_length=5000, null=True)
     ulica = models.CharField(max_length=50, blank=True, null=True)
     nr_domu = models.IntegerField(default=0, blank=True, null=True)
     miasto = models.CharField(max_length=50, null=True)
