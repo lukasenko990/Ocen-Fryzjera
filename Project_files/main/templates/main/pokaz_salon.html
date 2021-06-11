@@ -67,7 +67,7 @@ wlasciciel salonu:<br> <a href="{% url 'pokaz_fryzjera' wlasciciel.id %}">{{ wla
 
 {% endfor %}
 
-{% if oceny|length >= 5 %}
+{% if oceny|length > 5 %}
     <hr>
     <a id="expandUtility" href="javascript:expand()">Pokaż&nbsp;więcej</a>
 {% endif %}

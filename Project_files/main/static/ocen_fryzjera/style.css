@@ -76,6 +76,14 @@ div.description
 		padding-right:	15px;
 }
 
+div.op_footer
+{
+		font-style:		italic;
+		font-size:		12px;
+		padding-left:	6px;
+		padding-right:	6px;
+}
+
 span.name
 {
         font-weight:    bold;

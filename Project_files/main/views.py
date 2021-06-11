@@ -160,8 +160,10 @@ def pokaz_klienta(request, id):
 
 def pokaz_fryzjera(request, id):
     fryzjer = get_object_or_404(Fryzjer, id=id)
+    oceny = Ocena.objects.all().filter(fryzjer=fryzjer)
     context = {
         'fryzjer': fryzjer,
+        'oceny': oceny
     }
     return render(request, 'main/pokaz_fryzjera.html', context)
 
