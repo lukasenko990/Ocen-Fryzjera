@@ -119,7 +119,6 @@ def home(request):
 
     return render(request, 'main/home.html', context)
 
-
 def pokaz_salon(request, id):
     salon = get_object_or_404(Salon, id=id)
     fryzjerzy = salon.fryzjer.all()
@@ -131,12 +130,14 @@ def pokaz_salon(request, id):
                             "", \
                             salon.miasto, \
                             "")
+    oceny = Ocena.objects.all().filter(salon=salon)
     context = {
         'salon': salon,
         'fryzjerzy': fryzjerzy,
         'wlasciciel': wlasciciel,
         'uslugi': uslugi,
-        'mapObject': mapObject
+        'mapObject': mapObject,
+        'oceny': oceny
     }
 
     return render(request, 'main/pokaz_salon.html', context)

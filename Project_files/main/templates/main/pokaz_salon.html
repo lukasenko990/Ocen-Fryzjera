@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div><span class="heading">Nazwa:</span> {{salon.nazwa}}</div>
 <div><span class="heading">NIP:</span> {{salon.NIP}}</div>
 <div><span class="heading">REGON:</span> {{salon.regon}}</div>
@@ -31,5 +33,43 @@ wlasciciel salonu:<br> <a href="{% url 'pokaz_fryzjera' wlasciciel.id %}">{{ wla
 
 {% endfor %}
 
+<br>
+<div class="bigger">Opinie:</div>
+<hr>
+
+{% load times %}
+{% for ocena in oceny %}
+
+    {% spaceless %}
+    {% if forloop.counter0 >= 5 %}
+        <span class="hidden">
+    {% endif %}
+    <div class="{% cycle 'finetheme1' 'finetheme2' %}">
+    <div class="name"><span class="name">{{ ocena.klient.imie }}&nbsp;{{ ocena.klient.nazwisko }}</span>&nbsp;({{ ocena.klient.user }})&nbsp;
+    {% for x in ocena.liczba_gwiazdek|times %}
+    <span class="fa fa-star" style="color: orange"></span>
+    {% endfor %}
+    {% for x in ocena.liczba_gwiazdek|distractfiveabs|times %}
+    <span class="fa fa-star"></span>
+    {% endfor %}
+    </div>
+    <br>
+    <div class="description">{{ ocena.tresc }}</div>
+    </div>
+    {% if forloop.counter0 >= 5 %}
+        </span>
+    {% endif %}
+	{% endspaceless %}
+
+{% empty %}
+
+	<div class="nothing">Chwilowo salon nie ma żadnych opinii - dodaj swoją!</div>
+
+{% endfor %}
+
+{% if oceny|length >= 5 %}
+    <hr>
+    <a id="expandUtility" href="javascript:expand()">Pokaż&nbsp;więcej</a>
+{% endif %}
 
 {% endblock %}

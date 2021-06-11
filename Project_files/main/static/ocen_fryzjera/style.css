@@ -38,6 +38,55 @@ div.main_part
         padding:        10px 10px;
 }
 
+div.finetheme1
+{
+		padding-top:		5px;
+		padding-bottom:		5px;
+        background-color:	#c8b6c6;
+}
+
+div.finetheme2
+{
+		padding-top:		5px;
+		padding-bottom:		5px;
+		background-color:	#baaab9;
+}
+
+div.nothing
+{
+		font-style:		italic;
+}
+
+div.bigger
+{
+		font-size:		18px;
+		font-weight:	bold;
+		font-style:		italic;
+}
+
+div.name
+{
+		padding-left:	6px;
+		padding-right:	6px;
+}
+
+div.description
+{
+		padding-left:	15px;
+		padding-right:	15px;
+}
+
+span.name
+{
+        font-weight:    bold;
+        font-style:     italic;
+}
+
+span.hidden
+{
+        display:        none;
+}
+
 span.heading
 {
         font-weight:    bold;
