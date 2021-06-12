@@ -11,6 +11,8 @@
 {% if fryzjer.avatar.url is not null %}
 <div><img src="/{{fryzjer.avatar}}"></div>
 <br>
+{% endif %}
+{% if fryzjer.bio is not null %}
 <div><center><span class="heading">O mnie:</span><center> {{fryzjer.bio}}</div>
 {% endif %}
 {% if request.user == fryzjer.user %}

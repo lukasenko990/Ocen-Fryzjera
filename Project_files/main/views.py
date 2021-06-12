@@ -12,6 +12,7 @@ from .serializer import SalonSerializer, FryzjerSerializer, KlientSerializer, Us
 import json
 import os
 from additional.mapGenerator import generateMap
+from PIL import Image
 
 # register, login, logout
 def register(request):
@@ -184,9 +185,31 @@ def edytuj_fryzjera(request, id):
         EditForm = FryzjerUpdateForm(request.POST, request.FILES, instance=profile)
         if EditForm.is_valid():
             request.FILES.get('avatar',None)
-            if not oldPath==None:
-                os.remove(oldPath)
+            try:
+                if len(request.FILES['avatar'])>0:
+                    if not oldPath==None:
+                        os.remove(oldPath)
+            except:
+                pass
             EditForm.save()
+            if profile.avatar=='':
+                try:
+                    os.remove(oldPath)
+                except:
+                    pass
+            else:
+                try:
+                    image=Image.open(profile.avatar)
+                    (width,height)=image.size
+                    if width>250 or height>250:
+                        ratio=height/width
+                        width=250
+                        height=int(ratio*width)
+                        new_size=(width,height)
+                        image=image.resize(new_size,Image.ANTIALIAS)
+                        image.save(str(profile.avatar))
+                except:
+                    pass
         return redirect('/')
     context = {
         'profile': profile,
