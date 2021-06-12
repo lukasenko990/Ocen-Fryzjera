@@ -339,6 +339,8 @@ def umow_wizyte(request, id):
         wizyta.nazwa_zamowienia=usluga.nazwa
         wizyta.termin_uslugi=request.POST.get('date')
         wizyta.klient=Klient.objects.all().filter(user=request.user).first()
+        dane_fryzjera=request.POST.get('wybor').split()
+        wizyta.fryzjer=Fryzjer.objects.all().filter(imie=dane_fryzjera[0]).filter(nazwisko=dane_fryzjera[1]).first()
         wizyta.status='sent'
         wizyta.save()
         messages.info(request, generateMap(wizyta.salon.kod_pocztowy, \
