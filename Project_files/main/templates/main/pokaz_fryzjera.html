@@ -13,8 +13,12 @@
 <br>
 <div><center><span class="heading">O mnie:</span><center> {{fryzjer.bio}}</div>
 {% endif %}
+{% if request.user == fryzjer.user %}
 <div><a href="{% url 'edytuj_fryzjera' fryzjer.id %}">Edycja profilu</a></div>
+{% endif %}
+{% if zamowienia_klienta %}
 <div><a href="{% url 'dodaj_opinie_fryzjer' fryzjer.id %}">Ocen fryzjera</a></div>
+{% endif %}
 <br>
 <div class="bigger">Opinie:</div>
 <hr>

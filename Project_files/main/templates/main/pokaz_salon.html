@@ -12,7 +12,9 @@
 <br>
 {{ mapObject|safe }}
 <br>
+{% if zamowienia_klienta %}
 <a href="{% url 'dodaj_opinie_salon' salon.id %}">Ocen salon</a>
+{% endif %}
 <br>
 <br>
  uslugi:<br>
@@ -21,7 +23,9 @@
     <br>
 {% endfor %}
 <br>
+{% if wlasciciel.user == request.user %}
 <div><a href="{% url 'edytuj_salon' salon.id %}">Edycja profilu</a></div>
+{% endif %}
     <br><br>
 wlasciciel salonu:<br> <a href="{% url 'pokaz_fryzjera' wlasciciel.id %}">{{ wlasciciel.imie }} {{ wlasciciel.nazwisko }}</a>
     <br><br>

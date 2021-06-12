@@ -113,7 +113,8 @@ class Zamowienie(models.Model):
     )
 
     salon = models.ForeignKey(Salon, on_delete=models.CASCADE)
-
+    fryzjer = models.ForeignKey(Fryzjer, on_delete=models.CASCADE, null=True, default=None)
+    klient = models.ForeignKey(Klient, on_delete=models.CASCADE, null=True, default=None)
     nazwa_zamowienia = models.CharField(max_length=80, null=True)
     termin_uslugi = models.DateTimeField(auto_now_add=False, null=True)
     data_zamowienia = models.DateTimeField(auto_now_add=True, null=True)
