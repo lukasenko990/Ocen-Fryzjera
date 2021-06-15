@@ -1,21 +1,26 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-
-<div><span class="heading">Zarejestruj klienta:</span> <a href="{% url 'register' %}">Rejestracja</a></div>
-<div><span class="heading">Zarejestruj fryzjera:</span> <a href="{% url 'barber_register' %}">Rejestracja</a></div>
-
-<div><span class="heading"><a href="{% url 'dodaj_fryzjera' %}">Dodaj fryzjera do salonu</a></span></div>
-<div><span class="heading"><a href="{% url 'zaproszenia_do_salonu' %}">Zaproszenia do salonu</a></span></div>
 <br>
 {% if user.is_authenticated %}
 <div><span class="heading">Jesteś zalogowany jako:</span> {{request.user.username}}</div>
-<div><span class="heading">Jesteś zalogowany jako:</span> {{request.user.username}}</div>
-<div><span class="heading">Imię i nazwisko klienta:</span> {{user_klient.imie}} {{user_klient.nazwisko}}</div>
-
+{% if user_fryzjer %}
+<div><span class="heading"><a href="{% url 'pokaz_fryzjera' user_fryzjer.id %}">Zobacz swój profil fryzjera</a></span></div>
+{% elif user_klient %}
+<div><span class="heading"><a href="{% url 'pokaz_klienta' user_klient.id %}">Zobacz swój profil klienta</a></span></div>
+{% endif %}
+{% if not user_wlasciciel %}
+<div><span class="heading"><a href="{% url 'zaproszenia_do_salonu' %}">Zaproszenia do salonu</a></span></div>
+{% endif %}
+{% if user_wlasciciel %}
+<div><span class="heading"><a href="{% url 'pokaz_salon' user_wlasciciel.id %}">Zobacz profil swojego salonu</a></span></div>
+<div><span class="heading"><a href="{% url 'dodaj_fryzjera' %}">Dodaj fryzjera do salonu</a></span></div>
+{% endif %}
 <div><span class="heading">Wyloguj:</span> <a href ="{% url 'logout' %}">logout</a></div>
 {% else %}
 <div><span class="heading">Zaloguj:</span> <a href="{% url 'login' %}">login</a></div>
+<div><span class="heading">Zarejestruj się jako klient:</span> <a href="{% url 'register' %}">Rejestracja</a></div>
+<div><span class="heading">Jesteś fryzjerem?</span> <a href="{% url 'barber_register' %}">Rejestracja dla fryzjerów</a></div>
 {% endif %}
 <br>
 <div><span class="heading">Dostępne salony:</span></div>
@@ -23,16 +28,15 @@
 <div><a href="{% url 'pokaz_salon' salon.id %}">{{salon.nazwa}}</a></div>
 {% endfor %}
 <br>
-<div><span class="heading">Fryzjerzy:</span></div>
+<div><span class="heading">Dostępni fryzjerzy:</span></div>
 {% for fryzjer in fryzjerzy %}
 <div><a href="{% url 'pokaz_fryzjera' fryzjer.id %}">{{fryzjer.imie}} {{fryzjer.nazwisko}}</a></div>
 {% endfor %}
 <br>
+{% if user_fryzjer %}
 <div><span class="heading">Klienci:</span></div>
 {% for klient in klienci %}
 <div><a href="{% url 'pokaz_klienta' klient.id %}">{{klient.imie}} {{klient.nazwisko}}</a></div>
 {% endfor %}
-
-
-
+{% endif %}
 {% endblock %}

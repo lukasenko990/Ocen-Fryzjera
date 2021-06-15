@@ -103,22 +103,27 @@ def login_user(request):
 
 
 ########3 home
-@login_required
 def home(request):
-
-
     salony = Salon.objects.all()
     fryzjerzy = Fryzjer.objects.all()
     klienci = Klient.objects.all()
-    user_klient = Klient.objects.all().filter(user=request.user).first()
-
-    context = {
-        'user_klient': user_klient,
-        'salony': salony,
-        'fryzjerzy': fryzjerzy,
-        'klienci': klienci,
-    }
-
+    if request.user.is_authenticated:
+        user_klient = Klient.objects.all().filter(user=request.user).first()
+        user_fryzjer=Fryzjer.objects.all().filter(user=request.user).first()
+        user_wlasciciel=Salon.objects.all().filter(wlasciciel=user_fryzjer).first()
+        context = {
+            'user_klient': user_klient,
+            'salony': salony,
+            'fryzjerzy': fryzjerzy,
+            'klienci': klienci,
+            'user_fryzjer': user_fryzjer,
+            'user_wlasciciel': user_wlasciciel
+        }
+    else:
+        context = {
+            'salony': salony,
+            'fryzjerzy': fryzjerzy,
+        }
     return render(request, 'main/home.html', context)
 
 def pokaz_salon(request, id):
