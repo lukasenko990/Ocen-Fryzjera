@@ -103,6 +103,7 @@ def login_user(request):
 
 
 ########3 home
+
 def home(request):
     salony = Salon.objects.all()
     fryzjerzy = Fryzjer.objects.all()
@@ -333,8 +334,8 @@ def edytuj_salon(request, id):
     return render(request, 'main/edytuj_salon.html', context)
 
 def search(request):
-    if request.method == "GET":
-        searched = request.GET['searched']
+    if request.method == "POST":
+        searched = request.POST['searched']
         if " " in searched:
             searched_split=searched.split()
             fryzjerzy = Fryzjer.objects.filter(Q(imie__contains=searched_split[0]) | Q(nazwisko__contains=searched_split[0]) |
@@ -471,7 +472,15 @@ def akceptuj_zaproszenie(request, fryzjerID, salonID):
 
     return redirect('/')
 
+def salony(request):
+    salony=Salon.objects.all()
+    context={'salony': salony}
+    return render(request, 'main/salony.html', context)
 
+def fryzjerzy(request):
+    fryzjerzy=Fryzjer.objects.all()
+    context={'fryzjerzy': fryzjerzy}
+    return render(request, 'main/fryzjerzy.html', context)
 ############## API ###################
 class SalonViewSet(viewsets.ModelViewSet):
     queryset = Salon.objects.all()

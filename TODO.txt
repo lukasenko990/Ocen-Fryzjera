@@ -1,0 +1,1 @@
+Usuwanie z salonu, lepsze wyświetlanie strony profilu, usuwanie zaproszen, akceptowanie zaproszen, edycja profilu, dodanie liczby gwiazdek, sortowanie po ocenie

@@ -1,42 +1,61 @@
 {% extends 'main/base.html' %}
-
+{% load static %}
 {% block content %}
-<br>
-{% if user.is_authenticated %}
-<div><span class="heading">Jesteś zalogowany jako:</span> {{request.user.username}}</div>
-{% if user_fryzjer %}
-<div><span class="heading"><a href="{% url 'pokaz_fryzjera' user_fryzjer.id %}">Zobacz swój profil fryzjera</a></span></div>
-{% elif user_klient %}
-<div><span class="heading"><a href="{% url 'pokaz_klienta' user_klient.id %}">Zobacz swój profil klienta</a></span></div>
-{% endif %}
-{% if not user_wlasciciel %}
-<div><span class="heading"><a href="{% url 'zaproszenia_do_salonu' %}">Zaproszenia do salonu</a></span></div>
-{% endif %}
-{% if user_wlasciciel %}
-<div><span class="heading"><a href="{% url 'pokaz_salon' user_wlasciciel.id %}">Zobacz profil swojego salonu</a></span></div>
-<div><span class="heading"><a href="{% url 'dodaj_fryzjera' %}">Dodaj fryzjera do salonu</a></span></div>
-{% endif %}
-<div><span class="heading">Wyloguj:</span> <a href ="{% url 'logout' %}">logout</a></div>
-{% else %}
-<div><span class="heading">Zaloguj:</span> <a href="{% url 'login' %}">login</a></div>
-<div><span class="heading">Zarejestruj się jako klient:</span> <a href="{% url 'register' %}">Rejestracja</a></div>
-<div><span class="heading">Jesteś fryzjerem?</span> <a href="{% url 'barber_register' %}">Rejestracja dla fryzjerów</a></div>
-{% endif %}
-<br>
-<div><span class="heading">Dostępne salony:</span></div>
-{% for salon in salony %}
-<div><a href="{% url 'pokaz_salon' salon.id %}">{{salon.nazwa}}</a></div>
-{% endfor %}
-<br>
-<div><span class="heading">Dostępni fryzjerzy:</span></div>
-{% for fryzjer in fryzjerzy %}
-<div><a href="{% url 'pokaz_fryzjera' fryzjer.id %}">{{fryzjer.imie}} {{fryzjer.nazwisko}}</a></div>
-{% endfor %}
-<br>
-{% if user_fryzjer %}
-<div><span class="heading">Klienci:</span></div>
-{% for klient in klienci %}
-<div><a href="{% url 'pokaz_klienta' klient.id %}">{{klient.imie}} {{klient.nazwisko}}</a></div>
-{% endfor %}
-{% endif %}
+<div class="w3-container">
+    <h1><b>Salony w Twojej okolicy</b></h1>
+    <div class="w3-section w3-bottombar w3-padding-16">
+      <span class="w3-margin-right">Filter:</span>
+      <button onclick="window.location='{% url 'salony' %}'" class="w3-button w3-black"><i class="fa fa-diamond w3-margin-right"></i>Salony</button>
+      <button onclick="window.location='{% url 'fryzjerzy'  %}'" class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Fryzjerzy</button>
+    </div>
+    </div>
+<!-- First Photo Grid-->
+  <div class="w3-row-padding">
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img class="w3-third w3-container w3-margin-bottom"  src="{% static 'ocen_fryzjera/salon1.jpg' %}" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b>Lorem Ipsum</b></p>
+        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+      </div>
+    </div>
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="{% static 'ocen_fryzjera/salon2.jpg' %}" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b>Nazwa salonu</b></p>
+        <p> Opis.</p>
+      </div>
+    </div>
+    <div class="w3-third w3-container">
+      <img src="{% static 'ocen_fryzjera/salon3.jpeg' %}" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b>Lorem Ipsum</b></p>
+        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Photo Grid-->
+  <div class="w3-row-padding">
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="{% static 'ocen_fryzjera/salon4.jpg' %}" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b>Lorem Ipsum</b></p>
+        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+      </div>
+    </div>
+    <div class="w3-third w3-container w3-margin-bottom">
+      <img src="{% static 'ocen_fryzjera/salon5.jpg' %}" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b>Lorem Ipsum</b></p>
+        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+      </div>
+    </div>
+    <div class="w3-third w3-container">
+      <img src="{% static 'ocen_fryzjera/salon6.jpg' %}" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <div class="w3-container w3-white">
+        <p><b>Lorem Ipsum</b></p>
+        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+      </div>
+    </div>
+  </div>
 {% endblock %}

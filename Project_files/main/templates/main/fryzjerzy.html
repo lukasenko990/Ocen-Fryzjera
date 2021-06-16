@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="w3-container">
+    <h1><b>Fryzjerzy w Twojej okolicy</b></h1>
+    <div class="w3-section w3-bottombar w3-padding-16">
+      <span class="w3-margin-right">Filter:</span>
+      <button onclick="window.location='{% url 'salony' %}'" class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Salony</button>
+      <button onclick="window.location='{% url 'fryzjerzy'  %}'" class="w3-button w3-black"><i class="fa fa-diamond w3-margin-right"></i>Fryzjerzy</button>
+    </div>
+    </div>
+
+<div class="w3-row-padding">
+    {% for fryzjer in fryzjerzy %}
+    <div class="w3-third w3-container w3-margin-bottom" style="height:300px;width:300px;">
+      <a href="{% url 'pokaz_fryzjera' fryzjer.id %}" >
+        <img  class="w3-third w3-container w3-margin-bottom"  src="/{{fryzjer.avatar}}" alt="Norway" style="width:100%" class="w3-hover-opacity">
+        </a>
+      <div class="w3-container w3-white">
+        <p><b>{{fryzjer.imie}} {{fryzjer.nazwisko}}</b></p>
+          {% if fryzjer.bio %}
+        <p>{{fryzjer.bio|truncatewords:7}}</p>
+          {% else %}
+          <p>Brak opisu</p>
+          {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+    </div>
+
+
+
+
+{% endblock %}

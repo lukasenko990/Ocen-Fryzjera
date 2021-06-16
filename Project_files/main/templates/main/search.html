@@ -3,12 +3,32 @@
         <center>
             {% if searched %}
             <h1>Wyniki wyszukiwania dla: {{ searched }}</h1>
-            {% for fryzjer in fryzjerzy %}
-                <a href="{% url 'pokaz_fryzjera' fryzjer.id %}">{{fryzjer.imie}} {{fryzjer.nazwisko}}</a><br>
-            {% endfor %}
-            {% for salon in salony %}
-                <a href="{% url 'pokaz_salon' salon.id %}">{{salon.nazwa}}</a> <br>
-            {% endfor %}
+            <div class="w3-row-padding">
+    {% for salon in salony %}
+    <div class="w3-third w3-container w3-margin-bottom">
+      <a href="{% url 'pokaz_salon' salon.id %}" >
+        <img  class="w3-third w3-container w3-margin-bottom"  src="/{{salon.avatar}}" alt="Norway" style="width:100%" class="w3-hover-opacity">
+        </a>
+      <div class="w3-container w3-white">
+        <p><b>{{salon.nazwa}}</b></p>
+        <p>{{salon.bio|truncatewords:10}}</p>
+      </div>
+    </div>
+    {% endfor %}
+    </div>
+            <div class="w3-row-padding">
+    {% for fryzjer in fryzjerzy %}
+    <div class="w3-third w3-container w3-margin-bottom" style="height:300px;width:300px;">
+      <a href="{% url 'pokaz_fryzjera' fryzjer.id %}" >
+        <img  class="w3-third w3-container w3-margin-bottom"  src="/{{fryzjer.avatar}}" alt="Norway" style="width:100%" class="w3-hover-opacity">
+        </a>
+      <div class="w3-container w3-white">
+        <p><b>{{fryzjer.imie}} {{fryzjer.nazwisko}}</b></p>
+        <p>{{fryzjer.bio|truncatewords:7}}</p>
+      </div>
+    </div>
+    {% endfor %}
+    </div>
             {% else %}
             <h1>Nie wpisałeś niczego</h1>
             {% endif %}

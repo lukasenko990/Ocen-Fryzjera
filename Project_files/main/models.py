@@ -15,23 +15,23 @@ class SalonRelationship(models.Model):
 
 
 class Fryzjer(models.Model):
-    salon_to_add = models.ManyToManyField(SalonRelationship)
+    salon_to_add = models.ManyToManyField(SalonRelationship, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     imie = models.CharField(max_length=50, null=True)
     nazwisko = models.CharField(max_length=50, null=True)
     srednia_ocena = models.FloatField(blank=True, null=True)
     liczba_ocen = models.IntegerField(blank=True, null=True)
-    bio = models.CharField(max_length=5000, null=True)
+    bio = models.CharField(max_length=5000, null=True, blank=True)
     ulica = models.CharField(max_length=50, blank=True, null=True)
     nr_domu = models.IntegerField(default=0, blank=True, null=True)
     miasto = models.CharField(max_length=50, null=True)
     kod_pocztowy = models.CharField(max_length=20, null=True)
     nr_tel = models.CharField(max_length=20, default='no number')
 
-    avatar = models.ImageField(upload_to='main/static/ocen_fryzjera/avatars/fryzjers/', null=True, blank=True)
+    avatar = models.ImageField(upload_to='main/static/ocen_fryzjera/avatars/fryzjers/', null=True, blank=True, default='main/static/ocen_fryzjera/avatars/fryzjers/default-avatar.jpg')
 
-    invites = models.ManyToManyField('self', related_name='invites')
+    invites = models.ManyToManyField('self', related_name='invites', null=True, blank=True)
     invite_sent = models.ManyToManyField('self', blank=True, related_name='invites_sent', symmetrical=False)
     invite_received = models.ManyToManyField('self', blank=True, related_name='invites_received', symmetrical=False)
 
@@ -42,6 +42,7 @@ class Fryzjer(models.Model):
 class Salon(models.Model):
     wlasciciel = models.ForeignKey(Fryzjer, on_delete=models.CASCADE, related_name='wlasciciel', null=True)
     fryzjer = models.ManyToManyField(Fryzjer, related_name='fryzjer')
+    avatar = models.ImageField(upload_to='main/static/ocen_fryzjera/avatars/salony/', null=True, blank=True)
     nazwa = models.CharField(max_length=50, default='NoName')
     NIP = models.CharField(max_length=25)
     regon = models.CharField(max_length=25)
@@ -54,6 +55,7 @@ class Salon(models.Model):
     godzina_zamkniecia = models.CharField(max_length=10, default='Brak')
     srednia_ocena = models.FloatField(blank=True, null=True)
     liczba_ocen = models.IntegerField(blank=True, null=True)
+    bio = models.CharField(max_length=5000, null=True, blank=True)
 
 
     def __str__(self):

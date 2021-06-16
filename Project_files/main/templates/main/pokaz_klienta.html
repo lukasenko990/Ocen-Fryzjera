@@ -11,6 +11,7 @@
 <div><img src="/{{klient.avatar}}"></div>
 <br>
 {% endif %}
+{% if klient.user == request.user %}
 <div><a href="{% url 'edytuj_klienta' klient.id %}">Edycja profilu</a></div>
-
+{% endif %}
 {% endblock %}

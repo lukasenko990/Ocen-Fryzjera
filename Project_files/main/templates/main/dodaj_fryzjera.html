@@ -6,18 +6,18 @@
 <form method="POST" action="{% url 'dodaj_fryzjera' %}" >
 {% csrf_token %}
 
-<select name="salonSelect">
+<select name="salonSelect" class="form-control form-control-lg">
   {% for salon in salony %}
   <option value="{{salon.id}}">{{salon.nazwa}}</option>
     {% endfor %}
 </select>
 
-<select name="fryzjerSelect">
+<select name="fryzjerSelect" class="form-control form-control-lg">
   {% for fryzjer in fryzjerzy %}
   <option value="{{fryzjer.id}}">{{ fryzjer.imie }} {{ fryzjer.nazwisko }}</option>
     {% endfor %}
 </select>
 
-<button class="btn">add</button>
+<button class="btn btn-secondary btn-lg btn-block">add</button>
 </form>
 {% endblock %}

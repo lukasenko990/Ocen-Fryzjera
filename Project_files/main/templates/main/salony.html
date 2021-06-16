@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+ <div class="w3-container">
+    <h1><b>Salony w Twojej okolicy</b></h1>
+    <div class="w3-section w3-bottombar w3-padding-16">
+      <span class="w3-margin-right">Filter:</span>
+      <button onclick="window.location='{% url 'salony' %}'" class="w3-button w3-black"><i class="fa fa-diamond w3-margin-right"></i>Salony</button>
+      <button onclick="window.location='{% url 'fryzjerzy'  %}'" class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Fryzjerzy</button>
+    </div>
+    </div>
+
+
+<div class="w3-row-padding">
+    {% for salon in salony %}
+    <div class="w3-third w3-container w3-margin-bottom">
+      <a href="{% url 'pokaz_salon' salon.id %}" >
+        <img  class="w3-third w3-container w3-margin-bottom"  src="/{{salon.avatar}}" alt="Norway" style="width:100%" class="w3-hover-opacity">
+        </a>
+      <div class="w3-container w3-white">
+        <p><b>{{salon.nazwa}}</b></p>
+        <p>{{salon.bio|truncatewords:10}}</p>
+            {% if salon.srednia_ocena %}
+          <p><b>Ocena:{{salon.srednia_ocena|floatformat:2}} </b></p>
+          {% else %}
+          <p><b>Brak ocen </b></p>
+          {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+    </div>
+
+
+
+
+{% endblock %}
