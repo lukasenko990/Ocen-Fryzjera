@@ -13,20 +13,22 @@
                                 {% csrf_token %}
                 </div>
                 <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels"></label><h6>Nazwa </h6>{{profile.nazwa}}</div>
-                    <div class="col-md-6"><label class="labels"></label><h6>Ulica </h6>{{profile.ulica}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Nazwa </h6>{{SalonForm.nazwa}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Ulica </h6>{{SalonForm.ulica}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>NIP </h6>{{SalonForm.NIP}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>REGON </h6>{{SalonForm.regon}}</div>
 
 
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels"></label><h6>Nr lokalu </h6>{{profile.nr_lokalu}}</div>
-                    <div class="col-md-6"><label class="labels"></label><h6>Miasto </h6>{{profile.ulica}}</div>
-                    <div class="col-md-6"><label class="labels"></label><h6>Kod pocztowy </h6>{{profile.kod_pocztowy}}</div>
-                    <div class="col-md-6"><label class="labels"></label><h6>Nr telefonu</h6>{{profile.nr_tel}}</div>
-                    <div class="col-md-6"><label class="labels"></label><h6>Godzina otwarcia </h6>{{profile.godzina_otwarcia}}</div>
-                        <div class="col-md-6"><label class="labels"></label><h6>Godzina zamknięcia </h6>{{profile.godzina_zamkniecia}}</div>
-                        <div class="col-md-6"><label class="labels"></label><h6>Opis </h6>{{profile.bio}}</div>
-                    <div class="col-md-6"><label class="labels"></label><h6>Zdjęcie salonu </h6>{{profile.avatar}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Nr lokalu </h6>{{SalonForm.nr_lokalu}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Miasto </h6>{{SalonForm.miasto}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Kod pocztowy </h6>{{SalonForm.kod_pocztowy}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Nr telefonu</h6>{{SalonForm.nr_tel}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Godzina otwarcia </h6>{{SalonForm.godzina_otwarcia}}</div>
+                        <div class="col-md-6"><label class="labels"></label><h6>Godzina zamknięcia </h6>{{SalonForm.godzina_zamkniecia}}</div>
+                        <div class="col-md-6"><label class="labels"></label><h6>Opis </h6>{{SalonForm.bio}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Zdjęcie salonu </h6>{{SalonForm.avatar}}</div>
                 </div>
 
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Zapisz profil</button></div>

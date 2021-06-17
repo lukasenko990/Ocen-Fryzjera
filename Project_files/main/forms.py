@@ -39,7 +39,7 @@ class KlientUpdateForm(forms.ModelForm):
 class SalonUpdateForm(forms.ModelForm):
     class Meta:
         model = Salon
-        fields = ('nazwa', 'NIP', 'regon', 'ulica', 'nr_lokalu', 'miasto', 'kod_pocztowy')
+        fields = ('nazwa', 'NIP', 'regon', 'ulica', 'nr_lokalu', 'miasto', 'kod_pocztowy', 'nr_tel', 'godzina_otwarcia', 'godzina_zamkniecia', 'bio', 'avatar')
 
 
 class DateForm(forms.Form):

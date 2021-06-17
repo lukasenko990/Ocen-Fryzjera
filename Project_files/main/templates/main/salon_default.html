@@ -19,12 +19,7 @@
                             </ul>
                         </div>
                     </div>
-                    {% if request.user == salon.wlasciciel.user %}
 
-                    <div class="col-md-2">
-                        <a href="{% url 'edytuj_salon' salon.id %}" type="submit" class="profile-edit-btn" name="btnAddMore" value="Edytuj profil"/></a>
-                    </div>
-                    {% endif %}
                 </div>
 
 <div class="row" >
@@ -33,6 +28,7 @@
                             <p>Nasz zespół</p>
                             {% for fryzjer in fryzjerzy %}
                             {% if request.user == salon.wlasciciel.user %}
+
                                             <form action="{% url 'usun_z_salonu' fryzjer.id salon.id %}" method="POST">
                                     {% csrf_token %}
                                     <button class="btn">usuń</button>
@@ -91,9 +87,11 @@
                                         </div>
                                 {% if user_wlasciciel %}
                                 <br><br><br><br>
+                                {% if request.user == salon.wlasciciel.user %}
                     <button type="button" class="btn btn-dark">
     <a href="{% url 'edytuj_salon' salon.id %}">Edytuj</a>
 </button>
+                                {% endif %}
                     {% endif %}
                             </div>
 

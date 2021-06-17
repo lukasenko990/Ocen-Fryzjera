@@ -456,12 +456,44 @@ def edytuj_klienta(request, id):
 def edytuj_salon(request, id):
     context = {}
     profile = Salon.objects.all().filter(id=id).first()
+    try:
+        oldPath=profile.avatar.path
+    except:
+        oldPath=None
     SalonForm = SalonUpdateForm(instance=profile)
     if request.method == 'POST':
-        SalonForm = SalonUpdateForm(request.POST, instance=profile)
+        SalonForm = SalonUpdateForm(request.POST, request.FILES, instance=profile)
         if SalonForm.is_valid():
+            print("poprawne")
+            request.FILES.get('avatar', None)
+            try:
+                if len(request.FILES['avatar']) > 0:
+                    if not oldPath == None:
+                        os.remove(oldPath)
+            except:
+                pass
             SalonForm.save()
+            if profile.avatar=='':
+                try:
+                    os.remove(oldPath)
+                except:
+                    pass
+            else:
+                try:
+                    image=Image.open(profile.avatar)
+                    (width,height)=image.size
+                    if width>250 or height>250:
+                        ratio=height/width
+                        width=250
+                        height=int(ratio*width)
+                        new_size=(width,height)
+                        image=image.resize(new_size,Image.ANTIALIAS)
+                        image.save(str(profile.avatar))
+                except:
+                    pass
         return redirect('/')
+    else:
+        print(SalonForm.errors)
     context = {
         'profile': profile,
         'SalonForm': SalonForm,
@@ -583,8 +615,23 @@ def dodaj_fryzjera(request):
     #if request.method == 'POST':
         #Salon.fryzjer.add(fryzjer)
 
+def check_username(request):
+    username = request.GET.get('username', None)
 
+    context = {
+        'user_exists': User.objects.filter(username=username).exists()
+    }
 
+    return JsonResponse(context)
+
+def tworcy(request):
+    context = {
+        'lukasz': 'Łukasz Lewicki',
+        'jakub': 'Jakub Barwiński',
+        'bartek': 'Bartłomiej Węgrzyn',
+        'michal': 'Michał Ochmiński',
+    }
+    return render(request, 'main/tworcy.html', context)
 def zaproszenia_do_salonu(request):
     fryzjer = Fryzjer.objects.get(user=request.user)
     received_invites = fryzjer.invite_received.all()

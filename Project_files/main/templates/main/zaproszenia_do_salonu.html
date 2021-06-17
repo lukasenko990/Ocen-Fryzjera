@@ -28,7 +28,11 @@
         </ul>
         <form action="{% url 'akceptuj_zaproszenie' fryzjerID=z.fryzjerID salonID=z.salonID %}" method="POST">
                 {% csrf_token %}
-                <button class="btn">accept</button>
+                <button class="btn">akceptuj</button>
+                </form>
+        <form action="{% url 'usun_zaproszenie' fryzjerID=z.fryzjerID salonID=z.salonID %}" method="POST">
+                {% csrf_token %}
+                <button class="btn">usun</button>
                 </form>
     </div>
     <br><br><br>

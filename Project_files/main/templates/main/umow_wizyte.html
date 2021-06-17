@@ -2,6 +2,9 @@
 
 
 {% block content %}
+<div >
+    <div class="card flex-row flex-grow-1 p-2 mx-2 my-2 align-items-center" >
+        <ul>
 <form method="POST">
   {% csrf_token %}
 <div><span class="heading">Wybierz dostepny termin:</span>
@@ -86,10 +89,16 @@
             allowTimes: normal
         });
     }
+    this.setOptions({
+            minDate: new Date()
+        });
+
 };
+
     $(function () {
 
       $("#datetimepicker").datetimepicker({
+
       format: 'Y-m-d H:i',
       allowTimes: [""],
       onChangeDateTime: datePickerTime,
@@ -102,13 +111,16 @@
   </script>
 
 </body>
-<div><span class="heading" >Wybierz dostepnego fryzjera:</span> <select id="wybor" name="wybor">
+<div><span class="heading" >Wybierz dostepnego fryzjera:<br></span> <select id="wybor" name="wybor" class="form-control">
   {% for fryzjer in fryzjerzy %}
   <option>{{fryzjer.imie}} {{fryzjer.nazwisko}}</option>
   {% endfor %}
 </select></div>
 <br>
-<button type="submit">Zapisz sie na wizyte</button>
+<button type="submit" class="btn btn-primary">Zapisz sie na wizyte</button>
+</ul>
 
+    <br><br><br>
+        </div>
 
 {% endblock %}

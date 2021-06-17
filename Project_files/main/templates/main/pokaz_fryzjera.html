@@ -70,13 +70,18 @@
 <hr>
 
 {% load times %}
+
 {% for ocena in oceny %}
 
     {% spaceless %}
+
     {% if forloop.counter0 >= 5 %}
         <span class="hidden">
     {% endif %}
     <div class="{% cycle 'finetheme1' 'finetheme2' %}">
+        <div >
+    <div class="card flex-row flex-grow-1 p-2 mx-2 my-2 align-items-center" >
+        <ul>
     <div class="name"><span class="name">{{ ocena.klient.imie }}&nbsp;{{ ocena.klient.nazwisko }}</span>&nbsp;({{ ocena.klient.user }})&nbsp;
     {% for x in ocena.liczba_gwiazdek|times %}
     <span class="fa fa-star" style="color: orange"></span>
@@ -89,6 +94,10 @@
     <div class="description">{{ ocena.tresc }}</div>
     <br>
     <div class="op_footer">Opinia po wizycie w salonie <span class="bold">{{ ocena.salon.nazwa }}</span>.</div>
+            </ul>
+
+    <br><br><br>
+        </div>
     </div>
     {% if forloop.counter0 >= 5 %}
         </span>
@@ -107,7 +116,10 @@
 {% endif %}
 
 
+</ul>
 
+    <br><br><br>
+        </div>
 
 </body>
 

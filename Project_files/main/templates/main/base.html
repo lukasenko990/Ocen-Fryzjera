@@ -58,16 +58,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <a href="{% url 'pokaz_salon' user_wlasciciel.id %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Profil salonu</a>
     <a href="{% url 'dodaj_fryzjera' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Dodaj fryzjera</a>
         <a href="{% url 'wyslane_zaproszenia' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Wyslane zaproszenia</a>
-    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Powiadomienia</a>
+
     {% endif %}
     <a href="{% url 'logout' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-outdent fa-fw w3-margin-right"></i>Wyloguj</a>
     {% else %}
     <a href="{% url 'login' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>Zaloguj</a>
     <a href="{% url 'register' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-indent fa-fw w3-margin-right"></i>Zarejestruj się jako klient</a>
-    <a href="{% url 'barber_register' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-indent fa-fw w3-margin-right"></i>Jesteś Fryzjerem?</a>
+    <a href="{% url 'barber_register' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-indent fa-fw w3-margin-right"></i>Zarejestruj się jako fryzjer</a>
     {% endif %}
-    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a>
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a>
+    <a href="{% url 'tworcy' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a>
   </div>
   <div class="w3-panel w3-large">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
