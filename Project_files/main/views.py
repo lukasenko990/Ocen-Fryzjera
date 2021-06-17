@@ -1,5 +1,6 @@
 from django.contrib.auth import logout as django_logout, login, authenticate
 from django.contrib.auth.decorators import login_required
+from rest_framework.permissions import IsAuthenticated
 from django.contrib import messages
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -703,20 +704,27 @@ def fryzjerzy(request):
 ############## API ###################
 class SalonViewSet(viewsets.ModelViewSet):
     queryset = Salon.objects.all()
+    permission_classes = (IsAuthenticated,)
     serializer_class=SalonSerializer
     
 class KlientViewSet(viewsets.ModelViewSet):
     queryset = Klient.objects.all()
+    permission_classes = (IsAuthenticated,)
     serializer_class=KlientSerializer
     
 class FryzjerViewSet(viewsets.ModelViewSet):
     queryset = Fryzjer.objects.all()
+    permission_classes = (IsAuthenticated,)
     serializer_class=FryzjerSerializer
 
 class UslugaViewSet(viewsets.ModelViewSet):
     queryset = Usluga.objects.all()
-    serializer_class=UslugaSerializer 
+    permission_classes = (IsAuthenticated,)
+    serializer_class=UslugaSerializer
+
+
 
 class ZamowienieViewSet(viewsets.ModelViewSet):
     queryset = Zamowienie.objects.all()
+    permission_classes = (IsAuthenticated,)
     serializer_class=ZamowienieSerializer    
