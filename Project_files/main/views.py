@@ -288,6 +288,7 @@ def pokaz_wizyty(request):
         'wizyty': wizyty,
     }
     return render(request, 'main/pokaz_wizyty.html', context)
+
 def edytuj_fryzjera(request, id):
     context = {}
     profile = Fryzjer.objects.all().filter(id=id).first()
@@ -317,9 +318,14 @@ def edytuj_fryzjera(request, id):
                     image=Image.open(profile.avatar)
                     (width,height)=image.size
                     if width>400 or height>400:
-                        ratio=height/width
-                        width=400
-                        height=int(ratio*width)
+                        if min(width,height)==width:
+                            ratio=height/width
+                            width=400
+                            height=int(ratio*width)
+                        else:
+                            ratio=width/height
+                            height=400
+                            width=int(ratio*height)
                         new_size=(width,height)
                         image=image.resize(new_size,Image.ANTIALIAS)
                         image.save(str(profile.avatar))
@@ -419,7 +425,6 @@ def dodaj_opinie_salon(request, id):
                 return render(request, 'main/dodaj_opinie_salon.html', context)
     return render(request, 'main/dodaj_opinie_salon.html', context)
 
-
 def edytuj_klienta(request, id):
     context = {}
     profile = Klient.objects.all().filter(id=id).first()
@@ -448,12 +453,28 @@ def edytuj_klienta(request, id):
                 try:
                     image=Image.open(profile.avatar)
                     (width,height)=image.size
-                    if width>250 or height>250:
-                        ratio=height/width
-                        width=250
-                        height=int(ratio*width)
+                    if width>400 or height>400:
+                        if min(width,height)==width:
+                            ratio=height/width
+                            width=400
+                            height=int(ratio*width)
+                        else:
+                            ratio=width/height
+                            height=400
+                            width=int(ratio*height)
                         new_size=(width,height)
                         image=image.resize(new_size,Image.ANTIALIAS)
+                        image.save(str(profile.avatar))
+                    if width!=height:
+                        if width<400 or height<400:
+                            maxi=min(width,height)
+                        else:
+                            maxi=400
+                        smallest=min(width,height)
+                        left=int(width/2)-int(smallest/2)
+                        top=int(height/2)-int(smallest/2)
+                        box=(left,top,left+maxi,top+maxi)
+                        image=image.crop(box)
                         image.save(str(profile.avatar))
                 except:
                     pass
@@ -463,7 +484,6 @@ def edytuj_klienta(request, id):
         'ClientForm': ClientForm,
     }
     return render(request, 'main/edytuj_klienta.html', context)
-
 
 def edytuj_salon(request, id):
     context = {}
@@ -494,12 +514,28 @@ def edytuj_salon(request, id):
                 try:
                     image=Image.open(profile.avatar)
                     (width,height)=image.size
-                    if width>250 or height>250:
-                        ratio=height/width
-                        width=250
-                        height=int(ratio*width)
+                    if width>400 or height>400:
+                        if min(width,height)==width:
+                            ratio=height/width
+                            width=400
+                            height=int(ratio*width)
+                        else:
+                            ratio=width/height
+                            height=400
+                            width=int(ratio*height)
                         new_size=(width,height)
                         image=image.resize(new_size,Image.ANTIALIAS)
+                        image.save(str(profile.avatar))
+                    if width!=height:
+                        if width<400 or height<400:
+                            maxi=min(width,height)
+                        else:
+                            maxi=400
+                        smallest=min(width,height)
+                        left=int(width/2)-int(smallest/2)
+                        top=int(height/2)-int(smallest/2)
+                        box=(left,top,left+maxi,top+maxi)
+                        image=image.crop(box)
                         image.save(str(profile.avatar))
                 except:
                     pass
@@ -511,7 +547,6 @@ def edytuj_salon(request, id):
         'SalonForm': SalonForm,
     }
     return render(request, 'main/edytuj_salon.html', context)
-
 
 def search(request):
     if request.method == "POST":
