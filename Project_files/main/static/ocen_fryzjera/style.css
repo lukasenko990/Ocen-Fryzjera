@@ -1,3 +1,4 @@
+/*
 body
 {
         color:                  #320331;
@@ -94,12 +95,12 @@ span.name
         font-weight:    bold;
         font-style:     italic;
 }
-
+*/
 span.hidden
 {
         display:        none;
 }
-
+/*
 span.heading
 {
         font-weight:    bold;
@@ -124,3 +125,4 @@ iframe.map
     border-color: #FF00FF;
     border-style: solid;
 }
+*/
