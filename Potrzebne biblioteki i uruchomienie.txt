@@ -1,0 +1,14 @@
+1. Django framework
+git clone https://github.com/django/django.git
+python -m pip install -e django/
+
+2. Django star ratings
+pip install django-star-rating
+
+3. Django rest framework
+pip install djangorestframework
+pip install markdown
+pip install django-filter
+
+Strona jest uruchamiana komendą:
+python manage.py runserver
