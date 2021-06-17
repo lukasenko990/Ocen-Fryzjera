@@ -1,46 +1,41 @@
 {% extends 'main/base.html' %}
 {% block content %}
-<div>
-        <h2>Edycja profilu salonu</h2>
-        <form method="POST">
-                {% csrf_token %}
-                <div class="input-group mb-3">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                        <h4>Nazwa: </h4>{{SalonForm.nazwa}}
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img  width="300px" src="/{{profile.avatar}}"><span class="font-weight-bold">{{profile.imie}}</span><span class="text-black-50"></span></div>  </a>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Edycja profilu salonu</h4>
+                        <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
                 </div>
-                <div class="input-group mb-2">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-                        </div>
-                        <h4>NIP: </h4>{{SalonForm.NIP}}
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels"></label><h6>Nazwa </h6>{{profile.nazwa}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Ulica </h6>{{profile.ulica}}</div>
+
+
                 </div>
-                <div class="input-group mb-2">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-                        </div>
-                        <h4>REGON: </h4>{{SalonForm.regon}}
+                <div class="row mt-3">
+                    <div class="col-md-6"><label class="labels"></label><h6>Nr lokalu </h6>{{profile.nr_lokalu}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Miasto </h6>{{profile.ulica}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Kod pocztowy </h6>{{profile.kod_pocztowy}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Nr telefonu</h6>{{profile.nr_tel}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Godzina otwarcia </h6>{{profile.godzina_otwarcia}}</div>
+                        <div class="col-md-6"><label class="labels"></label><h6>Godzina zamknięcia </h6>{{profile.godzina_zamkniecia}}</div>
+                        <div class="col-md-6"><label class="labels"></label><h6>Opis </h6>{{profile.bio}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Zdjęcie salonu </h6>{{profile.avatar}}</div>
                 </div>
-                <div class="input-group mb-2">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-                        </div>
-                        <h4>Ulica: </h4>{{SalonForm.ulica}}
-                </div>
-                <div class="input-group mb-2">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        <h4>Nr lokalu: </h4>{{SalonForm.nr_lokalu}}
-                </div>
-                <div class="input-group mb-2">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        <h4>Miasto: </h4>{{SalonForm.miasto}}
-                </div>
-                <button type="submit">Zapisz zmiany</button>
-        </form>
+
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Zapisz profil</button></div>
+
+
+                </form>
+        </div>
+
+    </div>
+</div>
 </div>
 {% endblock %}

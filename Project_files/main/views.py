@@ -63,7 +63,7 @@ def barber_register(request):
             user.last_name = form.cleaned_data.get('last_name')
             user.password = form.cleaned_data.get('password1')
             user.set_password(user.password)
-            user.email=form.cleaned_data.get('email')
+            user.email = form.cleaned_data.get('email')
             user.save()
             fryzjer = Fryzjer()
             fryzjer.user = user
@@ -144,7 +144,10 @@ def pokaz_salon(request, id):
                             salon.miasto, \
                             "")
     oceny = Ocena.objects.all().filter(salon=salon)
-    zamowienia_klienta = Zamowienie.objects.all().filter(salon=salon).filter(klient=Klient.objects.all().filter(user=request.user).first())
+    if request.user.is_authenticated:
+        zamowienia_klienta = Zamowienie.objects.all().filter(salon=salon).filter(klient=Klient.objects.all().filter(user=request.user).first())
+    else:
+        zamowienia_klienta=None
     context = {
         'salon': salon,
         'fryzjerzy': fryzjerzy,
@@ -176,8 +179,11 @@ def pokaz_uslugi(request, id):
                             salon.miasto, \
                             "")
     oceny = Ocena.objects.all().filter(salon=salon)
-    zamowienia_klienta = Zamowienie.objects.all().filter(salon=salon).filter(
+    if request.user.is_authenticated:
+        zamowienia_klienta = Zamowienie.objects.all().filter(salon=salon).filter(
         klient=Klient.objects.all().filter(user=request.user).first())
+    else:
+        zamowienia_klienta=None
     context = {
         'salon': salon,
         'fryzjerzy': fryzjerzy,
@@ -202,8 +208,11 @@ def pokaz_mape(request, id):
                             salon.miasto, \
                             "")
     oceny = Ocena.objects.all().filter(salon=salon)
-    zamowienia_klienta = Zamowienie.objects.all().filter(salon=salon).filter(
+    if request.user.is_authenticated:
+        zamowienia_klienta = Zamowienie.objects.all().filter(salon=salon).filter(
         klient=Klient.objects.all().filter(user=request.user).first())
+    else:
+        zamowienia_klienta=None
     context = {
         'salon': salon,
         'fryzjerzy': fryzjerzy,
@@ -228,8 +237,11 @@ def pokaz_opinie(request, id):
                             salon.miasto, \
                             "")
     oceny = Ocena.objects.all().filter(salon=salon)
-    zamowienia_klienta = Zamowienie.objects.all().filter(salon=salon).filter(
+    if request.user.is_authenticated:
+        zamowienia_klienta = Zamowienie.objects.all().filter(salon=salon).filter(
         klient=Klient.objects.all().filter(user=request.user).first())
+    else:
+        zamowienia_klienta=None
     context = {
         'salon': salon,
         'fryzjerzy': fryzjerzy,
@@ -255,7 +267,10 @@ def pokaz_fryzjera(request, id):
     fryzjer = get_object_or_404(Fryzjer, id=id)
     salon = Salon.objects.all().filter(fryzjer=fryzjer).first()
     oceny = Ocena.objects.all().filter(fryzjer=fryzjer)
-    zamowienia_klienta = Zamowienie.objects.all().filter(fryzjer=fryzjer).filter(klient=Klient.objects.all().filter(user=request.user).first())
+    if request.user.is_authenticated:
+        zamowienia_klienta = Zamowienie.objects.all().filter(fryzjer=fryzjer).filter(klient=Klient.objects.all().filter(user=request.user).first())
+    else:
+        zamowienia_klienta=None
     context = {
         'fryzjer': fryzjer,
         'oceny': oceny,
@@ -404,10 +419,32 @@ def edytuj_klienta(request, id):
     if request.method == 'POST':
         ClientForm = KlientUpdateForm(request.POST, request.FILES, instance=profile)
         if ClientForm.is_valid():
-            request.FILES.get('avatar',None)
-            if not oldPath==None:
-                os.remove(oldPath)
+            request.FILES.get('avatar', None)
+            try:
+                if len(request.FILES['avatar']) > 0:
+                    if not oldPath == None:
+                        os.remove(oldPath)
+            except:
+                pass
             ClientForm.save()
+            if profile.avatar=='':
+                try:
+                    os.remove(oldPath)
+                except:
+                    pass
+            else:
+                try:
+                    image=Image.open(profile.avatar)
+                    (width,height)=image.size
+                    if width>250 or height>250:
+                        ratio=height/width
+                        width=250
+                        height=int(ratio*width)
+                        new_size=(width,height)
+                        image=image.resize(new_size,Image.ANTIALIAS)
+                        image.save(str(profile.avatar))
+                except:
+                    pass
         return redirect('/')
     context = {
         'profile': profile,

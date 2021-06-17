@@ -18,11 +18,7 @@
                             </ul>
                         </div>
                     </div>
-                    {% if user_wlasciciel %}
-                    <div class="col-md-2">
-                         <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edytuj profil"/></a>
-                    </div>
-                    {% endif %}
+
                 </div>
 
 {% load times %}
@@ -41,8 +37,8 @@
     <span class="fa fa-star"></span>
     {% endfor %}
     </div>
-    <br>
     <div class="description">{{ ocena.tresc }}</div>
+        <br>
     </div>
     {% if forloop.counter0 >= 5 %}
         </span>
@@ -59,5 +55,7 @@
     <hr>
     <a id="expandUtility" href="javascript:expand()">Pokaż&nbsp;więcej</a>
 {% endif %}
-
+{% if zamowienia_klienta %}
+<a href="{% url 'dodaj_opinie_salon' salon.id %}">Oceń salon</a>
+{% endif %}
 {% endblock content2 %}

@@ -1,7 +1,8 @@
 {% extends 'main/pokaz_salon.html' %}
 
 {% block content2 %}
-<ul class="nav nav-tabs" id="myTab" role="tablist">
+
+<ul class="nav nav-tabs" id="myTab" role="tablist" xmlns="http://www.w3.org/1999/html">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="{% url 'pokaz_salon' salon.id %}" role="tab" aria-controls="home" aria-selected="true">O nas</a>
                                 </li>
@@ -18,7 +19,7 @@
                             </ul>
                         </div>
                     </div>
-                    {% if user_wlasciciel %}
+                    {% if request.user == salon.wlasciciel.user %}
 
                     <div class="col-md-2">
                         <a href="{% url 'edytuj_salon' salon.id %}" type="submit" class="profile-edit-btn" name="btnAddMore" value="Edytuj profil"/></a>
@@ -26,14 +27,16 @@
                     {% endif %}
                 </div>
 
-<div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-work">
+<div class="row" >
+                    <div class="col-md-4" >
+                        <div class="profile-work" >
                             <p>Nasz zespół</p>
                             {% for fryzjer in fryzjerzy %}
+                            {% if request.user == salon.wlasciciel.user %}
                                             <form action="{% url 'usun_z_salonu' fryzjer.id salon.id %}" method="POST">
                                     {% csrf_token %}
-                                    <button class="btn">d</button>
+                                    <button class="btn">usuń</button>
+                                                {% endif %}
                                 </form>
                             <a href="{% url 'pokaz_fryzjera' fryzjer.id %}">{{fryzjer.imie}} {{fryzjer.nazwisko}}</a><br/>
 
@@ -86,8 +89,15 @@
                                                 <p>{{salon.bio}}</p>
                                             </div>
                                         </div>
+                                {% if user_wlasciciel %}
+                                <br><br><br><br>
+                    <button type="button" class="btn btn-dark">
+    <a href="{% url 'edytuj_salon' salon.id %}">Edytuj</a>
+</button>
+                    {% endif %}
                             </div>
 
                     </div>
+
                 </div>
 {% endblock content2 %}

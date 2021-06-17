@@ -9,7 +9,11 @@
 <div><span class="heading">Minimalny czas wykonania uslugi:</span> {{usluga.min_czas}} minut</div>
 <div><span class="heading">Maksymalny czas wykonania uslugi:</span> {{usluga.max_czas}} minut</div>
 <br>
+{% if request.user.is_authenticated %}
 <a href="{% url 'umow_wizyte' usluga.id %}">Zapisz sie na {{usluga.nazwa}}</a>
+{% else %}
+<a href="{% url 'register' %}">Aby umówić się na wizytę musisz się zarejestrować</a>
+{% endif %}
 
 
 {% endblock %}
