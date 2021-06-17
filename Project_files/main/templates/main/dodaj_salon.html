@@ -8,22 +8,25 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <form class="form-horizontal" name="UslugaForm" action="/dodaj_salon/" method="post">
-    <div style="padding-left:450px;">
+    <div style="padding-left:280px; padding-right: 300px;">
+        <br>
+        <div style="padding-left: 200px;"><h1>Dodaj salon</h1></div>
         {% csrf_token %}
         <br><br>
-      <input type="text" id="login" class="fadeIn second" name="nazwa" placeholder="nazwa salonu"><br><br>
-      <input type="text" id="first" class="fadeIn second" name="NIP" placeholder="NIP"><br><br>
-      <input type="text" id="last" class="fadeIn second" name="regon" placeholder="REGON"><br><br>
-            <input type="text" id="em" class="fadeIn second" name="ulica" placeholder="ulica"><br><br>
-            <input type="text" id="phone" class="fadeIn second" name="nr_lokalu" placeholder="nr lokalu"><br><br>
-    <input type="text" id="phone" class="fadeIn second" name="miasto" placeholder="miasto"><br><br>
-    <input type="text" id="phone" class="fadeIn second" name="kod_pocztowy" placeholder="kod pocztowy"><br><br>
-    <input type="text" id="phone" class="fadeIn second" name="nr_tel" placeholder="nr telefonu"><br><br>
-    <input type="text" id="phone" class="fadeIn second" name="godzina_otwarcia" placeholder="godzina otwarcia"><br><br>
-    <input type="text" id="phone" class="fadeIn second" name="godzina_zamkniecia" placeholder="godzina zamknięcia"><br><br>
-    <input type="text" id="phone" class="fadeIn second" name="bio" placeholder="opis"><br><br>
+      <input type="text" id="login" class="form-control" name="nazwa" placeholder="nazwa salonu"><br><br>
+      <input type="text" id="first" class="form-control" name="NIP" placeholder="NIP"><br><br>
+      <input type="text" id="last" class="form-control" name="regon" placeholder="REGON"><br><br>
+            <input type="text" id="em" class="form-control" name="ulica" placeholder="ulica"><br><br>
+            <input type="text" id="phone" class="form-control" name="nr_lokalu" placeholder="nr lokalu"><br><br>
+    <input type="text" id="phone" class="form-control" name="miasto" placeholder="miasto"><br><br>
+    <input type="text" id="phone" class="form-control" name="kod_pocztowy" placeholder="kod pocztowy"><br><br>
+    <input type="text" id="phone" class="form-control" name="nr_tel" placeholder="nr telefonu"><br><br>
+    <input type="text" id="phone" class="form-control" name="godzina_otwarcia" placeholder="godzina otwarcia"><br><br>
+    <input type="text" id="phone" class="form-control" name="godzina_zamkniecia" placeholder="godzina zamknięcia"><br><br>
+    <input type="text" id="phone" class="form-control" name="bio" placeholder="opis"><br><br>
 
-      <input type="submit" class="fadeIn fourth" value="Dodaj salon">
-    </div>
+      <input type="submit" class="btn btn-secondary btn-dark btn-block" value="Dodaj salon">
+
+    </div><br>
     </form>
 {% endblock %}

@@ -5,7 +5,6 @@
 {% block content %}
 <style xmlns="http://www.w3.org/1999/html">
 
-/* BASIC */
 
 html {
   background-color: #56baed;
@@ -299,6 +298,12 @@ input[type=password]:placeholder {
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <br><br><br><br><br>
+    <div style="padding-left: 520px;" class="fadeIn second">
+    <h1>Dodaj usługę</h1>
+    </div>
+    <div style="padding-left: 180px;">
+        <br><br>
 <form class="form-horizontal" name="UslugaForm" action="/dodaj_usluge/" method="post">
         {% csrf_token %}
       <input type="text" id="login" class="fadeIn second" name="nazwa" placeholder="nazwa usługi">
@@ -306,8 +311,11 @@ input[type=password]:placeholder {
       <input type="text" id="last" class="fadeIn second" name="cena" placeholder="cena (zł)">
             <input type="text" id="em" class="fadeIn second" name="czas_min" placeholder="czas_min(min)">
             <input type="text" id="phone" class="fadeIn second" name="czas_max" placeholder="czas_max(min)">
-        <div style="padding-left:380px;">
+    <br>
+        <div style="padding-left:320px;">
       <input type="submit" class="fadeIn fourth" value="Dodaj usługę">
+                </div>
     </div>
     </form>
+    </div>
 {% endblock %}
