@@ -571,6 +571,61 @@ def umow_wizyte(request, id):
     }
     return render(request, 'main/umow_wizyte.html', context)
 
+def dodaj_salon(request):
+    fryzjer=Fryzjer.objects.all().filter(user=request.user).first()
+    wlasciciel=Fryzjer.objects.all().filter(user=request.user).first()
+    context = {'fryzjer': fryzjer, 'wlasciciel': wlasciciel}
+    if request.method == 'POST':
+        nazwa=request.POST.get('nazwa')
+        NIP=request.POST.get('NIP')
+        regon=request.POST.get('regon')
+        ulica=request.POST.get('ulica')
+        nr_lokalu=request.POST.get('nr_lokalu')
+        miasto = request.POST.get('miasto')
+        kod_pocztowy = request.POST.get('kod_pocztowy')
+        nr_tel = request.POST.get('nr_tel')
+        godzina_otwarcia = request.POST.get('godzina_otwarcia')
+        godzina_zamkniecia = request.POST.get('godzina_zamkniecia')
+        bio = request.POST.get('bio')
+        salon=Salon()
+        salon.wlasciciel=wlasciciel
+        salon.nazwa=nazwa
+        salon.regon=regon
+        salon.NIP=NIP
+        salon.ulica=ulica
+        salon.nr_lokalu=nr_lokalu
+        salon.miasto=miasto
+        salon.kod_pocztowy=kod_pocztowy
+        salon.nr_tel=nr_tel
+        salon.godzina_otwarcia=godzina_otwarcia
+        salon.godzina_zamkniecia=godzina_zamkniecia
+        salon.bio=bio
+        salon.save()
+        salon.fryzjer.add(fryzjer)
+        salon.save()
+        return redirect('/')
+    return render(request, 'main/dodaj_salon.html', context)
+
+def dodaj_usluge(request):
+    fryzjer=Fryzjer.objects.all().filter(user=request.user).first()
+    salon = Salon.objects.all().filter(fryzjer=fryzjer).first()
+    context = {'fryzjer': fryzjer, 'salon': salon}
+    if request.method == 'POST':
+        nazwa=request.POST.get('nazwa')
+        cena=request.POST.get('cena')
+        opis=request.POST.get('opis')
+        czas_min=request.POST.get('czas_min')
+        czas_max=request.POST.get('czas_max')
+        usluga=Usluga()
+        usluga.nazwa=nazwa
+        usluga.salon=salon
+        usluga.cena=cena
+        usluga.max_czas=czas_max
+        usluga.min_czas=czas_min
+        usluga.opis=opis
+        usluga.save()
+        return redirect('/')
+    return render(request, 'main/dodaj_usluge.html', context)
 
 def dodaj_fryzjera(request):
     #salony = Salon.objects.all()

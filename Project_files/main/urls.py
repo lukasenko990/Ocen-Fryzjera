@@ -24,6 +24,8 @@ urlpatterns = [
 
     path('opinie/<int:id>/', views.pokaz_opinie, name='pokaz_opinie'),
     path('uslugi/<int:id>/', views.pokaz_uslugi, name='pokaz_uslugi'),
+    path('dodaj_usluge/', views.dodaj_usluge, name='dodaj_usluge'),
+    path('dodaj_salon/', views.dodaj_salon, name='dodaj_salon'),
     path('mapa/<int:id>/', views.pokaz_mape, name='pokaz_mape'),
     path('wizyty/', views.pokaz_wizyty, name='pokaz_wizyty'),
     path('salony/', views.salony, name='salony'),

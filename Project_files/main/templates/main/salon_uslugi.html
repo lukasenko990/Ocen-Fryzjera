@@ -25,4 +25,7 @@
     <a href="{% url 'pokaz_usluge' usluga.id %}">{{ usluga.nazwa }}</a>
     <br>
 {% endfor %}
+{% if request.user == salon.wlasciciel.user %}
+<a href="{% url 'dodaj_usluge' %}"><b>Dodaj nową usługę</b></a>
+{% endif %}
 {% endblock content2 %}

@@ -87,7 +87,7 @@ class Klient(models.Model):
 
 
 class Usluga(models.Model):
-    salon = models.ManyToManyField(Salon)
+    salon = models.ForeignKey(Salon, on_delete=models.CASCADE, related_name='salon', null=True, blank=True)
 
     nazwa = models.CharField(max_length=80, null=True)
     opis = models.TextField(null=True, blank=True)
