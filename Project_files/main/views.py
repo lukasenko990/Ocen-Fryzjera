@@ -27,6 +27,8 @@ def register(request):
             user.first_name = form.cleaned_data.get('first_name')
             user.last_name = form.cleaned_data.get('last_name')
             user.password = form.cleaned_data.get('password1')
+            user.set_password(user.password)
+            user.email = form.cleaned_data.get('email')
             user.save()
             klient = Klient()
             klient.user = user
@@ -60,11 +62,14 @@ def barber_register(request):
             user.first_name = form.cleaned_data.get('first_name')
             user.last_name = form.cleaned_data.get('last_name')
             user.password = form.cleaned_data.get('password1')
+            user.set_password(user.password)
+            user.email=form.cleaned_data.get('email')
             user.save()
             fryzjer = Fryzjer()
             fryzjer.user = user
             fryzjer.imie = form.cleaned_data.get('first_name')
             fryzjer.nazwisko = form.cleaned_data.get('last_name')
+            fryzjer.nr_tel = form.cleaned_data.get('nr_tel')
             fryzjer.bio = form.cleaned_data.get('bio')
             fryzjer.ulica = form2.cleaned_data.get('ulica')
             fryzjer.nr_domu = form2.cleaned_data.get('nr_domu')
@@ -150,7 +155,7 @@ def pokaz_salon(request, id):
         'zamowienia_klienta': zamowienia_klienta
     }
 
-    return render(request, 'main/pokaz_salon.html', context)
+    return render(request, 'main/salon_default.html', context)
 def pokaz_usluge(request, id):
     usluga = get_object_or_404(Usluga, id=id)
     context = {
@@ -158,6 +163,84 @@ def pokaz_usluge(request, id):
     }
 
     return render(request, 'main/pokaz_usluge.html', context)
+
+def pokaz_uslugi(request, id):
+    salon = get_object_or_404(Salon, id=id)
+    fryzjerzy = salon.fryzjer.all()
+    wlasciciel = salon.wlasciciel
+    uslugi = Usluga.objects.all().filter(salon=salon)
+    mapObject = generateMap(salon.kod_pocztowy, \
+                            salon.ulica, \
+                            str(salon.nr_lokalu), \
+                            "", \
+                            salon.miasto, \
+                            "")
+    oceny = Ocena.objects.all().filter(salon=salon)
+    zamowienia_klienta = Zamowienie.objects.all().filter(salon=salon).filter(
+        klient=Klient.objects.all().filter(user=request.user).first())
+    context = {
+        'salon': salon,
+        'fryzjerzy': fryzjerzy,
+        'wlasciciel': wlasciciel,
+        'uslugi': uslugi,
+        'mapObject': mapObject,
+        'oceny': oceny,
+        'zamowienia_klienta': zamowienia_klienta
+    }
+
+    return render(request, 'main/salon_uslugi.html', context)
+
+def pokaz_mape(request, id):
+    salon = get_object_or_404(Salon, id=id)
+    fryzjerzy = salon.fryzjer.all()
+    wlasciciel = salon.wlasciciel
+    uslugi = Usluga.objects.all().filter(salon=salon)
+    mapObject = generateMap(salon.kod_pocztowy, \
+                            salon.ulica, \
+                            str(salon.nr_lokalu), \
+                            "", \
+                            salon.miasto, \
+                            "")
+    oceny = Ocena.objects.all().filter(salon=salon)
+    zamowienia_klienta = Zamowienie.objects.all().filter(salon=salon).filter(
+        klient=Klient.objects.all().filter(user=request.user).first())
+    context = {
+        'salon': salon,
+        'fryzjerzy': fryzjerzy,
+        'wlasciciel': wlasciciel,
+        'uslugi': uslugi,
+        'mapObject': mapObject,
+        'oceny': oceny,
+        'zamowienia_klienta': zamowienia_klienta
+    }
+
+    return render(request, 'main/salon_mapa.html', context)
+
+def pokaz_opinie(request, id):
+    salon = get_object_or_404(Salon, id=id)
+    fryzjerzy = salon.fryzjer.all()
+    wlasciciel = salon.wlasciciel
+    uslugi = Usluga.objects.all().filter(salon=salon)
+    mapObject = generateMap(salon.kod_pocztowy, \
+                            salon.ulica, \
+                            str(salon.nr_lokalu), \
+                            "", \
+                            salon.miasto, \
+                            "")
+    oceny = Ocena.objects.all().filter(salon=salon)
+    zamowienia_klienta = Zamowienie.objects.all().filter(salon=salon).filter(
+        klient=Klient.objects.all().filter(user=request.user).first())
+    context = {
+        'salon': salon,
+        'fryzjerzy': fryzjerzy,
+        'wlasciciel': wlasciciel,
+        'uslugi': uslugi,
+        'mapObject': mapObject,
+        'oceny': oceny,
+        'zamowienia_klienta': zamowienia_klienta
+    }
+
+    return render(request, 'main/salon_opinie.html', context)
 
 def pokaz_klienta(request, id):
     klient = get_object_or_404(Klient, id=id)
@@ -170,15 +253,25 @@ def pokaz_klienta(request, id):
 
 def pokaz_fryzjera(request, id):
     fryzjer = get_object_or_404(Fryzjer, id=id)
+    salon = Salon.objects.all().filter(fryzjer=fryzjer).first()
     oceny = Ocena.objects.all().filter(fryzjer=fryzjer)
     zamowienia_klienta = Zamowienie.objects.all().filter(fryzjer=fryzjer).filter(klient=Klient.objects.all().filter(user=request.user).first())
     context = {
         'fryzjer': fryzjer,
         'oceny': oceny,
-        'zamowienia_klienta': zamowienia_klienta
+        'zamowienia_klienta': zamowienia_klienta,
+        'salon': salon
     }
     return render(request, 'main/pokaz_fryzjera.html', context)
 
+def pokaz_wizyty(request):
+    klient=Klient.objects.all().filter(user=request.user).first()
+    wizyty=Zamowienie.objects.all().filter(klient=klient)
+    context = {
+        'klient': klient,
+        'wizyty': wizyty,
+    }
+    return render(request, 'main/pokaz_wizyty.html', context)
 def edytuj_fryzjera(request, id):
     context = {}
     profile = Fryzjer.objects.all().filter(id=id).first()

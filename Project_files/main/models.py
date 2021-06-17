@@ -27,7 +27,7 @@ class Fryzjer(models.Model):
     nr_domu = models.IntegerField(default=0, blank=True, null=True)
     miasto = models.CharField(max_length=50, null=True)
     kod_pocztowy = models.CharField(max_length=20, null=True)
-    nr_tel = models.CharField(max_length=20, default='no number')
+    nr_tel = models.CharField(max_length=20, blank=True, null=True, default='no number')
 
     avatar = models.ImageField(upload_to='main/static/ocen_fryzjera/avatars/fryzjers/', null=True, blank=True, default='main/static/ocen_fryzjera/avatars/fryzjers/default-avatar.jpg')
 
@@ -42,7 +42,7 @@ class Fryzjer(models.Model):
 class Salon(models.Model):
     wlasciciel = models.ForeignKey(Fryzjer, on_delete=models.CASCADE, related_name='wlasciciel', null=True)
     fryzjer = models.ManyToManyField(Fryzjer, related_name='fryzjer')
-    avatar = models.ImageField(upload_to='main/static/ocen_fryzjera/avatars/salony/', null=True, blank=True)
+    avatar = models.ImageField(upload_to='main/static/ocen_fryzjera/avatars/salony/', null=True, blank=True, default='main/static/ocen_fryzjera/avatars/salony/default-image.jpg')
     nazwa = models.CharField(max_length=50, default='NoName')
     NIP = models.CharField(max_length=25)
     regon = models.CharField(max_length=25)
@@ -76,7 +76,7 @@ class Klient(models.Model):
     miasto = models.CharField(max_length=50, null=True)
     kod_pocztowy = models.CharField(max_length=20, null=True)
 
-    avatar = models.ImageField(upload_to='main/static/ocen_fryzjera/avatars/klients/', null=True, blank=True)
+    avatar = models.ImageField(upload_to='main/static/ocen_fryzjera/avatars/klients/', null=True, blank=True, default='main/static/ocen_fryzjera/avatars/klients/default-avatar.jpg')
 
     def __str__(self):
         return f'{self.imie} {self.nazwisko}'

@@ -1,7 +1,8 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% block content %}
-<div class="w3-container">
+
+ <div class="w3-container">
     <h1><b>Salony w Twojej okolicy</b></h1>
     <div class="w3-section w3-bottombar w3-padding-16">
       <span class="w3-margin-right">Filter:</span>
@@ -9,53 +10,28 @@
       <button onclick="window.location='{% url 'fryzjerzy'  %}'" class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>Fryzjerzy</button>
     </div>
     </div>
-<!-- First Photo Grid-->
-  <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
-      <img class="w3-third w3-container w3-margin-bottom"  src="{% static 'ocen_fryzjera/salon1.jpg' %}" alt="Norway" style="width:100%" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-    <div class="w3-third w3-container w3-margin-bottom">
-      <img src="{% static 'ocen_fryzjera/salon2.jpg' %}" alt="Norway" style="width:100%" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b>Nazwa salonu</b></p>
-        <p> Opis.</p>
-      </div>
-    </div>
-    <div class="w3-third w3-container">
-      <img src="{% static 'ocen_fryzjera/salon3.jpeg' %}" alt="Norway" style="width:100%" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-  </div>
 
-  <!-- Second Photo Grid-->
-  <div class="w3-row-padding">
+
+<div class="w3-row-padding">
+    {% for salon in salony %}
     <div class="w3-third w3-container w3-margin-bottom">
-      <img src="{% static 'ocen_fryzjera/salon4.jpg' %}" alt="Norway" style="width:100%" class="w3-hover-opacity">
+      <a href="{% url 'pokaz_salon' salon.id %}" >
+        <img  class="w3-third w3-container w3-margin-bottom"  src="/{{salon.avatar}}" alt="Norway" style="width:100%" class="w3-hover-opacity">
+        </a>
       <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+        <p><b>{{salon.nazwa}}</b></p>
+        <p>{{salon.bio|truncatewords:10}}</p>
+            {% if salon.srednia_ocena %}
+          <p><b>Ocena:{{salon.srednia_ocena|floatformat:2}} </b></p>
+          {% else %}
+          <p><b>Brak ocen </b></p>
+          {% endif %}
       </div>
     </div>
-    <div class="w3-third w3-container w3-margin-bottom">
-      <img src="{% static 'ocen_fryzjera/salon5.jpg' %}" alt="Norway" style="width:100%" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
+    {% endfor %}
     </div>
-    <div class="w3-third w3-container">
-      <img src="{% static 'ocen_fryzjera/salon6.jpg' %}" alt="Norway" style="width:100%" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-  </div>
+
+
+
+
 {% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'main/pokaz_salon.html' %}
+
+{% block content2 %}
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="home-tab" data-toggle="tab" href="{% url 'pokaz_salon' salon.id %}" role="tab" aria-controls="home" aria-selected="true">O nas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="{% url 'pokaz_uslugi' salon.id %}" role="tab" aria-controls="profile" aria-selected="false">Usługi</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="{% url 'pokaz_opinie' salon.id %}" role="tab" aria-controls="profile" aria-selected="false">Oceny</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="{% url 'pokaz_mape' salon.id %}" role="tab" aria-controls="profile" aria-selected="false">Jak dojechać?</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    {% if user_wlasciciel %}
+                    <div class="col-md-2">
+                         <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edytuj profil"/></a>
+                    </div>
+                    {% endif %}
+                </div>
+
+{% load times %}
+{% for ocena in oceny %}
+
+    {% spaceless %}
+    {% if forloop.counter0 >= 5 %}
+        <span class="hidden">
+    {% endif %}
+    <div class="{% cycle 'finetheme1' 'finetheme2' %}">
+    <div class="name"><span class="name">{{ ocena.klient.imie }}&nbsp;{{ ocena.klient.nazwisko }}</span>&nbsp;({{ ocena.klient.user }})&nbsp;
+    {% for x in ocena.liczba_gwiazdek|times %}
+    <span class="fa fa-star" style="color: orange"></span>
+    {% endfor %}
+    {% for x in ocena.liczba_gwiazdek|distractfiveabs|times %}
+    <span class="fa fa-star"></span>
+    {% endfor %}
+    </div>
+    <br>
+    <div class="description">{{ ocena.tresc }}</div>
+    </div>
+    {% if forloop.counter0 >= 5 %}
+        </span>
+    {% endif %}
+	{% endspaceless %}
+
+{% empty %}
+
+	<div class="nothing">Chwilowo salon nie ma żadnych opinii - dodaj swoją!</div>
+
+{% endfor %}
+
+{% if oceny|length > 5 %}
+    <hr>
+    <a id="expandUtility" href="javascript:expand()">Pokaż&nbsp;więcej</a>
+{% endif %}
+
+{% endblock content2 %}

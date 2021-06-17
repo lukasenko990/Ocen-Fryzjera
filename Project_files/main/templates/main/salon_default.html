@@ -1,0 +1,88 @@
+{% extends 'main/pokaz_salon.html' %}
+
+{% block content2 %}
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="{% url 'pokaz_salon' salon.id %}" role="tab" aria-controls="home" aria-selected="true">O nas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="{% url 'pokaz_uslugi' salon.id %}" role="tab" aria-controls="profile" aria-selected="false">Usługi</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="{% url 'pokaz_opinie' salon.id %}" role="tab" aria-controls="profile" aria-selected="false">Oceny</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="{% url 'pokaz_mape' salon.id %}" role="tab" aria-controls="profile" aria-selected="false">Jak dojechać?</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    {% if user_wlasciciel %}
+
+                    <div class="col-md-2">
+                        <a href="{% url 'edytuj_salon' salon.id %}" type="submit" class="profile-edit-btn" name="btnAddMore" value="Edytuj profil"/></a>
+                    </div>
+                    {% endif %}
+                </div>
+
+<div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-work">
+                            <p>Nasz zespół</p>
+                            {% for fryzjer in fryzjerzy %}
+                            <a href="{% url 'pokaz_fryzjera' fryzjer.id %}">{{fryzjer.imie}} {{fryzjer.nazwisko}}</a><br/>
+                            {% endfor %}
+                            <br>
+                            <p>Właściciel</p>
+                            <a href="{% url 'pokaz_fryzjera' wlasciciel.id %}">{{wlasciciel.imie}} {{wlasciciel.nazwisko}}</a><br/>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Nazwa salonu</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{salon.nazwa}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Nr telefonu</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{salon.nr_tel}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Adres</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{salon.ulica}} {{salon.nr_lokalu}}, {{salon.kod_pocztowy}} {{salon.miasto}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Godziny otwarcia</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{salon.godzina_otwarcia}} - {{salon.godzina_zamkniecia}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Opis</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{salon.bio}}</p>
+                                            </div>
+                                        </div>
+                            </div>
+
+                    </div>
+                </div>
+{% endblock content2 %}

@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+<div class="w3-row-padding">
+{% for wizyta in wizyty %}
+    <div class="w3-third w3-container w3-margin-bottom" style="height:300px;width:300px;">
+<a href="{% url 'pokaz_salon' wizyta.salon.id %}" >
+        <img  class="w3-third w3-container w3-margin-bottom"  src="/{{wizyta.salon.avatar}}" alt="Norway" style="width:100%" class="w3-hover-opacity">
+</a>
+    </div>
+    <p><b>{{wizyta.salon.nazwa}}</b></p>
+<p><b>Data zamówienia: {{wizyta.data_zamowienia}}</b></p>
+<p><b>Termin usługi: {{wizyta.termin_uslugi}}</b></p>
+
+    <a href="{% url 'pokaz_salon' wizyta.salon.id %}">
+        <p><b> {{wizyta.fryzjer.imie}} {{wizyta.fryzjer.nazwisko}}</b></p>
+    </a>
+    <b>Status:{{wizyta.status}}</b>
+
+{% endfor %}
+</div>
+{% endblock %}

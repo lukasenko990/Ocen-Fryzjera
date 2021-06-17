@@ -1,79 +1,35 @@
 {% extends 'main/base.html' %}
 
+
 {% block content %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img class="w3-third w3-container w3-margin-bottom"  src="/{{salon.avatar}}" alt="Norway" style="width:100%" class="w3-hover-opacity"/>
 
-<div><span class="heading">Nazwa:</span> {{salon.nazwa}}</div>
-<div><span class="heading">NIP:</span> {{salon.NIP}}</div>
-<div><span class="heading">REGON:</span> {{salon.regon}}</div>
-<div><span class="heading">Ulica:</span> {{salon.ulica}} {{salon.nr_lokalu}}</div>
-<div><span class="heading">Miasto:</span> {{salon.miasto}}</div>
-<br>
-{{ mapObject|safe }}
-<br>
-{% if zamowienia_klienta %}
-<a href="{% url 'dodaj_opinie_salon' salon.id %}">Ocen salon</a>
-{% endif %}
-<br>
-<br>
- uslugi:<br>
-{% for usluga in uslugi %}
-    <a href="{% url 'pokaz_usluge' usluga.id %}">{{ usluga.nazwa }}</a>
-    <br>
-{% endfor %}
-<br>
-{% if wlasciciel.user == request.user %}
-<div><a href="{% url 'edytuj_salon' salon.id %}">Edycja profilu</a></div>
-{% endif %}
-    <br><br>
-wlasciciel salonu:<br> <a href="{% url 'pokaz_fryzjera' wlasciciel.id %}">{{ wlasciciel.imie }} {{ wlasciciel.nazwisko }}</a>
-    <br><br>
-    fryzjerzy:<br>
-{% for fryzjer in fryzjerzy %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        {{salon.nazwa}}
+                                    </h5>
+                                    <h6>
+                                        {{salon.ulica}} {{salon.nr_lokalu}}, {{salon.miasto}}
+                                    </h6>
+                            <p class="proile-rating"><b>Średnia ocena : {{salon.srednia_ocena|floatformat:2}}</b><span></span></p>
+                            {% block content2 %}
 
-    <a href="{% url 'pokaz_fryzjera' fryzjer.id %}">{{ fryzjer.imie }} {{ fryzjer.nazwisko }}</a>
-    <br>
+                {% endblock content2 %}
+            </form>
+        </div>
 
-{% endfor %}
 
-<br>
-<div class="bigger">Opinie:</div>
-<hr>
-
-{% load times %}
-{% for ocena in oceny %}
-
-    {% spaceless %}
-    {% if forloop.counter0 >= 5 %}
-        <span class="hidden">
-    {% endif %}
-    <div class="{% cycle 'finetheme1' 'finetheme2' %}">
-    <div class="name"><span class="name">{{ ocena.klient.imie }}&nbsp;{{ ocena.klient.nazwisko }}</span>&nbsp;({{ ocena.klient.user }})&nbsp;
-    {% for x in ocena.liczba_gwiazdek|times %}
-    <span class="fa fa-star" style="color: orange"></span>
-    {% endfor %}
-    {% for x in ocena.liczba_gwiazdek|distractfiveabs|times %}
-    <span class="fa fa-star"></span>
-    {% endfor %}
-    </div>
-    <br>
-    <div class="description">{{ ocena.tresc }}</div>
-    </div>
-    {% if forloop.counter0 >= 5 %}
-        </span>
-    {% endif %}
-	{% endspaceless %}
-
-{% empty %}
-
-	<div class="nothing">Chwilowo salon nie ma żadnych opinii - dodaj swoją!</div>
-
-{% endfor %}
-
-{% if oceny|length > 5 %}
-    <hr>
-    <a id="expandUtility" href="javascript:expand()">Pokaż&nbsp;więcej</a>
-{% endif %}
-
-{% endblock %}
+{% endblock content %}

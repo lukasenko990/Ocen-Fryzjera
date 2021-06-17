@@ -20,7 +20,7 @@ class RegisterFormKlient(forms.ModelForm):
 class RegisterFormFryzjer(forms.ModelForm):
     class Meta:
         model = Fryzjer
-        fields = ( 'ulica', 'miasto', 'nr_domu', 'kod_pocztowy')
+        fields = ( 'nr_tel', 'ulica', 'miasto', 'nr_domu', 'kod_pocztowy')
 
 
 class FryzjerUpdateForm(forms.ModelForm):

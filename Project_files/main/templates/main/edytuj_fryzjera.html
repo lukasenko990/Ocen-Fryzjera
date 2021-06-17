@@ -1,58 +1,36 @@
 {% extends 'main/base.html' %}
 {% block content %}
-<div>
-        <h2>Edycja profilu fryzjera</h2>
-        <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="input-group mb-3">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                        <h4>Imię: </h4>{{EditForm.imie}}
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="/{{user_fryzjer.avatar}}"><span class="font-weight-bold">{{profile.imie}}</span><span class="text-black-50"></span><a href="#" ><span>zmien awatar </span></div>  </a>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Edycja profilu fryzjera</h4>
+                        <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
                 </div>
-                <div class="input-group mb-2">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-                        </div>
-                        <h4>Nazwisko: </h4>{{EditForm.nazwisko}}
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels"></label><h6>Imię </h6>{{EditForm.imie}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Nazwisko </h6>{{EditForm.nazwisko}}</div>
                 </div>
-				<div class="input-group mb-2">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-                        </div>
-                        <h4>Biografia: </h4>{{EditForm.bio}}
+                <div class="row mt-3">
+                    <div class="col-md-6"><label class="labels"></label><h6>Ulica </h6>{{EditForm.ulica}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Nr domu </h6>{{EditForm.nr_domu}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Miasto </h6>{{EditForm.miasto}}</div>
+                    <div class="col-md-6"><label class="labels"></label><h6>Kod pocztowy </h6>{{EditForm.kod_pocztowy}}</div>
+                        <div class="col-md-6"><label class="labels"></label><h6>O Tobie </h6>{{EditForm.bio}}</div>
                 </div>
-                <div class="input-group mb-2">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-                        </div>
-                        <h4>Ulica: </h4>{{EditForm.ulica}}
-                </div>
-                <div class="input-group mb-2">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        <h4>Nr domu: </h4>{{EditForm.nr_domu}}
-                </div>
-                <div class="input-group mb-2">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        <h4>Miasto: </h4>{{EditForm.miasto}}
-                </div>
-                <div class="input-group mb-2">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        <h4>Kod pocztowy: </h4>{{EditForm.kod_pocztowy}}
-                </div>
-                <div class="input-group mb-2">
-                        <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>                        
-                        <h4>Awatar: </h4>{{EditForm.avatar}}
-                 </div>
-                <button type="submit">Zapisz zmiany</button>
-        </form>
+
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Zapisz profil</button></div>
+
+
+                </form>
+        </div>
+
+    </div>
+</div>
 </div>
 {% endblock %}

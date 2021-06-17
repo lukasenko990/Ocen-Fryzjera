@@ -20,6 +20,10 @@ urlpatterns = [
     path('barber/register', views.barber_register, name='barber_register'),
     path('search/', views.search, name='search'),
 
+    path('opinie/<int:id>/', views.pokaz_opinie, name='pokaz_opinie'),
+    path('uslugi/<int:id>/', views.pokaz_uslugi, name='pokaz_uslugi'),
+    path('mapa/<int:id>/', views.pokaz_mape, name='pokaz_mape'),
+    path('wizyty/', views.pokaz_wizyty, name='pokaz_wizyty'),
     path('salony/', views.salony, name='salony'),
     path('fryzjerzy/', views.fryzjerzy, name='fryzjerzy'),
     path('pokaz_salon/<int:id>/', views.pokaz_salon, name='pokaz_salon'),

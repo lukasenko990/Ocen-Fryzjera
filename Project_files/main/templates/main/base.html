@@ -30,11 +30,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       <div class="input-group">
                         <input class="form-control"
                                type="search"
-                               placeholder="Search"
+                               placeholder="Znajdz salon"
                                aria-label="Search"
                                name="searched">
                         <div class="input-group-append">
-                          <button type="submit" class="btn btn-dark">Search</button>
+                          <button type="submit" class="btn btn-dark">Szukaj</button>
                         </div>
       </div>
     </form>
@@ -46,19 +46,21 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     {% elif user_klient %}
     <div style="padding-left:20%"><span class="heading"><b>Witaj,</b></span> <b>{{user_klient.imie}}</b></div>
     <a href="{% url 'pokaz_klienta' user_klient.id %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Profil</a>
+    <a href="{% url 'pokaz_wizyty' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-list-alt fa-fw w3-margin-right"></i>Twoje wizyty</a>
     {% endif %}
-    {% if not user_wlasciciel %}
-    <a href="{% url 'zaproszenia_do_salonu' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Zaproszenia do salonu</a>
+    {% if not user_wlasciciel and user_fryzjer %}
+    <a href="{% url 'zaproszenia_do_salonu' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-list fa-fw w3-margin-right"></i>Zaproszenia do salonu</a>
     {% endif %}
     {% if user_wlasciciel %}
     <a href="{% url 'pokaz_salon' user_wlasciciel.id %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Profil salonu</a>
     <a href="{% url 'dodaj_fryzjera' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Dodaj fryzjera</a>
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Powiadomienia</a>
     {% endif %}
-    <a href="{% url 'logout' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Wyloguj</a>
+    <a href="{% url 'logout' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-outdent fa-fw w3-margin-right"></i>Wyloguj</a>
     {% else %}
     <a href="{% url 'login' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>Zaloguj</a>
-    <a href="{% url 'register' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>Zarejestruj się jako klient</a>
-    <a href="{% url 'barber_register' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>Jesteś Fryzjerem?</a>
+    <a href="{% url 'register' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-indent fa-fw w3-margin-right"></i>Zarejestruj się jako klient</a>
+    <a href="{% url 'barber_register' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-indent fa-fw w3-margin-right"></i>Jesteś Fryzjerem?</a>
     {% endif %}
     <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a>
     <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a>

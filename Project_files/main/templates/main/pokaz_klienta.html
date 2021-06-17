@@ -1,17 +1,58 @@
 {% extends 'main/base.html' %}
 
-
 {% block content %}
+<br>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+    <link rel="stylesgeet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
+</head>
 
-<div><span class="heading">Imię:</span> {{klient.imie}}</div>
-<div><span class="heading">Nazwisko:</span> {{klient.nazwisko}}</div>
-<div><span class="heading">Nr tel:</span> {{klient.nr_telefonu}}</div>
-<br>
-{% if klient.avatar.url is not null %}
-<div><img src="/{{klient.avatar}}"></div>
-<br>
-{% endif %}
-{% if klient.user == request.user %}
-<div><a href="{% url 'edytuj_klienta' klient.id %}">Edycja profilu</a></div>
-{% endif %}
+<body class="profile-page">
+
+
+    <div class="page-header header-filter" data-parallax="true" style="background-image:url('http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-city-night.png');"></div>
+    <div class="main main-raised">
+		<div class="profile-content">
+            <div class="container">
+                <div class="row">
+	                <div class="col-md-6 ml-auto mr-auto">
+        	           <div class="profile">
+	                        <div class="avatar">
+	                            <img src="/{{klient.avatar}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+	                        </div>
+	                        <div class="name">
+	                            <h3 class="title">{{klient.imie}} {{klient.nazwisko}}</h3>
+								<h6>Klient</h6>
+                                <br>
+                                <h6>Nr telefonu: {{klient.nr_telefonu}}</h6>
+
+	                        </div>
+	                    </div>
+    	            </div>
+                </div>
+
+				<div class="row">
+					<div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile-tabs">
+                          <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+
+                              {% if request.user == klient.user %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'edytuj_klienta' klient.id %}" role="tab" data-toggle="tab">
+                                  <i class="material-icons">palette</i>
+                                    Edytuj profil
+                                </a>
+                            </li>
+                              {% endif %}
+
+                          </ul>
+                        </div>
+    	    	</div>
+            </div>
+
+</body>
+
 {% endblock %}

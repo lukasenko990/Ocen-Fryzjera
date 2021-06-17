@@ -1,28 +1,72 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
+<br>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+    <link rel="stylesgeet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
+</head>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body class="profile-page">
 
-<div><span class="heading">Imię:</span> {{fryzjer.imie}}</div>
-<div><span class="heading">Nazwisko:</span> {{fryzjer.nazwisko}}</div>
-<div><span class="heading">Nr tel:</span> {{fryzjer.nr_tel}}</div>
-<br>
-{% if fryzjer.avatar.url is not null %}
-<div><img src="/{{fryzjer.avatar}}"></div>
-<br>
-{% endif %}
-{% if fryzjer.bio is not null %}
-<div><center><span class="heading">O mnie:</span><center> {{fryzjer.bio}}</div>
-{% endif %}
-{% if request.user == fryzjer.user %}
-<div><a href="{% url 'edytuj_fryzjera' fryzjer.id %}">Edycja profilu</a></div>
-{% endif %}
-{% if zamowienia_klienta %}
-<div><a href="{% url 'dodaj_opinie_fryzjer' fryzjer.id %}">Ocen fryzjera</a></div>
-{% endif %}
-<br>
-<div class="bigger">Opinie:</div>
+
+    <div class="page-header header-filter" data-parallax="true" style="background-image:url('http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-city-night.png');"></div>
+    <div class="main main-raised">
+		<div class="profile-content">
+            <div class="container">
+                <div class="row">
+	                <div class="col-md-6 ml-auto mr-auto">
+        	           <div class="profile">
+	                        <div class="avatar">
+	                            <img src="/{{fryzjer.avatar}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+	                        </div>
+	                        <div class="name">
+	                            <h3 class="title">{{fryzjer.imie}} {{fryzjer.nazwisko}}</h3>
+								<h6>Fryzjer</h6>
+
+	                        </div>
+	                    </div>
+    	            </div>
+                </div>
+                <div class="description text-center">
+                    <h3>O mnie:</h3>
+                    <p>{{fryzjer.bio}}</p>
+                </div>
+				<div class="row">
+					<div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile-tabs">
+                          <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                              {% if salon %}
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{% url 'pokaz_salon' salon.id %}" role="tab" data-toggle="tab">
+                                  <i class="material-icons">camera</i>
+                                  Miejsca pracy
+                                </a>
+                            </li>
+                              {% endif %}
+                              {% if request.user == fryzjer.user %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'edytuj_fryzjera' fryzjer.id %}" role="tab" data-toggle="tab">
+                                  <i class="material-icons">palette</i>
+                                    Edytuj profil
+                                </a>
+                            </li>
+                              {% endif %}
+                              {% if zamowienia_klienta %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dodaj_opinie_fryzjer' fryzjer.id %}" role="tab" data-toggle="tab">
+                                  <i class="material-icons">favorite</i>
+                                    Oceń fryzjera
+                                </a>
+                            </li>
+                              {% endif %}
+                          </ul>
+                        </div>
+    	    	</div>
+            </div>
 <hr>
 
 {% load times %}
@@ -61,5 +105,10 @@
     <hr>
     <a id="expandUtility" href="javascript:expand()">Pokaż&nbsp;więcej</a>
 {% endif %}
+
+
+
+
+</body>
 
 {% endblock %}

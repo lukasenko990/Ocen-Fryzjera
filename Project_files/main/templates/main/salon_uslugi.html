@@ -1,0 +1,33 @@
+{% extends 'main/pokaz_salon.html' %}
+
+{% block content2 %}
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="home-tab" data-toggle="tab" href="{% url 'pokaz_salon' salon.id %}" role="tab" aria-controls="home" aria-selected="true">O nas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#" role="tab" aria-controls="profile" aria-selected="false">Usługi</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="{% url 'pokaz_opinie' salon.id %}" role="tab" aria-controls="profile" aria-selected="false">Oceny</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="{% url 'pokaz_mape' salon.id %}" role="tab" aria-controls="profile" aria-selected="false">Jak dojechać?</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    {% if user_wlasciciel %}
+
+                    <div class="col-md-2">
+                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edytuj profil"/>
+                    </div>
+                    {% endif %}
+                </div>
+
+{% for usluga in uslugi %}
+    <a href="{% url 'pokaz_usluge' usluga.id %}">{{ usluga.nazwa }}</a>
+    <br>
+{% endfor %}
+{% endblock content2 %}
