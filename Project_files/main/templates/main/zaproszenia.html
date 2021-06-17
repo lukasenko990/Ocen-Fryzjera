@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% for z in zapro %}
+    <div class="card flex-row flex-grow-1 p-2 mx-2 my-2 align-items-center" >
+        <ul>
+        imie fryzjera: {{ z.imie_fryzjera }}<br>
+        <form action="{% url 'usun_zaproszenie' z.fryzjerID z.salonID %}" method="POST">
+                {% csrf_token %}
+                <button class="btn">delete</button>
+                </form>
+        </ul>
+
+    <br><br><br>
+{% endfor %}
+
+{% endblock content %}

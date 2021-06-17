@@ -316,6 +316,7 @@ def edytuj_fryzjera(request, id):
     }
     return render(request, 'main/edytuj_fryzjera.html', context)
 
+
 def dodaj_opinie_fryzjer(request, id):
     context = {}
     fryzjer = Fryzjer.objects.all().filter(id=id).first()
@@ -352,6 +353,8 @@ def dodaj_opinie_fryzjer(request, id):
                 messages.info(request, 'Musisz wybrac liczbe gwiazdek!')
                 return render(request, 'main/dodaj_opinie_fryzjer.html', context)
     return render(request, 'main/dodaj_opinie_fryzjer.html', context)
+
+
 def dodaj_opinie_salon(request, id):
     context = {}
     salon = Salon.objects.all().filter(id=id).first()
@@ -388,6 +391,8 @@ def dodaj_opinie_salon(request, id):
                 messages.info(request, 'Musisz wybrac liczbe gwiazdek!')
                 return render(request, 'main/dodaj_opinie_salon.html', context)
     return render(request, 'main/dodaj_opinie_salon.html', context)
+
+
 def edytuj_klienta(request, id):
     context = {}
     profile = Klient.objects.all().filter(id=id).first()
@@ -426,6 +431,7 @@ def edytuj_salon(request, id):
     }
     return render(request, 'main/edytuj_salon.html', context)
 
+
 def search(request):
     if request.method == "POST":
         searched = request.POST['searched']
@@ -439,6 +445,7 @@ def search(request):
         return render(request, 'main/search.html', {'searched':searched, 'fryzjerzy':fryzjerzy, 'salony':salony})
     else:
         return render(request, 'main/search.html', {})
+
 
 def umow_wizyte(request, id):
     usluga = get_object_or_404(Usluga, id=id)
@@ -511,11 +518,13 @@ def dodaj_fryzjera(request):
             salonID=salonID,
             wlascicielID=fryzjer.id,
             fryzjerID=fryzjerToAdd.id,
+            imie_fryzjera=fryzjerToAdd.imie,
             imie_wlasciciela=fryzjer.imie,
             nazwisko_wlasciciela=fryzjer.nazwisko,
             nazwa_salonu=salonToAdd.nazwa,
             )
             zaproszenie.save()
+            fryzjer.invite_sent.add(fryzjerToAdd)
             fryzjerToAdd.salon_to_add.add(zaproszenie)
 
         #fryzjer.invite_sent.add(fryzjerToAdd)
@@ -532,10 +541,10 @@ def dodaj_fryzjera(request):
     return render(request, 'main/dodaj_fryzjera.html', context)
 
 
-def akceptuj_zaproszenie(request):
-    fryzjer = Fryzjer.objects.get(user=request.user)
-    if request.method == 'POST':
-        Salon.fryzjer.add(fryzjer)
+#def akceptuj_zaproszenie(request):
+   # fryzjer = Fryzjer.objects.get(user=request.user)
+    #if request.method == 'POST':
+        #Salon.fryzjer.add(fryzjer)
 
 
 
@@ -564,6 +573,39 @@ def akceptuj_zaproszenie(request, fryzjerID, salonID):
         zapro.delete()
 
     return redirect('/')
+
+
+def usun_zaproszenie(request, fryzjerID, salonID):
+    wlasciciel = Fryzjer.objects.get(user=request.user)
+    fryzjer = Fryzjer.objects.get(id=fryzjerID)
+    if request.method == 'POST':
+        zapro = SalonRelationship.objects.filter(fryzjerID=fryzjerID, salonID=salonID)
+        wlasciciel.invite_sent.remove(fryzjer)
+        zapro.delete()
+
+    return redirect('/')
+
+
+def usun_z_salonu(request, fryzjerID, salonID):
+    if request.method == 'POST':
+        salon = Salon.objects.get(id=salonID)
+        fryzjer = Fryzjer.objects.get(id=fryzjerID)
+        salon.fryzjer.remove(fryzjer)
+
+    return redirect('/')
+
+
+def wyslane_zaproszenia(request):
+    wlasciciel = Fryzjer.objects.get(user=request.user)
+    zapro = SalonRelationship.objects.filter(wlascicielID=wlasciciel.id)
+    zaproszenia = wlasciciel.invite_sent.all()
+    context = {
+        'zaproszenia': zaproszenia,
+        'zapro': zapro,
+    }
+
+    return render(request, 'main/zaproszenia.html', context)
+
 
 def salony(request):
     salony=Salon.objects.all()

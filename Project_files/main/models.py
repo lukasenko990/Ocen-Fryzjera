@@ -8,10 +8,11 @@ class SalonRelationship(models.Model):
     fryzjerID = models.IntegerField(null=True, blank=True)
     nazwa_salonu = models.CharField(max_length=250, null=True, blank=True)
     imie_wlasciciela = models.CharField(max_length=250, null=True, blank=True)
+    imie_fryzjera = models.CharField(max_length=250, null=True, blank=True)
     nazwisko_wlasciciela = models.CharField(max_length=250, null=True, blank=True)
 
     def __str__(self):
-        return f"Wlasciciel {self.imie_wlasciciela} {self.nazwisko_wlasciciela} chce Cie dodac do {self.nazwa_salonu}"
+        return f"Wlasciciel {self.imie_wlasciciela} {self.nazwisko_wlasciciela} chce dodac {self.imie_fryzjera} do {self.nazwa_salonu}"
 
 
 class Fryzjer(models.Model):

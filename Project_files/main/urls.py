@@ -39,6 +39,9 @@ urlpatterns = [
     path('dodaj_fryzjera/', views.dodaj_fryzjera, name='dodaj_fryzjera'),
     path('zaproszenia/', views.zaproszenia_do_salonu, name='zaproszenia_do_salonu'),
     path('akceptuj_zaproszenie/<int:fryzjerID>/<int:salonID>/', views.akceptuj_zaproszenie, name='akceptuj_zaproszenie'),
+    path('usun_zaproszenie/<int:fryzjerID>/<int:salonID>/', views.usun_zaproszenie, name='usun_zaproszenie'),
+    path('usun_z_salonu/<int:fryzjerID>/<int:salonID>/', views.usun_z_salonu, name="usun_z_salonu"),
+    path('wyslane_zaproszenia/', views.wyslane_zaproszenia, name="wyslane_zaproszenia"),
 
 
     ### api ####

@@ -31,7 +31,12 @@
                         <div class="profile-work">
                             <p>Nasz zespół</p>
                             {% for fryzjer in fryzjerzy %}
+                                            <form action="{% url 'usun_z_salonu' fryzjer.id salon.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button class="btn">d</button>
+                                </form>
                             <a href="{% url 'pokaz_fryzjera' fryzjer.id %}">{{fryzjer.imie}} {{fryzjer.nazwisko}}</a><br/>
+
                             {% endfor %}
                             <br>
                             <p>Właściciel</p>
