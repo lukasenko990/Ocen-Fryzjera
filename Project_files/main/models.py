@@ -21,7 +21,7 @@ class Fryzjer(models.Model):
 
     imie = models.CharField(max_length=50, null=True)
     nazwisko = models.CharField(max_length=50, null=True)
-    srednia_ocena = models.FloatField(blank=True, null=True, default='Brak ocen')
+    srednia_ocena = models.FloatField(blank=True, null=True)
     liczba_ocen = models.IntegerField(blank=True, null=True)
     bio = models.CharField(max_length=5000, null=True, blank=True, default='Brak opisu')
     ulica = models.CharField(max_length=50, blank=True, null=True)
@@ -54,7 +54,7 @@ class Salon(models.Model):
     nr_tel = models.CharField(max_length=20, default='Brak numeru')
     godzina_otwarcia = models.CharField(max_length=10, default='Brak')
     godzina_zamkniecia = models.CharField(max_length=10, default='Brak')
-    srednia_ocena = models.FloatField(blank=True, null=True, default='Brak ocen')
+    srednia_ocena = models.FloatField(blank=True, null=True)
     liczba_ocen = models.IntegerField(blank=True, null=True)
     bio = models.CharField(max_length=5000, null=True, blank=True, default="Brak opisu")
 
