@@ -316,12 +316,23 @@ def edytuj_fryzjera(request, id):
                 try:
                     image=Image.open(profile.avatar)
                     (width,height)=image.size
-                    if width>250 or height>250:
+                    if width>400 or height>400:
                         ratio=height/width
-                        width=250
+                        width=400
                         height=int(ratio*width)
                         new_size=(width,height)
                         image=image.resize(new_size,Image.ANTIALIAS)
+                        image.save(str(profile.avatar))
+                    if width!=height:
+                        if width<400 or height<400:
+                            maxi=min(width,height)
+                        else:
+                            maxi=400
+                        smallest=min(width,height)
+                        left=int(width/2)-int(smallest/2)
+                        top=int(height/2)-int(smallest/2)
+                        box=(left,top,left+maxi,top+maxi)
+                        image=image.crop(box)
                         image.save(str(profile.avatar))
                 except:
                     pass
