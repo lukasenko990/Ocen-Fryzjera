@@ -565,7 +565,7 @@ def search(request):
 
 def umow_wizyte(request, id):
     usluga = get_object_or_404(Usluga, id=id)
-    salon = usluga.salon.first()
+    salon = usluga.salon
     fryzjerzy = salon.fryzjer.all()
     wizyty = Zamowienie.objects.all().filter(salon=salon)
     uslugi = Usluga.objects.all().filter(salon=salon)
