@@ -47,6 +47,7 @@ urlpatterns = [
     path('usun_z_salonu/<int:fryzjerID>/<int:salonID>/', views.usun_z_salonu, name="usun_z_salonu"),
     path('wyslane_zaproszenia/', views.wyslane_zaproszenia, name="wyslane_zaproszenia"),
     path('salony_wlasciciela/', views.salony_wlaciciela, name='salony_wlasciciela'),
+    path('miejsca_pracy/<int:id>/', views.miejsca_pracy, name='miejsca_pracy'),
 
 
     ### api ####

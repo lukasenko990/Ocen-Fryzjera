@@ -815,7 +815,14 @@ def salony_wlaciciela(request):
 
     return render(request, 'main/salony_wlasciciela.html', context)
 
+def miejsca_pracy(request, id):
+    fryzjer = Fryzjer.objects.get(id=id)
+    salony = Salon.objects.all().filter(fryzjer=fryzjer)
+    context = {
+        'salony': salony,
+    }
 
+    return render(request, 'main/miejsca_pracy.html', context)
 
 
 ############## API ###################
