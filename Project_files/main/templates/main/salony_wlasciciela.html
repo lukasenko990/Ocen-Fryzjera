@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+{% for salon in salony %}
+    <div >
+    <div class="card flex-row flex-grow-1 p-2 mx-2 my-2 align-items-center">
+
+    <img  class="w3-third w3-container w3-margin-bottom"  src="/{{salon.avatar}}" alt="zdjęcie salonu" style="width:10%; padding-top:10px;" class="w3-hover-opacity">
+        <ul>
+            <b>Salon:</b> <a href="{% url 'pokaz_salon' salon.id %}">{{ salon.nazwa }}</a><br>
+            <b>Miasto:</b> {{ salon.miasto }} {{ salon.kod_pocztowy }}<br>
+            <b>Ulica: </b> {{ salon.ulica }} {{ salon.nr_lokalu }}<br>
+            <b>Telefon: </b>{{ salon.nr_tel }}
+        </ul>
+
+    <br><br><br>
+        </div>
+    {% endfor %}
+
+{% endblock %}

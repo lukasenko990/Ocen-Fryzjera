@@ -798,10 +798,26 @@ def salony(request):
     context={'salony': salony}
     return render(request, 'main/salony.html', context)
 
+
 def fryzjerzy(request):
     fryzjerzy=Fryzjer.objects.all()
     context={'fryzjerzy': fryzjerzy}
     return render(request, 'main/fryzjerzy.html', context)
+
+
+def salony_wlaciciela(request):
+    wlasciciel = Fryzjer.objects.get(user=request.user)
+    salony = wlasciciel.wlasciciel.all()
+    print(salony)
+    context = {
+        'salony': salony,
+    }
+
+    return render(request, 'main/salony_wlasciciela.html', context)
+
+
+
+
 ############## API ###################
 class SalonViewSet(viewsets.ModelViewSet):
     queryset = Salon.objects.all()
