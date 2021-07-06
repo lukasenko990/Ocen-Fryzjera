@@ -34,8 +34,10 @@ six==1.14.0
 sqlparse==0.3.1
 swapper==1.1.2.post1
 tornado==6.0.4
+touch==2020.12.3
 traitlets==4.3.3
 urllib3==1.26.6
+values==2020.12.3
 virtualenv==20.0.15
 virtualenv-clone==0.5.4
 waitress==2.0.0
